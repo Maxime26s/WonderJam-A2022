@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Max.unity
     guid: 2c9991b8ed1e6e54eb1ad73ac8a4a417
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 26cb96b65be63d44ab8980d7f205d3ec,
+    com.unity.input.settings: {fileID: 11400000, guid: c31e380d80f076343abea4ff426b4436,
       type: 2}
