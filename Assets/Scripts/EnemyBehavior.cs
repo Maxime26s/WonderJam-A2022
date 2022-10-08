@@ -9,15 +9,18 @@ public class EnemyBehavior : MonoBehaviour
         Vibrate = 1,
         Stretch = 2,
         ChangeColor = 3,
+        ChangeMaterial = 4,
     }
 
     [SerializeField]
     GlitchType glitchType = GlitchType.Vibrate;
-
     [SerializeField]
     float glitchTimerMin = 10.0f;
     [SerializeField]
     float glitchTimerMax = 20.0f;
+
+    [SerializeField]
+    GameObject player;
 
     float glitchTimer;
 
@@ -25,11 +28,21 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
+    bool spotted;
+
+    float spottedTimeLeft;
+    private Renderer enemyRenderer;
+    [SerializeField] public Material[] errorMaterials;
+
     private void Start()
     {
+        enemyRenderer = GetComponent<Renderer>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
         SetTimer();
+
+        spotted = false;
+        spottedTimeLeft = 1.0f;
     }
     private void Update()
     {
@@ -47,17 +60,39 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Glitch()
     {
-        switch (glitchType)
+        RaycastHit hit;
+        Vector3 rayDirection = player.transform.position - transform.position;
+        rayDirection.Normalize();
+
+        if(Physics.Raycast (transform.position, rayDirection, out hit))
         {
-            case GlitchType.Move:         //move to random navmesh location
-                move();
-                break;
-            case GlitchType.Vibrate:         //vibrate for x seconds
-                vibrate();
-                break;
-            case GlitchType.Stretch:
-                stretch();
-                break;
+            Debug.Log(hit.transform.name);
+
+            if (hit.transform != player.transform)
+            {
+                switch (glitchType)
+                {
+                    case GlitchType.Move:         //move to random navmesh location
+                        move();
+                        break;
+                    case GlitchType.Vibrate:         //vibrate for x seconds
+                        vibrate();
+                        break;
+                    case GlitchType.Stretch:
+                        stretch();
+                        break;
+                    case GlitchType.ChangeColor:
+                        ChangeColor();
+                        break;
+                    case GlitchType.ChangeMaterial:
+                        ChangeMaterial();
+                        break;
+                }
+            }
+            else 
+            {
+                Debug.Log("you can see the guy");
+            }
         }
     }
 
@@ -77,7 +112,12 @@ public class EnemyBehavior : MonoBehaviour
 
     private void ChangeColor()
     {
+        StartCoroutine(ChangingColor());
+    }
 
+    private void ChangeMaterial()
+    {
+        StartCoroutine(ChangingMaterial());
     }
 
     IEnumerator Vibration()
@@ -133,29 +173,51 @@ public class EnemyBehavior : MonoBehaviour
 
         yield return null;
     }
-/*
-    IEnumerator Rotating()
-    {
-        float speed = 1.0f;
-        float intensity = 0.5f;
 
+    public void Spotted()
+    {
+        spotted = true;
+
+        spottedTimeLeft = 1.0f;
+
+        while (spottedTimeLeft > 0)
+        {
+            spottedTimeLeft -= Time.deltaTime;
+        }
+        spotted = false;
+    }
+
+        IEnumerator ChangingColor()
+    {
+        //float speed = 1.0f;
         float timeLeft = 4.0f;
 
-        Vector3 startRotation = transform.localRotation;
-        transform.rotation = startRotation;
+        Color startingColor = enemyRenderer.material.GetColor("_Color");
+        enemyRenderer.material.SetColor("_Color", startingColor);
 
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
-            transform.localScale = new Vector3(
-                startScale.x + (intensity * Mathf.PerlinNoise(speed * Time.time, 1)),
-                startScale.y + (intensity * Mathf.PerlinNoise(speed * Time.time, 2)),
-                startScale.z + (intensity * Mathf.PerlinNoise(speed * Time.time, 3)));
+            Color newColor = Random.ColorHSV();
+            enemyRenderer.material.SetColor("_Color", new Color());
             yield return null;
         }
-        transform.localScale = startScale;
 
+        enemyRenderer.material.SetColor("_Color", Random.ColorHSV());
         yield return null;
-    }*/
+    }
+
+    IEnumerator ChangingMaterial()
+    {
+        if (enemyRenderer != null)
+        {
+            var randomTime = Random.Range(1.0f, 4.0f);
+            var randomMatIndex = Random.Range(0, errorMaterials.Length);
+            Material oldMaterial = enemyRenderer.material;
+            enemyRenderer.material = errorMaterials[randomMatIndex];
+            yield return new WaitForSeconds(randomTime);
+            enemyRenderer.material = oldMaterial;
+        }
+    }
 }
