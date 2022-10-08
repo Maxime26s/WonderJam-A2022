@@ -7,4 +7,6 @@ public class DialogueFace : ScriptableObject
 {
     public Sprite mouthClosed;
     public Sprite mouthOpened;
+    public new string name;
+    public Color nameColor;
 }
