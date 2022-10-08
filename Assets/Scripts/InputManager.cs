@@ -53,4 +53,9 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Fire.triggered;
     }
+
+    public bool PlayerGetNoClipInput()
+    {
+        return playerControls.Player.NoClip.triggered;
+    }
 }
