@@ -8,6 +8,7 @@ public class EnemyBehavior : MonoBehaviour
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
+        ChangeColor = 3,
     }
 
     [SerializeField]
@@ -20,11 +21,14 @@ public class EnemyBehavior : MonoBehaviour
 
     float glitchTimer;
 
+    AudioSource audioSource;
+
     EnemyNavMesh enemyNavMesh;
 
     private void Start()
     {
         enemyNavMesh = GetComponent<EnemyNavMesh>();
+        audioSource = GetComponent<AudioSource>();
         SetTimer();
     }
     private void Update()
@@ -70,8 +74,9 @@ public class EnemyBehavior : MonoBehaviour
         StartCoroutine(Stretching());
     }
 
-    private void rotation()
+    private void ChangeColor()
     {
+
     }
 
     IEnumerator Vibration()
