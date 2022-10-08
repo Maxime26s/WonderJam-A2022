@@ -13,11 +13,13 @@ public class EnemyBehavior : MonoBehaviour
 
     [SerializeField]
     GlitchType glitchType = GlitchType.Vibrate;
-
     [SerializeField]
     float glitchTimerMin = 10.0f;
     [SerializeField]
     float glitchTimerMax = 20.0f;
+
+    [SerializeField]
+    GameObject player;
 
     float glitchTimer;
 
@@ -25,11 +27,18 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
+    bool spotted;
+
+    float spottedTimeLeft;
+
     private void Start()
     {
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
         SetTimer();
+
+        spotted = false;
+        spottedTimeLeft = 1.0f;
     }
     private void Update()
     {
@@ -47,17 +56,33 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Glitch()
     {
-        switch (glitchType)
+        RaycastHit hit;
+        Vector3 rayDirection = player.transform.position - transform.position;
+        rayDirection.Normalize();
+
+        if(Physics.Raycast (transform.position, rayDirection, out hit))
         {
-            case GlitchType.Move:         //move to random navmesh location
-                move();
-                break;
-            case GlitchType.Vibrate:         //vibrate for x seconds
-                vibrate();
-                break;
-            case GlitchType.Stretch:
-                stretch();
-                break;
+            Debug.Log(hit.transform.name);
+
+            if (hit.transform != player.transform)
+            {
+                switch (glitchType)
+                {
+                    case GlitchType.Move:         //move to random navmesh location
+                        move();
+                        break;
+                    case GlitchType.Vibrate:         //vibrate for x seconds
+                        vibrate();
+                        break;
+                    case GlitchType.Stretch:
+                        stretch();
+                        break;
+                }
+            }
+            else 
+            {
+                Debug.Log("you can see the guy");
+            }
         }
     }
 
@@ -133,29 +158,17 @@ public class EnemyBehavior : MonoBehaviour
 
         yield return null;
     }
-/*
-    IEnumerator Rotating()
+
+    public void Spotted()
     {
-        float speed = 1.0f;
-        float intensity = 0.5f;
+        spotted = true;
 
-        float timeLeft = 4.0f;
+        spottedTimeLeft = 1.0f;
 
-        Vector3 startRotation = transform.localRotation;
-        transform.rotation = startRotation;
-
-        while (timeLeft > 0)
+        while (spottedTimeLeft > 0)
         {
-            timeLeft -= Time.deltaTime;
-
-            transform.localScale = new Vector3(
-                startScale.x + (intensity * Mathf.PerlinNoise(speed * Time.time, 1)),
-                startScale.y + (intensity * Mathf.PerlinNoise(speed * Time.time, 2)),
-                startScale.z + (intensity * Mathf.PerlinNoise(speed * Time.time, 3)));
-            yield return null;
+            spottedTimeLeft -= Time.deltaTime;
         }
-        transform.localScale = startScale;
-
-        yield return null;
-    }*/
+        spotted = false;
+    }
 }
