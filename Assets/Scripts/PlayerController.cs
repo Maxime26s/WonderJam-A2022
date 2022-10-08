@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour
         Vector3 move = new Vector3(movement.x, 0, movement.y);
 
         move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
-
+        move.y = 0f;
+        move.Normalize();
         controller.Move(move * Time.deltaTime * speed);
 
         if(InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer)
