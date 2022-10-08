@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,6 +41,7 @@ public class EnemyBehavior : MonoBehaviour
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
     private MeshFilter enemyMeshFilter;
+    private Material[] defaultMaterials;
 
     private void Start()
     {
@@ -49,6 +51,7 @@ public class EnemyBehavior : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        defaultMaterials = enemyRenderer.materials;
 
         SetTimer();
 
@@ -234,12 +237,19 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (enemyRenderer != null)
         {
+            var oldMaterials = enemyRenderer.materials;
             var randomTime = Random.Range(1.0f, 4.0f);
             var randomMatIndex = Random.Range(0, errorMaterials.Length);
-            Material oldMaterial = enemyRenderer.material;
-            enemyRenderer.material = errorMaterials[randomMatIndex];
+            Material errorMaterial = errorMaterials[randomMatIndex];
+            Material[] newMaterials = new Material[1];
+            newMaterials[0] = errorMaterial;
+
+            enemyRenderer.materials = newMaterials;
+
             yield return new WaitForSeconds(randomTime);
-            enemyRenderer.material = oldMaterial;
+
+            enemyRenderer.materials = defaultMaterials;
+
         }
     }
 

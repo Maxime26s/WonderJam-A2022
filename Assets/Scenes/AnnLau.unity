@@ -254,10 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db7be31f21c9e54ea361989c054bdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glitchType: 4
+  glitchType: 3
   glitchTimerMin: 5
   glitchTimerMax: 6
   player: {fileID: 1002476392}
+  spotted: 0
   errorMaterials:
   - {fileID: 0}
   - {fileID: 2100000, guid: 4e9e40c826461c44b8dcb95c4c5346e6, type: 2}
@@ -331,7 +332,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8e19c3cbe5e52e44c8eb38cba192482e, type: 2}
+  - {fileID: 1808267083876445523, guid: 67fe203a6f53923438fdc2972ae81099, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -360,7 +362,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101898059}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: d437836ada3a1f2448feae23e0ee24fd, type: 3}
 --- !u!4 &101898067
 Transform:
   m_ObjectHideFlags: 0
