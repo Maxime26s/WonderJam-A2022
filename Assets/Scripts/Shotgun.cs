@@ -90,7 +90,7 @@ public class Shotgun : MonoBehaviour
         for (int i = 0; i < bulletsPerShot; i++) {
             Vector3 randomVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
             Vector3 shotDirection = Camera.main.transform.forward + randomVector * Random.Range(0f, spreadFactor);
-            if (Physics.Raycast(Camera.main.transform.position, shotDirection, out hit, weaponRange, layerMask)) {
+            if (Physics.Raycast(Camera.main.transform.position, shotDirection, out hit, weaponRange, layerMask, QueryTriggerInteraction.Ignore)) {
                 HandleHit(hit);
             }
         }
