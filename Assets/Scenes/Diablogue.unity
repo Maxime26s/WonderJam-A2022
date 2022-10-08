@@ -826,7 +826,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 49b0ad7602d6c284f9f0857ca3aad33c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -927,10 +927,10 @@ MonoBehaviour:
   imageHolder: {fileID: 190983879}
   audioSource: {fileID: 1439191551}
   textMeshProUGUI: {fileID: 1449595}
-  mouthClosed: {fileID: 21300000, guid: 6147bc9c3710d5c4ba27684127d6cf98, type: 3}
-  mouthOpened: {fileID: 21300000, guid: dfcc78deb50485d4fbd4c7b8a3273dba, type: 3}
-  text: "monsieur vous devez aller tuer les anomalies dans le jeu allez les d\xE9truire
-    wouahhh"
+  currentDialogue: {fileID: 11400000, guid: 7367ff97af7a01c44ac39f64ca731e02, type: 2}
+  currentVoiceLine: {fileID: 0}
+  currentFace: {fileID: 0}
+  isPlaying: 0
   sampleDataLength: 1024
   updateStep: 0.1
-  wordSpeed: 1
+  wordSpeed: 1.25
