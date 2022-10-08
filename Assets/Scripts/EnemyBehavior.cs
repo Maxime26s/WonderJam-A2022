@@ -28,7 +28,7 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
-    bool spotted;
+    public bool spotted;
 
     float spottedTimeLeft;
     private Renderer enemyRenderer;
@@ -47,11 +47,18 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         glitchTimer -= Time.deltaTime;
+        spottedTimeLeft -= Time.deltaTime;
+
         if (glitchTimer <= 0)
         {
             SetTimer();
             Glitch();
-        } 
+        }
+        if(spottedTimeLeft <= 0)
+        {
+            spotted = false;
+        }
+
     }
     private void SetTimer()
     {
@@ -60,6 +67,28 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Glitch()
     {
+        if (!spotted)
+        {
+            switch (glitchType)
+            {
+                case GlitchType.Move:         //move to random navmesh location
+                    move();
+                    break;
+                case GlitchType.Vibrate:         //vibrate for x seconds
+                    vibrate();
+                    break;
+                case GlitchType.Stretch:
+                    stretch();
+                    break;
+                case GlitchType.ChangeColor:
+                    ChangeColor();
+                    break;
+                case GlitchType.ChangeMaterial:
+                    ChangeMaterial();
+                    break;
+            }
+        }
+        /*
         RaycastHit hit;
         Vector3 rayDirection = player.transform.position - transform.position;
         rayDirection.Normalize();
@@ -70,30 +99,13 @@ public class EnemyBehavior : MonoBehaviour
 
             if (hit.transform != player.transform)
             {
-                switch (glitchType)
-                {
-                    case GlitchType.Move:         //move to random navmesh location
-                        move();
-                        break;
-                    case GlitchType.Vibrate:         //vibrate for x seconds
-                        vibrate();
-                        break;
-                    case GlitchType.Stretch:
-                        stretch();
-                        break;
-                    case GlitchType.ChangeColor:
-                        ChangeColor();
-                        break;
-                    case GlitchType.ChangeMaterial:
-                        ChangeMaterial();
-                        break;
-                }
+                
             }
             else 
             {
                 Debug.Log("you can see the guy");
             }
-        }
+        }*/
     }
 
     private void move()
@@ -176,18 +188,14 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Spotted()
     {
+        Debug.Log("Spotted "+ transform.name);
+
         spotted = true;
 
-        spottedTimeLeft = 1.0f;
-
-        while (spottedTimeLeft > 0)
-        {
-            spottedTimeLeft -= Time.deltaTime;
-        }
-        spotted = false;
+        spottedTimeLeft = 2.0f;
     }
 
-        IEnumerator ChangingColor()
+    IEnumerator ChangingColor()
     {
         //float speed = 1.0f;
         float timeLeft = 4.0f;
