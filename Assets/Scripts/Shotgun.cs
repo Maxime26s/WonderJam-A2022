@@ -55,13 +55,11 @@ public class Shotgun : MonoBehaviour
     private float heatValue = 0f;
     [SerializeField]
     private float shotgunBulletForce = 1000f;
-    [SerializeField]
-    private float knockbackForce = 5f;
 
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !onCooldown) {
+        if (InputManager.Instance.PlayerGetFireInput() && !onCooldown) {
             Shoot();
         }
     }
