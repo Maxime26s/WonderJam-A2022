@@ -65,6 +65,10 @@ public class Shotgun : MonoBehaviour
 
     public UnityEvent shootGun = new UnityEvent();
 
+    [SerializeField]
+    private bool hitEnemy = false;
+    [SerializeField]
+    private GameObject enemyShot;
 
     void Update()
     {
@@ -99,6 +103,8 @@ public class Shotgun : MonoBehaviour
         }
 
         shootGun.Invoke();
+
+        CheckTakeDamage();
     }
 
     private void TeleportPlayer()
@@ -128,6 +134,7 @@ public class Shotgun : MonoBehaviour
     void HandleHit(RaycastHit hit) {
 
         CheckRigidbody(hit);
+        CheckForGlitch(hit);
 
         if (hit.collider.sharedMaterial != null) {
             string materialName = hit.collider.sharedMaterial.name;
@@ -181,4 +188,24 @@ public class Shotgun : MonoBehaviour
         ejectShell.SpawnShell();
     }
 
+    private void CheckForGlitch(RaycastHit hit)
+    {
+        if(hit.collider.tag == "Enemy")
+        {
+            hitEnemy = true;
+            enemyShot = hit.collider.gameObject;
+        }
+    }
+
+    private void CheckTakeDamage()
+    {
+        if (hitEnemy)
+        {
+            enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+        }
+        else 
+        {
+            playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
+        }
+    }
 }
