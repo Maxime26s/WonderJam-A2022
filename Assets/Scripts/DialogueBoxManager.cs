@@ -7,6 +7,20 @@ using UnityEngine.UI;
 
 public class DialogueBoxManager : MonoBehaviour
 {
+    public static DialogueBoxManager Instance { get; set; }
+
+    public void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     public Image imageHolder;
     public AudioSource audioSource;
     public TextMeshProUGUI textDialogue;
@@ -17,11 +31,12 @@ public class DialogueBoxManager : MonoBehaviour
     public DialogueFace currentFace;
 
     public bool isPlaying = false;
+    public bool playOnLaunch = false;
 
     private float clipLoudness;
     private float[] clipSampleData;
-    public int sampleDataLength = 1024/4;
-    public float updateStep = 0.01f/4;
+    public int sampleDataLength = 1024 / 4;
+    public float updateStep = 0.01f / 4;
     private float currentUpdateTime = 0f;
     private float letterPerSecond;
     private int lastSpaceIndex;
@@ -45,7 +60,8 @@ public class DialogueBoxManager : MonoBehaviour
         textDialogueDefaultAnchorX = new Vector2(textDialogue.rectTransform.anchorMin.x, textDialogue.rectTransform.anchorMax.x);
         deltaTextDialogue = textDialogueDefaultAnchorX.y - textDialogueDefaultAnchorX.x;
 
-        StartDialogue();
+        if (playOnLaunch)
+            StartDialogue();
     }
 
     // Update is called once per frame
@@ -79,7 +95,7 @@ public class DialogueBoxManager : MonoBehaviour
 
             if (audioSource.time - lastWordTime <= fastWordTime)
             {
-                textDialogue.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length-1));
+                textDialogue.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length - 1));
             }
             else if (audioSource.time > lastWordTime + wordTime)
             {
@@ -88,7 +104,7 @@ public class DialogueBoxManager : MonoBehaviour
                 lastWordTime = audioSource.time;
             }
         }
-        else if (isPlaying)
+        else if (isPlaying && currentVoiceLine != null)
         {
             textDialogue.text = currentVoiceLine.text;
             StartCoroutine(WaitThenPlay(currentDialogue.pauseLengthBetweenVoiceLines));
@@ -98,9 +114,13 @@ public class DialogueBoxManager : MonoBehaviour
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
+        if (currentDialogue == null)
+            return;
         currentDialogue.voiceLines = new Queue<DialogueVoiceLine>(currentDialogue.voiceLinesList);
-        Debug.Log(currentDialogue.voiceLines);
-        PlayNextVoiceLine();
+        imageHolder.enabled = false;
+        textDialogue.text = "";
+        textName.text = "";
+        StartCoroutine(WaitThenPlay(1f));
     }
 
     public void PlayNextVoiceLine()
@@ -111,6 +131,8 @@ public class DialogueBoxManager : MonoBehaviour
             DialogueFinished?.Invoke();
             return;
         }
+
+        imageHolder.enabled = true;
 
         currentFace = currentVoiceLine.face;
 
