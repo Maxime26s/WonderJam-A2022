@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db7be31f21c9e54ea361989c054bdbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glitchType: 6
+  glitchType: 1
   glitchTimerMin: 5
   glitchTimerMax: 6
   player: {fileID: 984441431}

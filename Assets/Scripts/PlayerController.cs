@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private Transform cameraTransform;
 
+    private bool isNoClipping = false; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +25,44 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
     }
 
+    private void ToggleNoClip()
+    {
+        isNoClipping = !isNoClipping;
+        controller.enabled = !isNoClipping;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (InputManager.Instance.PlayerGetNoClipInput())
+            ToggleNoClip();
+
+        if (!isNoClipping)
+        {
+            MoveUpdate();
+        }
+        else
+        {
+            NoclipUpdate();
+        }
+    }
+
+    private void NoclipUpdate()
+    {
+        playerVelocity = Vector3.zero;
+
+        Vector2 movement = InputManager.Instance.GetPlayerMovement();
+        Vector3 move = new Vector3(movement.x, 0, movement.y);
+
+        move = cameraTransform.forward * move.z + cameraTransform.right * move.x;
+        move.Normalize();
+        controller.transform.position += move * Time.deltaTime * speed * 1.5f;
+    }
+
+    private void MoveUpdate()
+    {
         groundedPlayer = controller.isGrounded;
-        if(groundedPlayer && playerVelocity.y < 0)
+        if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
@@ -40,7 +75,7 @@ public class PlayerController : MonoBehaviour
         move.Normalize();
         controller.Move(move * Time.deltaTime * speed);
 
-        if(InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer)
+        if (InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }

@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private enum GlitchType {
+    public enum GlitchType {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
-        ChangeColor = 3,
-        ChangeMaterial = 4,
-        Fling = 6,
+        ChangeMaterial = 3,
+        ChangeMeshError = 4,
+        Fling = 5,
     }
 
     [SerializeField]
-    GlitchType glitchType = GlitchType.Vibrate;
+    public GlitchType glitchType = GlitchType.Vibrate;
     [SerializeField]
     float glitchTimerMin = 10.0f;
     [SerializeField]
@@ -39,14 +40,18 @@ public class EnemyBehavior : MonoBehaviour
     float spottedTimeLeft;
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
+    private MeshFilter enemyMeshFilter;
+    private Material[] defaultMaterials;
 
     private void Start()
     {
         enemyRenderer = GetComponent<Renderer>();
+        enemyMeshFilter = GetComponent<MeshFilter>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        defaultMaterials = enemyRenderer.materials;
 
         SetTimer();
 
@@ -80,20 +85,20 @@ public class EnemyBehavior : MonoBehaviour
         {
             switch (glitchType)
             {
-                case GlitchType.Move:         //move to random navmesh location
+                case GlitchType.Move:           //move to random navmesh location
                     move();
                     break;
-                case GlitchType.Vibrate:         //vibrate for x seconds
+                case GlitchType.Vibrate:        //vibrate for x seconds
                     vibrate();
                     break;
                 case GlitchType.Stretch:
                     stretch();
                     break;
-                case GlitchType.ChangeColor:
-                    ChangeColor();
-                    break;
                 case GlitchType.ChangeMaterial:
                     ChangeMaterial();
+                    break;
+                case GlitchType.ChangeMeshError:
+                    ChangeMeshError();
                     break;
                 case GlitchType.Fling:
                     Fling();
@@ -101,24 +106,6 @@ public class EnemyBehavior : MonoBehaviour
                     
             }
         }
-        /*
-        RaycastHit hit;
-        Vector3 rayDirection = player.transform.position - transform.position;
-        rayDirection.Normalize();
-
-        if(Physics.Raycast (transform.position, rayDirection, out hit))
-        {
-            Debug.Log(hit.transform.name);
-
-            if (hit.transform != player.transform)
-            {
-                
-            }
-            else 
-            {
-                Debug.Log("you can see the guy");
-            }
-        }*/
     }
 
     private void move()
@@ -133,10 +120,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         StartCoroutine(Stretching());
     }
-    private void ChangeColor()
-    {
-        StartCoroutine(ChangingColor());
-    }
+
     private void ChangeMaterial()
     {
         StartCoroutine(ChangingMaterial());
@@ -144,6 +128,11 @@ public class EnemyBehavior : MonoBehaviour
     private void Fling()
     {
         StartCoroutine(Flinging());
+    }
+
+    private void ChangeMeshError()
+    {
+        StartCoroutine(ChangingMesh());
     }
 
     IEnumerator Vibration()
@@ -209,39 +198,40 @@ public class EnemyBehavior : MonoBehaviour
         spottedTimeLeft = 2.0f;
     }
 
-    IEnumerator ChangingColor()
-    {
-        float timeLeft = 4.0f;
-
-        Color startingColor = enemyRenderer.material.GetColor("_Color");
-        enemyRenderer.material.SetColor("_Color", startingColor);
-
-        while (timeLeft > 0)
-        {
-            timeLeft -= Time.deltaTime;
-
-            Color newColor = Random.ColorHSV();
-            enemyRenderer.material.SetColor("_Color", new Color());
-            yield return null;
-        }
-
-        enemyRenderer.material.SetColor("_Color", Random.ColorHSV());
-        yield return null;
-    }
-
     IEnumerator ChangingMaterial()
     {
         if (enemyRenderer != null)
         {
+            var oldMaterials = enemyRenderer.materials;
             var randomTime = Random.Range(1.0f, 4.0f);
             var randomMatIndex = Random.Range(0, errorMaterials.Length);
-            Material oldMaterial = enemyRenderer.material;
-            enemyRenderer.material = errorMaterials[randomMatIndex];
+            Material errorMaterial = errorMaterials[randomMatIndex];
+            Material[] newMaterials = new Material[1];
+            newMaterials[0] = errorMaterial;
+
+            enemyRenderer.materials = newMaterials;
+
             yield return new WaitForSeconds(randomTime);
-            enemyRenderer.material = oldMaterial;
+
+            enemyRenderer.materials = defaultMaterials;
+
         }
     }
 
+    IEnumerator ChangingMesh()
+    {
+        if (enemyRenderer != null)
+        {
+            var randomTime = Random.Range(1.0f, 4.0f);
+            Mesh oldMesh = enemyMeshFilter.mesh;
+            Material oldMaterial = enemyRenderer.material;
+            enemyMeshFilter.mesh = Resources.Load<Mesh>("error");
+            enemyRenderer.material = Resources.Load<Material>("error");
+            yield return new WaitForSeconds(randomTime);
+            enemyMeshFilter.mesh = oldMesh;
+            enemyRenderer.material = oldMaterial;
+        }
+    }
     IEnumerator Flinging()
     {
         float maxForce = 10.0f;
@@ -267,19 +257,4 @@ public class EnemyBehavior : MonoBehaviour
         //transform.position = FindNearestNavMeshPoint(transform.position);
         yield return null;
     }
-    /*          //only finds vertical points
-    private Vector3 FindNearestNavMeshPoint(Vector3 sourcePosition)
-    {
-        Vector3 nearest = new Vector3(0,0,0);
-        NavMeshHit hit;
-        float maxDistance = 5000f;
-
-        NavMesh.SamplePosition(sourcePosition, out hit, maxDistance,0);
-
-        Debug.Log(hit.position.x);
-        nearest = hit.position;
-
-
-        return nearest;
-    }*/
 }
