@@ -114,4 +114,8 @@ public class LevelLoader : MonoBehaviour {
         Application.Quit();
     }
 
+    public void Mute() {
+        buttonAudioSource.mute = !buttonAudioSource.mute;
+    }
+
 }

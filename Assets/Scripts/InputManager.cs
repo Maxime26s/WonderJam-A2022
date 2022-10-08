@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
 
         playerControls = new PlayerControls();
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnEnable()
@@ -46,5 +47,15 @@ public class InputManager : MonoBehaviour
     public bool PlayerJumpedThisFrame()
     {
         return playerControls.Player.Jump.triggered;
+    }
+
+    public bool PlayerGetFireInput()
+    {
+        return playerControls.Player.Fire.triggered;
+    }
+
+    public bool PlayerGetNoClipInput()
+    {
+        return playerControls.Player.NoClip.triggered;
     }
 }
