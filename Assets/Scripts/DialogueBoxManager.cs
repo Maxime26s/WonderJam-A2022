@@ -9,7 +9,8 @@ public class DialogueBoxManager : MonoBehaviour
 {
     public Image imageHolder;
     public AudioSource audioSource;
-    public TextMeshProUGUI textMeshProUGUI;
+    public TextMeshProUGUI textDialogue;
+    public TextMeshProUGUI textName;
 
     public DialogueTemplate currentDialogue;
     public DialogueVoiceLine currentVoiceLine;
@@ -19,8 +20,8 @@ public class DialogueBoxManager : MonoBehaviour
 
     private float clipLoudness;
     private float[] clipSampleData;
-    public int sampleDataLength = 1024;
-    public float updateStep = 0.05f;
+    public int sampleDataLength = 1024/4;
+    public float updateStep = 0.01f/4;
     private float currentUpdateTime = 0f;
     private float letterPerSecond;
     private int lastSpaceIndex;
@@ -30,8 +31,8 @@ public class DialogueBoxManager : MonoBehaviour
 
     private Vector2 faceDefaultAnchorX;
     float deltaFace;
-    private Vector2 textDefaultAnchorX;
-    float deltaText;
+    private Vector2 textDialogueDefaultAnchorX;
+    float deltaTextDialogue;
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +40,10 @@ public class DialogueBoxManager : MonoBehaviour
         clipSampleData = new float[sampleDataLength];
 
         faceDefaultAnchorX = new Vector2(imageHolder.rectTransform.anchorMin.x, imageHolder.rectTransform.anchorMax.x);
-        Debug.Log(faceDefaultAnchorX);
         deltaFace = faceDefaultAnchorX.y - faceDefaultAnchorX.x;
-        Debug.Log(deltaFace);
-        textDefaultAnchorX = new Vector2(textMeshProUGUI.rectTransform.anchorMin.x, textMeshProUGUI.rectTransform.anchorMax.x);
-        Debug.Log(textDefaultAnchorX);
-        deltaText = textDefaultAnchorX.y - textDefaultAnchorX.x;
-        Debug.Log(deltaText);
+
+        textDialogueDefaultAnchorX = new Vector2(textDialogue.rectTransform.anchorMin.x, textDialogue.rectTransform.anchorMax.x);
+        deltaTextDialogue = textDialogueDefaultAnchorX.y - textDialogueDefaultAnchorX.x;
 
         StartDialogue();
     }
@@ -81,7 +79,7 @@ public class DialogueBoxManager : MonoBehaviour
 
             if (audioSource.time - lastWordTime <= fastWordTime)
             {
-                textMeshProUGUI.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length-1));
+                textDialogue.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length-1));
             }
             else if (audioSource.time > lastWordTime + wordTime)
             {
@@ -121,20 +119,28 @@ public class DialogueBoxManager : MonoBehaviour
                 imageHolder.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, imageHolder.rectTransform.anchorMin.y);
                 imageHolder.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.y, imageHolder.rectTransform.anchorMax.y);
 
-                textMeshProUGUI.rectTransform.anchorMin = new Vector2(textDefaultAnchorX.x, textMeshProUGUI.rectTransform.anchorMin.y);
-                textMeshProUGUI.rectTransform.anchorMax = new Vector2(textDefaultAnchorX.y, textMeshProUGUI.rectTransform.anchorMax.y);
-                
+                textDialogue.rectTransform.anchorMin = new Vector2(textDialogueDefaultAnchorX.x, textDialogue.rectTransform.anchorMin.y);
+                textDialogue.rectTransform.anchorMax = new Vector2(textDialogueDefaultAnchorX.y, textDialogue.rectTransform.anchorMax.y);
+
+                textName.rectTransform.anchorMin = new Vector2(textDialogueDefaultAnchorX.x, textName.rectTransform.anchorMin.y);
+                textName.rectTransform.anchorMax = new Vector2(textDialogueDefaultAnchorX.y, textName.rectTransform.anchorMax.y);
+
                 break;
             case Location.Right:
-                imageHolder.rectTransform.anchorMin = new Vector2(textDefaultAnchorX.y - deltaFace, imageHolder.rectTransform.anchorMin.y);
-                imageHolder.rectTransform.anchorMax = new Vector2(textDefaultAnchorX.y, imageHolder.rectTransform.anchorMax.y);
+                imageHolder.rectTransform.anchorMin = new Vector2(textDialogueDefaultAnchorX.y - deltaFace, imageHolder.rectTransform.anchorMin.y);
+                imageHolder.rectTransform.anchorMax = new Vector2(textDialogueDefaultAnchorX.y, imageHolder.rectTransform.anchorMax.y);
 
-                textMeshProUGUI.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, textMeshProUGUI.rectTransform.anchorMin.y);
-                textMeshProUGUI.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.x + deltaText, textMeshProUGUI.rectTransform.anchorMax.y);
+                textDialogue.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, textDialogue.rectTransform.anchorMin.y);
+                textDialogue.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.x + deltaTextDialogue, textDialogue.rectTransform.anchorMax.y);
+
+                textName.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, textName.rectTransform.anchorMin.y);
+                textName.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.x + deltaTextDialogue, textName.rectTransform.anchorMax.y);
 
                 break;
         }
 
+        textName.color = currentFace.nameColor;
+        textName.text = currentFace.name;
 
         audioSource.clip = currentVoiceLine.voiceLine;
         letterPerSecond = currentVoiceLine.text.Length / audioSource.clip.length;

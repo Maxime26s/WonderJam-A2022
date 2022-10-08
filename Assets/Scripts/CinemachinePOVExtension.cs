@@ -13,8 +13,7 @@ public class CinemachinePOVExtension : CinemachineExtension
     private Vector3 startingRotation;
 
 
-    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
-    {
+    protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime) {
         if (vcam.Follow)
         {
             if (stage == CinemachineCore.Stage.Aim)
@@ -24,7 +23,9 @@ public class CinemachinePOVExtension : CinemachineExtension
                     startingRotation = transform.localRotation.eulerAngles;
                 }
 
-                Vector2 deltaInput = InputManager.Instance.GetMouseDelta();
+                Vector2 deltaInput = Vector2.zero;
+                if (InputManager.Instance != null)
+                     deltaInput = InputManager.Instance.GetMouseDelta();
                 startingRotation += (Vector3)(deltaInput * Time.deltaTime * cameraSpeed);
                 startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngle, clampAngle);
                 state.RawOrientation = Quaternion.Euler(-startingRotation.y, startingRotation.x, 0f);
