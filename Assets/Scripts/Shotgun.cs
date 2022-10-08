@@ -8,6 +8,10 @@ public class Shotgun : MonoBehaviour
     private Animation shotgunAnimation = null;
     [SerializeField]
     private Animation shotgunRecoilAnimation = null;
+    [SerializeField]
+    private CharacterController characterController = null;
+    [SerializeField]
+    private Transform playerTransform = null;
 
     [SerializeField]
     private ParticleSystem muzzleFlash = null;
@@ -56,12 +60,12 @@ public class Shotgun : MonoBehaviour
     [SerializeField]
     private float shotgunBulletForce = 1000f;
     [SerializeField]
-    private float knockbackForce = 5f;
+    private float shotgunTeleportBackDistance = 5f;
 
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !onCooldown) {
+        if (InputManager.Instance.PlayerGetFireInput() && !onCooldown) {
             Shoot();
         }
     }
@@ -78,16 +82,28 @@ public class Shotgun : MonoBehaviour
 
         HeatUp();
 
+        TeleportPlayer();
+
         onCooldown = true;
 
         RaycastHit hit;
         for (int i = 0; i < bulletsPerShot; i++) {
             Vector3 randomVector = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
             Vector3 shotDirection = Camera.main.transform.forward + randomVector * Random.Range(0f, spreadFactor);
-            if (Physics.Raycast(Camera.main.transform.position, shotDirection, out hit, weaponRange, layerMask)) {
+            if (Physics.Raycast(Camera.main.transform.position, shotDirection, out hit, weaponRange, layerMask, QueryTriggerInteraction.Ignore)) {
                 HandleHit(hit);
             }
         }
+    }
+
+    private void TeleportPlayer()
+    {
+        Vector3 direction = Camera.main.transform.forward;
+        direction.y = 0;
+        direction = -direction.normalized;
+        characterController.enabled = false;
+        playerTransform.position += (direction * shotgunTeleportBackDistance);
+        characterController.enabled = true;
     }
 
     private void HeatUp() {

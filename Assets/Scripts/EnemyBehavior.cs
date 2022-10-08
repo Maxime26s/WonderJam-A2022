@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyBehavior : MonoBehaviour
         Stretch = 2,
         ChangeColor = 3,
         ChangeMaterial = 4,
+        Fling = 6,
     }
 
     [SerializeField]
@@ -28,6 +30,10 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
+    Rigidbody rb;
+
+    NavMeshAgent navMeshAgent;
+
     public bool spotted;
 
     float spottedTimeLeft;
@@ -39,6 +45,9 @@ public class EnemyBehavior : MonoBehaviour
         enemyRenderer = GetComponent<Renderer>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
         SetTimer();
 
         spotted = false;
@@ -86,6 +95,10 @@ public class EnemyBehavior : MonoBehaviour
                 case GlitchType.ChangeMaterial:
                     ChangeMaterial();
                     break;
+                case GlitchType.Fling:
+                    Fling();
+                    break;
+                    
             }
         }
         /*
@@ -115,21 +128,22 @@ public class EnemyBehavior : MonoBehaviour
     private void vibrate()
     {
         StartCoroutine(Vibration());
-
     }
     private void stretch()
     {
         StartCoroutine(Stretching());
     }
-
     private void ChangeColor()
     {
         StartCoroutine(ChangingColor());
     }
-
     private void ChangeMaterial()
     {
         StartCoroutine(ChangingMaterial());
+    }
+    private void Fling()
+    {
+        StartCoroutine(Flinging());
     }
 
     IEnumerator Vibration()
@@ -197,7 +211,6 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator ChangingColor()
     {
-        //float speed = 1.0f;
         float timeLeft = 4.0f;
 
         Color startingColor = enemyRenderer.material.GetColor("_Color");
@@ -228,4 +241,45 @@ public class EnemyBehavior : MonoBehaviour
             enemyRenderer.material = oldMaterial;
         }
     }
+
+    IEnumerator Flinging()
+    {
+        float maxForce = 10.0f;
+        float intensity = 500.0f;
+
+        float timeLeft = 2.0f;
+
+        Vector3 flingDirection = new Vector3(Random.Range(-maxForce, maxForce), Random.Range(0, maxForce), Random.Range(-maxForce, maxForce));
+        flingDirection.Normalize();
+        rb.isKinematic = false;
+        navMeshAgent.enabled = false;
+
+        rb.AddForce(flingDirection * intensity);
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+        rb.isKinematic = true;
+        navMeshAgent.enabled = true;
+
+        //transform.position = FindNearestNavMeshPoint(transform.position);
+        yield return null;
+    }
+    /*          //only finds vertical points
+    private Vector3 FindNearestNavMeshPoint(Vector3 sourcePosition)
+    {
+        Vector3 nearest = new Vector3(0,0,0);
+        NavMeshHit hit;
+        float maxDistance = 5000f;
+
+        NavMesh.SamplePosition(sourcePosition, out hit, maxDistance,0);
+
+        Debug.Log(hit.position.x);
+        nearest = hit.position;
+
+
+        return nearest;
+    }*/
 }
