@@ -8,6 +8,10 @@ public class Shotgun : MonoBehaviour
     private Animation shotgunAnimation = null;
     [SerializeField]
     private Animation shotgunRecoilAnimation = null;
+    [SerializeField]
+    private CharacterController characterController = null;
+    [SerializeField]
+    private Transform playerTransform = null;
 
     [SerializeField]
     private ParticleSystem muzzleFlash = null;
@@ -55,6 +59,8 @@ public class Shotgun : MonoBehaviour
     private float heatValue = 0f;
     [SerializeField]
     private float shotgunBulletForce = 1000f;
+    [SerializeField]
+    private float shotgunTeleportBackDistance = 5f;
 
 
     void Update()
@@ -76,6 +82,8 @@ public class Shotgun : MonoBehaviour
 
         HeatUp();
 
+        TeleportPlayer();
+
         onCooldown = true;
 
         RaycastHit hit;
@@ -86,6 +94,16 @@ public class Shotgun : MonoBehaviour
                 HandleHit(hit);
             }
         }
+    }
+
+    private void TeleportPlayer()
+    {
+        Vector3 direction = Camera.main.transform.forward;
+        direction.y = 0;
+        direction = -direction.normalized;
+        characterController.enabled = false;
+        playerTransform.position += (direction * shotgunTeleportBackDistance);
+        characterController.enabled = true;
     }
 
     private void HeatUp() {

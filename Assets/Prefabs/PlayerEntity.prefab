@@ -594,6 +594,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1356303758980753741}
     m_Modifications:
+    - target: {fileID: 2785580758934384325, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1356303759591148108}
+    - target: {fileID: 2785580758934384325, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 1356303759591148109}
     - target: {fileID: 3573958486060126955, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Name

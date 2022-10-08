@@ -704,6 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotgunAnimation: {fileID: 8828504961225684846}
   shotgunRecoilAnimation: {fileID: 398554415452594021}
+  playerTransform: {fileID: 0}
   muzzleFlash: {fileID: 1608057004669223209}
   gunSmoke: {fileID: 7173076616973856915}
   ejectShell: {fileID: 7682322437344873872}
@@ -728,6 +729,7 @@ MonoBehaviour:
   onCooldown: 0
   heatValue: 0
   shotgunBulletForce: 100
+  shotgunTeleportBackDistance: 2
 --- !u!82 &4179953517241480970
 AudioSource:
   m_ObjectHideFlags: 0
