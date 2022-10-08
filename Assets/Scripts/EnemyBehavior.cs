@@ -9,6 +9,7 @@ public class EnemyBehavior : MonoBehaviour
         Vibrate = 1,
         Stretch = 2,
         ChangeColor = 3,
+        ChangeMaterial = 4,
     }
 
     [SerializeField]
@@ -25,8 +26,12 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
+    private Renderer enemyRenderer;
+    [SerializeField] public Material[] errorMaterials;
+
     private void Start()
     {
+        enemyRenderer = GetComponent<Renderer>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
         SetTimer();
@@ -58,6 +63,13 @@ public class EnemyBehavior : MonoBehaviour
             case GlitchType.Stretch:
                 stretch();
                 break;
+            case GlitchType.ChangeColor:
+                ChangeColor();
+                break;
+            case GlitchType.ChangeMaterial:
+                ChangeMaterial();
+                break;
+
         }
     }
 
@@ -76,7 +88,12 @@ public class EnemyBehavior : MonoBehaviour
 
     private void ChangeColor()
     {
+        StartCoroutine(ChangingColor());
+    }
 
+    private void ChangeMaterial()
+    {
+        StartCoroutine(ChangingMaterial());
     }
 
     IEnumerator Vibration()
@@ -127,6 +144,40 @@ public class EnemyBehavior : MonoBehaviour
         transform.localScale = startScale;
 
         yield return null;
+    }
+
+    IEnumerator ChangingColor()
+    {
+        //float speed = 1.0f;
+        float timeLeft = 4.0f;
+
+        Color startingColor = enemyRenderer.material.GetColor("_Color");
+        enemyRenderer.material.SetColor("_Color", startingColor);
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            Color newColor = Random.ColorHSV();
+            enemyRenderer.material.SetColor("_Color", new Color());
+            yield return null;
+        }
+
+        enemyRenderer.material.SetColor("_Color", Random.ColorHSV());
+        yield return null;
+    }
+
+    IEnumerator ChangingMaterial()
+    {
+        if (enemyRenderer != null)
+        {
+            var randomTime = Random.Range(1.0f, 4.0f);
+            var randomMatIndex = Random.Range(0, errorMaterials.Length);
+            Material oldMaterial = enemyRenderer.material;
+            enemyRenderer.material = errorMaterials[randomMatIndex];
+            yield return new WaitForSeconds(randomTime);
+            enemyRenderer.material = oldMaterial;
+        }
     }
 /*
     IEnumerator Rotating()
