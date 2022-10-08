@@ -90,6 +90,7 @@ public class DialogueBoxManager : MonoBehaviour
         }
         else if (isPlaying)
         {
+            textDialogue.text = currentVoiceLine.text;
             StartCoroutine(WaitThenPlay(currentDialogue.pauseLengthBetweenVoiceLines));
         }
     }
