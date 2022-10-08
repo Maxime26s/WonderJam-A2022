@@ -80,6 +80,7 @@ public class EnemyBehavior : MonoBehaviour
     private void vibrate()
     {
         StartCoroutine(Vibration());
+
     }
     private void stretch()
     {
@@ -98,10 +99,12 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator Vibration()
     {
+        audioSource.Play(0);
+
         float speed = 10.0f;
         float intensity = 0.1f;
 
-        float timeLeft = 5.0f;
+        float timeLeft = 3.0f;
 
         Vector3 startTransform = transform.position;
         transform.position = startTransform;
@@ -118,6 +121,8 @@ public class EnemyBehavior : MonoBehaviour
         }
         transform.position = startTransform;
 
+
+        audioSource.Stop();
         yield return null;
     }
 
