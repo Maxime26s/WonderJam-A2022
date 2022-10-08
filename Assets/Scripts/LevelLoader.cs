@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//pachinko
-public class LevelLoader : MonoBehaviour
-{
+//A singleton that handles level loading and unloading, along with its fade-to-black and fade-in transitions.
+public class LevelLoader : MonoBehaviour {
+
+    public static LevelLoader Instance { get; set; }
     public Animator transition;
     public float transitionTime = 1f;
     public Canvas animCanvas;
 
     public AudioSource buttonAudioSource = null;
+
+    public void Awake() {
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+        } else {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+    }
 
     public void LoadMenu()
     {
@@ -89,7 +99,7 @@ public class LevelLoader : MonoBehaviour
             transition.SetTrigger("Fade_out_tr");
 
         yield return new WaitForSeconds(transitionTime);
-
+        
         SceneManager.LoadScene(scene_name);
     }
 
