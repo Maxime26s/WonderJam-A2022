@@ -1231,7 +1231,11 @@ MonoBehaviour:
   potentialEnemies: []
   selectedEnemies: []
   numberOfEnemies: 10
-  errorMaterialsManager: []
+  errorMaterialsManager:
+  - {fileID: 0}
+  - {fileID: 2100000, guid: 4e9e40c826461c44b8dcb95c4c5346e6, type: 2}
+  - {fileID: 2100000, guid: 4c898124d1e0c2747a0e1b16ac8fad68, type: 2}
+  - {fileID: 2100000, guid: 9f1f41b831b80f042938a0eae3f14711, type: 2}
   audioClip: {fileID: 8300000, guid: 38fd274bc605ffa45bf911cb45450810, type: 3}
 --- !u!4 &814791790
 Transform:
@@ -1752,22 +1756,22 @@ PrefabInstance:
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.340514
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.08344118
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.9096179
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.22289725
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753742, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
@@ -2723,12 +2727,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 418032, guid: b2104cd97435ca840ad296caa01cb4ff,
     type: 3}
   m_PrefabInstance: {fileID: 1277539132}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1308417035 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5649167900780526380, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1032321535}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1312120913
 PrefabInstance:

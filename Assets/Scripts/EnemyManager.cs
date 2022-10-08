@@ -44,7 +44,7 @@ public class EnemyManager : MonoBehaviour
             enemy.AddComponent(typeof(EnemyBehavior));
             enemy.AddComponent(typeof(EnemyNavMesh));
 
-            int glitchType = Random.Range(0, 5); //TODO make number of element in enum dynamic
+            int glitchType = Random.Range(0, 6); //TODO make number of element in enum dynamic
 
             enemy.GetComponent<EnemyBehavior>().glitchType = (EnemyBehavior.GlitchType)glitchType;
 
