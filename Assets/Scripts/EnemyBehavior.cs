@@ -91,9 +91,6 @@ public class EnemyBehavior : MonoBehaviour
                 case GlitchType.Stretch:
                     stretch();
                     break;
-                case GlitchType.ChangeColor:
-                    ChangeColor();
-                    break;
                 case GlitchType.ChangeMaterial:
                     ChangeMaterial();
                     break;
@@ -140,7 +137,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 Debug.Log("you can see the guy");
             }
-        }*/
+        }
     }
 
     private void move()
