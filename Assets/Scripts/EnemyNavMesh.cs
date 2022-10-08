@@ -10,21 +10,27 @@ public class EnemyNavMesh : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
 
+    private bool canMove = false;
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        movePositionVector = this.transform.position;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartMove()
     {
+        canMove = true;
         movePositionVector = GetRandomPositionNav();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        navMeshAgent.destination = movePositionVector;
+        if (canMove) 
+        {
+            navMeshAgent.destination = movePositionVector;
+        }
     }
 
     private Vector3 GetRandomPositionNav()
