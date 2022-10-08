@@ -127,7 +127,7 @@ Transform:
   m_Children:
   - {fileID: 2288352591268024508}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!20 &1676085961859071668
 Camera:
@@ -683,7 +683,7 @@ Animation:
   m_GameObject: {fileID: 7683831986291329119}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0ed99c19b7877a549b3fa75831a7056d, type: 2}
+  m_Animation: {fileID: 7400000, guid: 38397e44683c26f4eb17393f3b0baca8, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 38397e44683c26f4eb17393f3b0baca8, type: 2}
   m_WrapMode: 0
@@ -713,8 +713,8 @@ MonoBehaviour:
     m_Bits: 2147483647
   bulletsPerShot: 10
   spreadFactor: 0.1
-  heatPerShot: 0.4
-  heatDownSpeed: 2
+  heatPerShot: 0.2
+  heatDownSpeed: 0.15
   metalHitEffect: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d,
     type: 3}
   sandHitEffect: {fileID: 0}
@@ -723,12 +723,11 @@ MonoBehaviour:
   waterLeakExtinguishEffect: {fileID: 0}
   fleshHitEffects: []
   woodHitEffect: {fileID: 0}
-  audioSource: {fileID: 0}
-  shotgunBlastAudio: {fileID: 0}
+  audioSource: {fileID: 4179953517241480970}
+  shotgunBlastAudio: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
   onCooldown: 0
   heatValue: 0
   shotgunBulletForce: 100
-  knockbackForce: 6
 --- !u!82 &4179953517241480970
 AudioSource:
   m_ObjectHideFlags: 0
