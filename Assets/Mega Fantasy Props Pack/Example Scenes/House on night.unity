@@ -1864,11 +1864,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 5967149816855077603, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: audioSource
-      value: 
-      objectReference: {fileID: 1308417035}
     - target: {fileID: 6788442021394315045, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_Layer

@@ -10,7 +10,8 @@ public class EnemyBehavior : MonoBehaviour
         Vibrate = 1,
         Stretch = 2,
         ChangeMaterial = 3,
-        Fling = 4,
+        ChangeMeshError = 4,
+        Fling = 5,
     }
 
     [SerializeField]
@@ -38,10 +39,12 @@ public class EnemyBehavior : MonoBehaviour
     float spottedTimeLeft;
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
+    private MeshFilter enemyMeshFilter;
 
     private void Start()
     {
         enemyRenderer = GetComponent<Renderer>();
+        enemyMeshFilter = GetComponent<MeshFilter>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
@@ -97,7 +100,7 @@ public class EnemyBehavior : MonoBehaviour
                     
             }
         }
-        /*
+        
         RaycastHit hit;
         Vector3 rayDirection = player.transform.position - transform.position;
         rayDirection.Normalize();
@@ -108,13 +111,33 @@ public class EnemyBehavior : MonoBehaviour
 
             if (hit.transform != player.transform)
             {
-                
+                switch (glitchType)
+                {
+                    case GlitchType.Move:         //move to random navmesh location
+                        move();
+                        break;
+                    case GlitchType.Vibrate:         //vibrate for x seconds
+                        vibrate();
+                        break;
+                    case GlitchType.Stretch:
+                        stretch();
+                        break;
+                    case GlitchType.ChangeMaterial:
+                        ChangeMaterial();
+                        break;
+                    case GlitchType.ChangeMeshError:
+                        ChangeMeshError();
+                        break;
+                    case GlitchType.Fling:
+                        Fling();
+                        break;
+                }
             }
             else 
             {
                 Debug.Log("you can see the guy");
             }
-        }*/
+        }
     }
 
     private void move()
@@ -129,10 +152,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         StartCoroutine(Stretching());
     }
-    private void ChangeColor()
-    {
-        StartCoroutine(ChangingColor());
-    }
+
     private void ChangeMaterial()
     {
         StartCoroutine(ChangingMaterial());
@@ -140,6 +160,11 @@ public class EnemyBehavior : MonoBehaviour
     private void Fling()
     {
         StartCoroutine(Flinging());
+    }
+
+    private void ChangeMeshError()
+    {
+        StartCoroutine(ChangingMesh());
     }
 
     IEnumerator Vibration()
@@ -205,26 +230,6 @@ public class EnemyBehavior : MonoBehaviour
         spottedTimeLeft = 2.0f;
     }
 
-    IEnumerator ChangingColor()
-    {
-        float timeLeft = 4.0f;
-
-        Color startingColor = enemyRenderer.material.GetColor("_Color");
-        enemyRenderer.material.SetColor("_Color", startingColor);
-
-        while (timeLeft > 0)
-        {
-            timeLeft -= Time.deltaTime;
-
-            Color newColor = Random.ColorHSV();
-            enemyRenderer.material.SetColor("_Color", new Color());
-            yield return null;
-        }
-
-        enemyRenderer.material.SetColor("_Color", Random.ColorHSV());
-        yield return null;
-    }
-
     IEnumerator ChangingMaterial()
     {
         if (enemyRenderer != null)
@@ -238,6 +243,20 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
+    IEnumerator ChangingMesh()
+    {
+        if (enemyRenderer != null)
+        {
+            var randomTime = Random.Range(1.0f, 4.0f);
+            Mesh oldMesh = enemyMeshFilter.mesh;
+            Material oldMaterial = enemyRenderer.material;
+            enemyMeshFilter.mesh = Resources.Load<Mesh>("error");
+            enemyRenderer.material = Resources.Load<Material>("error");
+            yield return new WaitForSeconds(randomTime);
+            enemyMeshFilter.mesh = oldMesh;
+            enemyRenderer.material = oldMaterial;
+        }
+    }
     IEnumerator Flinging()
     {
         float maxForce = 10.0f;
@@ -263,19 +282,4 @@ public class EnemyBehavior : MonoBehaviour
         //transform.position = FindNearestNavMeshPoint(transform.position);
         yield return null;
     }
-    /*          //only finds vertical points
-    private Vector3 FindNearestNavMeshPoint(Vector3 sourcePosition)
-    {
-        Vector3 nearest = new Vector3(0,0,0);
-        NavMeshHit hit;
-        float maxDistance = 5000f;
-
-        NavMesh.SamplePosition(sourcePosition, out hit, maxDistance,0);
-
-        Debug.Log(hit.position.x);
-        nearest = hit.position;
-
-
-        return nearest;
-    }*/
 }
