@@ -11,6 +11,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     int numberOfEnemies;
 
+    [SerializeField]
+    public Material[] errorMaterialsManager;
+
+    [SerializeField]
+    public AudioClip audioClip;
+
     private void Start()
     {
         foreach(Transform child in transform)
@@ -30,17 +36,24 @@ public class EnemyManager : MonoBehaviour
         }
         foreach(GameObject enemy in selectedEnemies)
         {
+            enemy.tag = "Enemy";
+
             enemy.AddComponent(typeof(Rigidbody));
             enemy.AddComponent(typeof(AudioSource));
+            enemy.AddComponent(typeof(NavMeshAgent));
             enemy.AddComponent(typeof(EnemyBehavior));
             enemy.AddComponent(typeof(EnemyNavMesh));
-            enemy.AddComponent(typeof(NavMeshAgent));
 
             int glitchType = Random.Range(0, 5); //TODO make number of element in enum dynamic
 
             enemy.GetComponent<EnemyBehavior>().glitchType = (EnemyBehavior.GlitchType)glitchType;
 
+            enemy.GetComponent<EnemyBehavior>().errorMaterials = errorMaterialsManager;
+
+            enemy.GetComponent<AudioSource>().clip = audioClip;
+
             enemy.GetComponent<Rigidbody>().isKinematic = true;
+
         }
     }
 }
