@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private enum GlitchType {
+    public enum GlitchType {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
@@ -16,7 +16,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     [SerializeField]
-    GlitchType glitchType = GlitchType.Vibrate;
+    public GlitchType glitchType = GlitchType.Vibrate;
     [SerializeField]
     float glitchTimerMin = 10.0f;
     [SerializeField]
@@ -85,10 +85,10 @@ public class EnemyBehavior : MonoBehaviour
         {
             switch (glitchType)
             {
-                case GlitchType.Move:         //move to random navmesh location
+                case GlitchType.Move:           //move to random navmesh location
                     move();
                     break;
-                case GlitchType.Vibrate:         //vibrate for x seconds
+                case GlitchType.Vibrate:        //vibrate for x seconds
                     vibrate();
                     break;
                 case GlitchType.Stretch:
@@ -97,48 +97,13 @@ public class EnemyBehavior : MonoBehaviour
                 case GlitchType.ChangeMaterial:
                     ChangeMaterial();
                     break;
+                case GlitchType.ChangeMeshError:
+                    ChangeMeshError();
+                    break;
                 case GlitchType.Fling:
                     Fling();
                     break;
                     
-            }
-        }
-        
-        RaycastHit hit;
-        Vector3 rayDirection = player.transform.position - transform.position;
-        rayDirection.Normalize();
-
-        if(Physics.Raycast (transform.position, rayDirection, out hit))
-        {
-            Debug.Log(hit.transform.name);
-
-            if (hit.transform != player.transform)
-            {
-                switch (glitchType)
-                {
-                    case GlitchType.Move:         //move to random navmesh location
-                        move();
-                        break;
-                    case GlitchType.Vibrate:         //vibrate for x seconds
-                        vibrate();
-                        break;
-                    case GlitchType.Stretch:
-                        stretch();
-                        break;
-                    case GlitchType.ChangeMaterial:
-                        ChangeMaterial();
-                        break;
-                    case GlitchType.ChangeMeshError:
-                        ChangeMeshError();
-                        break;
-                    case GlitchType.Fling:
-                        Fling();
-                        break;
-                }
-            }
-            else 
-            {
-                Debug.Log("you can see the guy");
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Shotgun : MonoBehaviour
 {
@@ -62,6 +63,8 @@ public class Shotgun : MonoBehaviour
     [SerializeField]
     private float shotgunTeleportBackDistance = 5f;
 
+    public UnityEvent shootGun = new UnityEvent();
+
 
     void Update()
     {
@@ -94,6 +97,8 @@ public class Shotgun : MonoBehaviour
                 HandleHit(hit);
             }
         }
+
+        shootGun.Invoke();
     }
 
     private void TeleportPlayer()

@@ -5,7 +5,6 @@ using UnityEngine;
 public class LineOfSight : MonoBehaviour
 {
     float m_MaxDistance;
-    float m_Speed;
     bool m_HitDetect;
 
     Collider m_Collider;
@@ -17,7 +16,6 @@ public class LineOfSight : MonoBehaviour
     {
         //Choose the distance the Box can reach to
         m_MaxDistance = 300.0f;
-        m_Speed = 20.0f;
         m_Collider = GetComponent<Collider>();
     }
 
