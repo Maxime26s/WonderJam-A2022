@@ -12,8 +12,16 @@ public class ShellSpawner : MonoBehaviour
     private float ejectForce = 5f;
 
     public void SpawnShell() {
+        if (shellPrefab == null)
+        {
+            return;
+        }
+
         GameObject shellInstance = Instantiate(shellPrefab, transform.position, Quaternion.identity);
         Destroy(shellInstance, 5f);
-        shellInstance.GetComponent<Rigidbody>().AddForce(ejectDirection.localPosition * ejectForce);
+        if (shellInstance.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.AddForce(ejectDirection.localPosition * ejectForce);
+        }
     }
 }

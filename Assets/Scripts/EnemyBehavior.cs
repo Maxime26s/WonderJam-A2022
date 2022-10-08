@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class EnemyBehavior : MonoBehaviour
         Stretch = 2,
         ChangeMaterial = 3,
         ChangeMeshError = 4,
+        Fling = 5,
     }
 
     [SerializeField]
@@ -28,7 +30,11 @@ public class EnemyBehavior : MonoBehaviour
 
     EnemyNavMesh enemyNavMesh;
 
-    bool spotted;
+    Rigidbody rb;
+
+    NavMeshAgent navMeshAgent;
+
+    public bool spotted;
 
     float spottedTimeLeft;
     private Renderer enemyRenderer;
@@ -41,6 +47,9 @@ public class EnemyBehavior : MonoBehaviour
         enemyMeshFilter = GetComponent<MeshFilter>();
         enemyNavMesh = GetComponent<EnemyNavMesh>();
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
         SetTimer();
 
         spotted = false;
@@ -49,11 +58,18 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         glitchTimer -= Time.deltaTime;
+        spottedTimeLeft -= Time.deltaTime;
+
         if (glitchTimer <= 0)
         {
             SetTimer();
             Glitch();
-        } 
+        }
+        if(spottedTimeLeft <= 0)
+        {
+            spotted = false;
+        }
+
     }
     private void SetTimer()
     {
@@ -62,6 +78,32 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Glitch()
     {
+        if (!spotted)
+        {
+            switch (glitchType)
+            {
+                case GlitchType.Move:         //move to random navmesh location
+                    move();
+                    break;
+                case GlitchType.Vibrate:         //vibrate for x seconds
+                    vibrate();
+                    break;
+                case GlitchType.Stretch:
+                    stretch();
+                    break;
+                case GlitchType.ChangeColor:
+                    ChangeColor();
+                    break;
+                case GlitchType.ChangeMaterial:
+                    ChangeMaterial();
+                    break;
+                case GlitchType.Fling:
+                    Fling();
+                    break;
+                    
+            }
+        }
+        
         RaycastHit hit;
         Vector3 rayDirection = player.transform.position - transform.position;
         rayDirection.Normalize();
@@ -89,13 +131,16 @@ public class EnemyBehavior : MonoBehaviour
                     case GlitchType.ChangeMeshError:
                         ChangeMeshError();
                         break;
+                    case GlitchType.Fling:
+                        Fling();
+                        break;
                 }
             }
             else 
             {
                 Debug.Log("you can see the guy");
             }
-        }
+        }*/
     }
 
     private void move()
@@ -105,7 +150,6 @@ public class EnemyBehavior : MonoBehaviour
     private void vibrate()
     {
         StartCoroutine(Vibration());
-
     }
     private void stretch()
     {
@@ -115,6 +159,10 @@ public class EnemyBehavior : MonoBehaviour
     private void ChangeMaterial()
     {
         StartCoroutine(ChangingMaterial());
+    }
+    private void Fling()
+    {
+        StartCoroutine(Flinging());
     }
 
     private void ChangeMeshError()
@@ -178,15 +226,11 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Spotted()
     {
+        Debug.Log("Spotted "+ transform.name);
+
         spotted = true;
 
-        spottedTimeLeft = 1.0f;
-
-        while (spottedTimeLeft > 0)
-        {
-            spottedTimeLeft -= Time.deltaTime;
-        }
-        spotted = false;
+        spottedTimeLeft = 2.0f;
     }
 
     IEnumerator ChangingMaterial()
@@ -215,5 +259,30 @@ public class EnemyBehavior : MonoBehaviour
             enemyMeshFilter.mesh = oldMesh;
             enemyRenderer.material = oldMaterial;
         }
+    }
+    IEnumerator Flinging()
+    {
+        float maxForce = 10.0f;
+        float intensity = 500.0f;
+
+        float timeLeft = 2.0f;
+
+        Vector3 flingDirection = new Vector3(Random.Range(-maxForce, maxForce), Random.Range(0, maxForce), Random.Range(-maxForce, maxForce));
+        flingDirection.Normalize();
+        rb.isKinematic = false;
+        navMeshAgent.enabled = false;
+
+        rb.AddForce(flingDirection * intensity);
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+        rb.isKinematic = true;
+        navMeshAgent.enabled = true;
+
+        //transform.position = FindNearestNavMeshPoint(transform.position);
+        yield return null;
     }
 }

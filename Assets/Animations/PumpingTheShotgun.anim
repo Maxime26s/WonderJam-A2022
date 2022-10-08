@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PumpingTheShotgun
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 1
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -702,7 +702,7 @@ AnimationClip:
     attribute: onCooldown
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: ae09a0fe4b588ce4e84be06a8e0d0ffa, type: 3}
+    script: {fileID: 11500000, guid: cf06878d8cb88b648ac5465964b876b4, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -3221,7 +3221,7 @@ AnimationClip:
     attribute: onCooldown
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: ae09a0fe4b588ce4e84be06a8e0d0ffa, type: 3}
+    script: {fileID: 11500000, guid: cf06878d8cb88b648ac5465964b876b4, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
