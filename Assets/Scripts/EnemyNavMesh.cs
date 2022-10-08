@@ -13,18 +13,14 @@ public class EnemyNavMesh : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        movePositionVector = this.transform.position;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartMove()
     {
         movePositionVector = GetRandomPositionNav();
-    }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        navMeshAgent.destination = movePositionVector;
+        StartCoroutine(Moving());
     }
 
     private Vector3 GetRandomPositionNav()
@@ -39,5 +35,20 @@ public class EnemyNavMesh : MonoBehaviour
         Vector3 finalPosition = hit.position;
 
         return finalPosition;
+    }
+
+    IEnumerator Moving()
+    {
+        float timeLeft = 3.0f;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            navMeshAgent.destination = movePositionVector;
+
+            yield return null;
+        }
+        yield return null;
     }
 }
