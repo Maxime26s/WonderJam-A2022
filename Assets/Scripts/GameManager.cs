@@ -73,6 +73,11 @@ public static GameManager Instance { get; set; }
         }
     }
 
+    private void Start()
+    {
+        deathUI.SetActive(false);
+    }
+
     private void UpdateTimerUI()
     {
         timerTMP.text = TimeFormatter(gameTimer);
