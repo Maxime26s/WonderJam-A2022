@@ -70,6 +70,9 @@ public class EnemyManager : MonoBehaviour
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
+
+            GameManager.Instance.SetTotalEnemyCount();
+
         }
     }
 }

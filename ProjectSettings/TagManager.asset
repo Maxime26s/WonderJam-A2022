@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LevelLoader
+  - Mannequin
+  - Enemy
+  - KillPlane
+  - SpawnPoint
+  - Prop
   layers:
   - Default
   - TransparentFX

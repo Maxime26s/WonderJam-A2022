@@ -72,8 +72,12 @@ public class Shotgun : MonoBehaviour {
     private GameObject enemyShot;
 
     void Update() {
-        if (InputManager.Instance.PlayerGetFireInput() && !onCooldown) {
-            Shoot();
+        if(!playerTransform.gameObject.GetComponent<PlayerController>().IsDead)
+        {
+            if (InputManager.Instance.PlayerGetFireInput() && !onCooldown)
+            {
+                Shoot();
+            }
         }
     }
 
