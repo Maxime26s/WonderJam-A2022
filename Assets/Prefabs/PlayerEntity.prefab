@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1356303758980753741}
   - {fileID: 1283273776}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1356303758748363288
 GameObject:
@@ -167,8 +167,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356303758980753738}
-  m_LocalRotation: {x: -0.08344118, y: 0.9096179, z: -0.22289725, w: -0.340514}
-  m_LocalPosition: {x: -0.15179923, y: 0.44335437, z: -0.17433843}
+  m_LocalRotation: {x: -0.02588887, y: 0.631514, z: -0.0211054, w: -0.7746447}
+  m_LocalPosition: {x: -0.032698367, y: 0.49888432, z: 0.00672632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -459,7 +459,11 @@ MonoBehaviour:
   speed: 4.5
   jumpHeight: 0.8
   gravity: -15
+  health: 3
   playerJumping:
+    m_PersistentCalls:
+      m_Calls: []
+  playerTakeDamage:
     m_PersistentCalls:
       m_Calls: []
 --- !u!143 &1356303759591148109
@@ -677,8 +681,35 @@ PrefabInstance:
       objectReference: {fileID: 1283273776}
     - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
         type: 3}
+      propertyPath: fallingHeart
+      value: 
+      objectReference: {fileID: 2340037840577789703, guid: 9171967d76a281c4cbfbef222e76c2f1,
+        type: 3}
+    - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
+        type: 3}
+      propertyPath: floatingHeart
+      value: 
+      objectReference: {fileID: 2340037840577789703, guid: eef615b23dede094392ebdcb18a3ba13,
+        type: 3}
+    - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
+        type: 3}
       propertyPath: playerJumpForce
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
+        type: 3}
+      propertyPath: heartStartSpawnX
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
+        type: 3}
+      propertyPath: heartStartSpawnY
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730083281916476806, guid: 97588e859bf856142bac1c4941df842d,
+        type: 3}
+      propertyPath: distanceBetweenHearts
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5730083281916476807, guid: 97588e859bf856142bac1c4941df842d,
         type: 3}

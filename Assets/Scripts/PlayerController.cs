@@ -193,6 +193,10 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage() {
         health--;
+        if(health <= 0)
+        {
+            GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
+        }
         playerTakeDamage.Invoke();
     }
 }
