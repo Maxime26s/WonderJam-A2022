@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public AudioClip glitchAudio;
     [SerializeField] public AudioClip wobbleAudio;
     [SerializeField] public AudioClip dragAudio;
+    [SerializeField] public AudioClip flingAudio;
 
     [SerializeField] public float soundEffectsVolume = 0.5f;
     [SerializeField] public float soundEffectMaxDistance = 10f;
@@ -63,6 +64,7 @@ public class EnemyManager : MonoBehaviour
             enemy.GetComponent<EnemyBehavior>().wobbleAudio = wobbleAudio;
             enemy.GetComponent<EnemyBehavior>().glitchAudio = glitchAudio;
             enemy.GetComponent<EnemyBehavior>().dragAudio = dragAudio;
+            enemy.GetComponent<EnemyBehavior>().flingAudio = flingAudio;
 
             enemy.GetComponent<AudioSource>().volume = soundEffectsVolume;
             enemy.GetComponent<AudioSource>().spatialBlend = 1;
