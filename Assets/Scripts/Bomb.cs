@@ -42,7 +42,6 @@ public class Bomb : MonoBehaviour {
     {
         IsExploded = true;
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        Debug.Log(audioSource.clip);
         audioSource.PlayOneShot(audioSource.clip);
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         Renderer[] rs = gameObject.GetComponentsInChildren<Renderer>();

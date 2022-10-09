@@ -130,4 +130,9 @@ public class LevelLoader : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public string CurrentLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
 }
