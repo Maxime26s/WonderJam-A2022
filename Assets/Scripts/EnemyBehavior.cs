@@ -189,9 +189,6 @@ public class EnemyBehavior : MonoBehaviour
         }
         transform.position = startTransform;
 
-        //GetComponent<Rigidbody>().isKinematic = true;
-
-
         audioSource.Stop();
         yield return null;
     }
@@ -377,7 +374,13 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Death()
     {
+        GameObject anim = Instantiate(deathAnim, transform);
+
+        Debug.Log(anim.transform.position.x);
+
         this.transform.parent.GetComponent<EnemyManager>().selectedEnemies.Remove(gameObject);
+
+
         Destroy(gameObject);
         GameManager.Instance.IsLevelEnd();
     }

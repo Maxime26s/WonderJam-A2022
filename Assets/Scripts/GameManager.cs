@@ -143,10 +143,11 @@ public static GameManager Instance { get; set; }
         Debug.Log("IsLevelEnd Called");
         Debug.Log(GetEnemyCount() + "/" + totalEnemies);
 
-        if (GetEnemyCount() <= (int)(totalEnemies/2))
+        if (GetEnemyCount() <= (int)(totalEnemies / 2) && GameObject.Find("Mannequin") == null)
         {
             SwitchToGameState(GameState.Win);
         }
+
     }
 
     public void InitMap() {
