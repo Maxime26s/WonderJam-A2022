@@ -337,6 +337,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
 
+            if (navMeshAgent.isOnNavMesh)
             navMeshAgent.destination = movePositionVector;
 
             yield return null;
