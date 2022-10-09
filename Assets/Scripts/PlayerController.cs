@@ -158,10 +158,19 @@ private void SwapWeapon() {
     private void EquipWrench() {
         //if (!CheckWeaponsOnCooldown()) {
             wrench.SetActive(true);
-        shotgun.SetActive(false);
-        wrench.GetComponent<Wrench>().onCooldown = false;
-        wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
-        //}
+            gameManager.wrenchEnabled = true;
+
+            shotgun.SetActive(false);
+            gameManager.shotgunEnabled = false;
+
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+                bomb.SetActive(false);
+                gameManager.bombEnabled = false;
+            }
+            Debug.Log("Test");
+            wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
+            //}
+        }
     }
 
     private void EquipShotgun() {
