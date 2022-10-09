@@ -147,22 +147,36 @@ public class PlayerController : MonoBehaviour
         }
         if (InputManager.Instance.PlayerGetSelectBomb() == true)
         {
+            EquipBomb();
             Debug.Log("Bomb Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0)
+        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0 || InputManager.Instance.PlayerGetNextWeapon())
         {
-            Debug.Log("Scrolled up");
+            if (gameManager.wrenchEnabled)
+                EquipShotgun();
+            else if (gameManager.shotgunEnabled)
+            {
+                if (!EquipBomb())
+                    EquipWrench();
+            }
+            else if (gameManager.bombEnabled)
+                EquipWrench();
+            Debug.Log("Next Weapon");
             return;
         }
         if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0)
         {
-            Debug.Log("Scrolled down");
-            return;
-        }
-        if (InputManager.Instance.PlayerGetNextWeapon())
-        {
-            Debug.Log("Next weapon button pressed");
+            if (gameManager.wrenchEnabled)
+            {
+                if (!EquipBomb())
+                    EquipShotgun();
+            }
+            else if (gameManager.shotgunEnabled)
+                EquipWrench();
+            else if (gameManager.bombEnabled)
+                EquipShotgun();
+            Debug.Log("Previous Weapon");
             return;
         }
     }
@@ -205,6 +219,23 @@ public class PlayerController : MonoBehaviour
             shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
         }
         //}
+    }
+    private bool EquipBomb()
+    {
+        if (bomb && !bomb.GetComponent<Bomb>().IsThrown && !gameManager.bombEnabled)
+        {
+            wrench.SetActive(false);
+            gameManager.wrenchEnabled = false;
+
+            shotgun.SetActive(false);
+            gameManager.shotgunEnabled = false;
+
+            bomb.SetActive(true);
+            gameManager.bombEnabled = true;
+            bomb.GetComponent<Bomb>().bombAnimation.Play("TakeOutBomb");
+            return true;
+        }
+        return false;
     }
 
     public void TakeDamage()
