@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.6084906, g: 0.76202357, b: 1, a: 0.22}
   m_AmbientEquatorColor: {r: 1, g: 1, b: 1, a: 0.22}
   m_AmbientGroundColor: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0.22}
-  m_AmbientIntensity: 0.22
+  m_AmbientIntensity: 0.67
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 12960551869292146ba89c5649a8edd3, type: 2}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08777949, g: 0.14383893, b: 0.28136495, a: 1}
+  m_IndirectSpecularColor: {r: 0.26489764, g: 0.43407956, b: 0.84913194, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
