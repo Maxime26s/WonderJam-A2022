@@ -15,6 +15,14 @@ public class DeathUIScript : MonoBehaviour {
         }
     }
 
+    public void Quit()
+    {
+        if (TryMakeAction())
+        {
+            Application.Quit();
+        }
+    }
+
     public void ReloadCurrentLevel() {
 
         if (TryMakeAction()) {
