@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
   m_Name: Random 10 1
   m_EditorClassIdentifier: 
-  text: Toc Toc
+  text: Knock knock
   face: {fileID: 11400000, guid: 15c1e70b4df260147bb114b52b653b40, type: 2}
   voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
   closedMouthThreshold: 0.125

@@ -128,7 +128,7 @@ public class DialogueBoxManager : MonoBehaviour
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
-        if (currentDialogue == null)
+        if (currentDialogue == null || border == null)
             return;
         currentDialogue.voiceLines = new Queue<DialogueVoiceLine>(currentDialogue.voiceLinesList);
         imageHolder.enabled = false;

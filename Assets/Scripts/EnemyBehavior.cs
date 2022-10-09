@@ -277,6 +277,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     IEnumerator Flinging()
     {
+        if (flingAudio)
         audioSource.PlayOneShot(flingAudio);
 
         float maxForce = 1.0f;

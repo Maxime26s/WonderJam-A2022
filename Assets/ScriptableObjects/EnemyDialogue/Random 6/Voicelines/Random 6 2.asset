@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: I would never do such a thing
   face: {fileID: 11400000, guid: a4c60dd38dc91ec4ea2f9b22eeadae3c, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 53043238df5015c4daa68b7ed63f75b0, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 1
