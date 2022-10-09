@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageHolder: {fileID: 2214423327149963314}
+  border: {fileID: 7503553080253140147}
   audioSource: {fileID: 1277839289}
   textDialogue: {fileID: 2214423327305926798}
   textName: {fileID: 2214423327824542088}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Basket basket basket
   face: {fileID: 11400000, guid: f98c4cf78c4103044b136c77e69771da, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 994ef692dd7b34442974373682d75c09, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

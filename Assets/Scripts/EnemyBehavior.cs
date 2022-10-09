@@ -53,6 +53,8 @@ public class EnemyBehavior : MonoBehaviour
     public int health = 3;
 
     [SerializeField]
+    public GameObject deathAnim;
+
     private bool dialoguePlayed = false;
 
     private void Start()

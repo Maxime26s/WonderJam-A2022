@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: I don't want to die!!
   face: {fileID: 11400000, guid: 8166be3a16b5d284695826f164d1ec34, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: a33b1e1c61b5cb245b217f01430bdbcb, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0
