@@ -15,5 +15,5 @@ MonoBehaviour:
   mouthClosed: {fileID: 676397492, guid: 237e47b70ebc27b44bc700b6492efb68, type: 3}
   mouthOpened: {fileID: -1602767642, guid: 237e47b70ebc27b44bc700b6492efb68, type: 3}
   name: ?????????
-  nameColor: {r: 0.7010623, g: 0.15723264, b: 1, a: 1}
+  nameColor: {r: 0.74877864, g: 0.28930813, b: 1, a: 1}
   showFace: 1

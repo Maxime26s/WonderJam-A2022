@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb5160175c96b74bb57eb154e58a819, type: 3}
   m_Name: Introduction
   m_EditorClassIdentifier: 
-  pauseLengthBetweenVoiceLines: 1.25
+  pauseLengthBetweenVoiceLines: 0
   voiceLinesList:
   - {fileID: 11400000, guid: 18db835d693ac754692a15ba93d95a25, type: 2}

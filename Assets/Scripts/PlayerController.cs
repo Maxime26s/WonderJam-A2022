@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
         {
             NoclipUpdate();
         }
+
+        SwapWeapon();
     }
 
     private void NoclipUpdate()
@@ -88,6 +90,30 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void SwapWeapon() {
+        if (InputManager.Instance.PlayerGetSelectWrench() == true) {
+            Debug.Log("Wrench Selected");
+            return;
+        }
+        if (InputManager.Instance.PlayerGetSelectShotgun() == true) {
+            Debug.Log("Shotgun Selected");
+            return;
+        }
+        if (InputManager.Instance.PlayerGetSelectBomb() == true) {
+            Debug.Log("Bomb Selected");
+            return;
+        }
+        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0) {
+            Debug.Log("Scrolled up");
+            return;
+        }
+        if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0) {
+            Debug.Log("Scrolled down");
+            return;
+        }
+
     }
 
     public void TakeDamage()

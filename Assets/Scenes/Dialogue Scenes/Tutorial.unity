@@ -184,11 +184,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
-      propertyPath: m_fontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
-        type: 3}
       propertyPath: m_fontSizeBase
       value: 16
       objectReference: {fileID: 0}
@@ -363,7 +358,7 @@ MonoBehaviour:
   fadeSpeed: 1
   image: {fileID: 257081147}
   fading: 0
-  nextSceneIndex: 0
+  nextSceneIndex: 5
 --- !u!114 &257081147
 MonoBehaviour:
   m_ObjectHideFlags: 0

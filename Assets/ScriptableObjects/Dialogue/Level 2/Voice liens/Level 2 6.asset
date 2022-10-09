@@ -17,7 +17,7 @@ MonoBehaviour:
   voiceLine: {fileID: 8300000, guid: 060161a518c51564e8313c188f486c10, type: 3}
   closedMouthThreshold: 0.1
   showFullText: 0
-  faceLocation: 0
+  faceLocation: 1
   customDuration: 0.5
-  volume: 0.5
+  volume: 0.25
   useRandomFlicking: 1

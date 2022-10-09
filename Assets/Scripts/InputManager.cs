@@ -53,9 +53,29 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Fire.triggered;
     }
-
+    
     public bool PlayerGetNoClipInput()
     {
         return playerControls.Player.NoClip.triggered;
+    }
+
+    public bool PlayerGetSelectWrench() {
+        return playerControls.Player.SelectWrench.triggered;
+    }
+
+    public bool PlayerGetSelectShotgun() {
+        return playerControls.Player.SelectShotgun.triggered;
+    }
+
+    public bool PlayerGetSelectBomb() {
+        return playerControls.Player.SelectBomb.triggered;
+    }
+
+    public float PlayerGetScrollUpWeapon() {
+        return playerControls.Player.ScrollUpWeapon.ReadValue<float>();
+    }
+
+    public float PlayerGetScrollDownWeapon() {
+        return playerControls.Player.ScrollDownWeapon.ReadValue<float>();
     }
 }

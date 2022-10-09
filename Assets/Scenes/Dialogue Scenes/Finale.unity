@@ -170,21 +170,17 @@ PrefabInstance:
     - target: {fileID: 1277839290, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: currentDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 3c807b5f897aeb943b9d98174c73ad33,
+      objectReference: {fileID: 11400000, guid: 794075f3848dc194984604f981826d95,
         type: 2}
     - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
       propertyPath: m_text
-      value: "Bonjour chasseur. Nous avons besoin de vos services imm\xE9diatement.
-        Un groupe de hacker international a pris contr\xF4le du web et a infect\xE9
-        l\u2019ensemble des jeux h\xE9berg\xE9s sur itch.io avec des \xAB features
-        \xBB ind\xE9sirables. Vous aurez comme mission de parcourir ces jeux afin
-        d\u2019identifier et d\u2019\xE9liminer ces ajouts malveillants."
-      objectReference: {fileID: 0}
-    - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 16
+      value: "Voici comment identifier une anomalie. Certains l'appellent un bug
+        mais nous pr\xE9f\xE9rons le mot \xAB feature \xBB. Comme vous pourrez le
+        voir, une feature est remarquable par les mouvements et les bruits qu\u2019elle
+        produit. Pour l\u2019\xE9liminer, utilisez votre cl\xE9 \xE0 molette sur
+        l\u2019anomalie afin de la r\xE9parer, ou explosez-la \xE0 l\u2019aide de
+        votre fusil \xE0 pompe."
       objectReference: {fileID: 0}
     - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
