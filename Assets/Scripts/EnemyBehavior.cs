@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    public enum GlitchType {
+    public enum GlitchType
+    {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
@@ -44,6 +45,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public int health = 3;
 
+    [SerializeField]
+    private bool dialoguePlayed = false;
 
     private void Start()
     {
@@ -71,7 +74,7 @@ public class EnemyBehavior : MonoBehaviour
             SetTimer();
             Glitch();
         }
-        if(spottedTimeLeft <= 0)
+        if (spottedTimeLeft <= 0)
         {
             spotted = false;
         }
@@ -117,7 +120,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void move()
     {
-        enemyNavMesh.StartMove(); 
+        enemyNavMesh.StartMove();
     }
     private void vibrate()
     {
@@ -154,11 +157,11 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 startTransform = transform.position;
         transform.position = startTransform;
 
-        while (timeLeft>0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
-            transform.localPosition =  new Vector3(
+            transform.localPosition = new Vector3(
                 startTransform.x + (intensity * Mathf.PerlinNoise(speed * Time.time, 1)),
                 startTransform.y + (intensity * Mathf.PerlinNoise(speed * Time.time, 2)),
                 startTransform.z + (intensity * Mathf.PerlinNoise(speed * Time.time, 3)));
@@ -181,7 +184,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 startScale = transform.localScale;
         transform.localScale = startScale;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
@@ -269,10 +272,10 @@ public class EnemyBehavior : MonoBehaviour
         yield return null;
     }
 
-    public void TakeDamage() 
+    public void TakeDamage()
     {
-        
-        EnemyDialogueDatabase.Instance.TryPlayDialogue(gameObject.name);
+        if (!dialoguePlayed)
+            dialoguePlayed = DialogueDatabase.Instance.TryPlayEnemyDialogue(gameObject.name);
 
         if (!invincible)
         {
@@ -325,7 +328,7 @@ public class EnemyBehavior : MonoBehaviour
 
         invincible = true;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
