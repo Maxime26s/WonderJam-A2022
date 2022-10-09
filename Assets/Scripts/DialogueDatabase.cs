@@ -20,7 +20,7 @@ public class DialogueDatabase : MonoBehaviour
     [SerializeField]
     private List<DialogueTemplate> loseHpDialogues = new List<DialogueTemplate>();
     [SerializeField]
-    private DialogueTemplate poutineDialogue = new DialogueTemplate();
+    private DialogueTemplate poutineDialogue;
 
     private bool isPlaying = false;
 
