@@ -68,7 +68,7 @@ public class DialogueBoxManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (audioSource.isPlaying)
+        if (audioSource.isPlaying && imageHolder && currentFace && currentVoiceLine)
         {
             isPlaying = true;
             currentUpdateTime += Time.deltaTime;
@@ -83,21 +83,18 @@ public class DialogueBoxManager : MonoBehaviour
                 }
                 clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
             }
-
-            if (currentVoiceLine.useRandomFlicking)
-            {
+            if (currentVoiceLine.useRandomFlicking) {
                 if (UnityEngine.Random.Range(0, 2) == 0)
                     imageHolder.sprite = currentFace.mouthClosed;
                 else
                     imageHolder.sprite = currentFace.mouthOpened;
-            }
-            else
-            {
-                if (clipLoudness > currentVoiceLine.closedMouthThreshold)
+            } else {
+                if (currentVoiceLine && clipLoudness > currentVoiceLine.closedMouthThreshold)
                     imageHolder.sprite = currentFace.mouthOpened;
                 else
                     imageHolder.sprite = currentFace.mouthClosed;
             }
+            
 
             if (currentVoiceLine.showFullText)
                 textDialogue.text = currentVoiceLine.text;

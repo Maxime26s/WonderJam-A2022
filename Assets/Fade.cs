@@ -9,8 +9,8 @@ public class Fade : MonoBehaviour
 {
     public float fadeSpeed = 1f;
     public Image image;
-    public bool fading = false;
-    public int nextSceneIndex;
+    private bool fading = false;
+    public string nextSceneName;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +21,22 @@ public class Fade : MonoBehaviour
 
     private void LoadNextScene()
     {
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    private void Skip()
+    {
+        StartFading();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (InputManager.Instance.PlayerJumpedThisFrame())
+        {
+            StartFading();
+        }
+
         if (fading)
         {
             image.color = new Color(0, 0, 0, Mathf.Clamp(image.color.a + Time.deltaTime * fadeSpeed, 0, 1));
