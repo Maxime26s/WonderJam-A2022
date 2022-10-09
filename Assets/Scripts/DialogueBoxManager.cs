@@ -126,7 +126,7 @@ public class DialogueBoxManager : MonoBehaviour
             StartCoroutine(WaitThenPlay(currentDialogue.pauseLengthBetweenVoiceLines));
         }
     }
-    public void StartDialogue(DialogueTemplate dialogueTemplate = null)
+    public void StartDialogue(DialogueTemplate dialogueTemplate = null, float waitTime = 0.25f)
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
@@ -136,7 +136,7 @@ public class DialogueBoxManager : MonoBehaviour
         imageHolder.enabled = false;
         textDialogue.text = "";
         textName.text = "";
-        StartCoroutine(WaitThenPlay(1f));
+        StartCoroutine(WaitThenPlay(waitTime));
     }
 
     public void PlayNextVoiceLine()
