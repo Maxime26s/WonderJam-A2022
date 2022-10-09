@@ -56,6 +56,8 @@ public class EnemyManager : MonoBehaviour
 
             enemy.GetComponent<AudioSource>().clip = audioClip;
 
+            enemy.GetComponent<AudioSource>().volume = 0.2f;
+
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
         }

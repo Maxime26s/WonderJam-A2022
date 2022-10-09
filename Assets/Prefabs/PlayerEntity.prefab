@@ -891,6 +891,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1841142141386410140, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2597063569902130252, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -906,6 +911,11 @@ PrefabInstance:
       propertyPath: characterController
       value: 
       objectReference: {fileID: 1356303759591148109}
+    - target: {fileID: 2925184585991194710, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3049686645308111619, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -950,6 +960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179953517241480970, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4213477339354139583, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
