@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EndKill : MonoBehaviour
+public class DeathFall : MonoBehaviour
 {
-    [SerializeField]
-    private string entity;
-    [SerializeField]
-    private bool ended = false;
-
     public Fade fade;
 
     public TextMeshProUGUI titleObject;
@@ -20,18 +15,18 @@ public class EndKill : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void FinishGame()
+    private void OnTriggerEnter(Collider other)
     {
-        if (loreObject.color.a != 0)
+        if (other.gameObject.name != "Player" || loreObject.color.a != 0)
             return;
 
         titleObject.text = title;
@@ -39,6 +34,5 @@ public class EndKill : MonoBehaviour
 
         fade.gameObject.SetActive(true);
         fade.StartFading();
-        //LevelLoader.Instance.LoadNextLevel();
     }
 }
