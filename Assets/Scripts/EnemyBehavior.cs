@@ -158,24 +158,31 @@ public class EnemyBehavior : MonoBehaviour
         audioSource.Play(0);
 
         float speed = 10.0f;
-        float intensity = 0.1f;
+        float intensity = 0.5f;
 
         float timeLeft = 3.0f;
 
-        Vector3 startTransform = transform.position;
-        transform.position = startTransform;
+        Vector3 startTransform = gameObject.transform.position;
+
+        Debug.Log(startTransform.x +", " + startTransform.y + ", "+ startTransform.z);
+
+
+        //GetComponent<Rigidbody>().isKinematic = false;
 
         while (timeLeft>0)
         {
             timeLeft -= Time.deltaTime;
 
-            transform.localPosition =  new Vector3(
+            transform.position =  new Vector3(
                 startTransform.x + (intensity * Mathf.PerlinNoise(speed * Time.time, 1)),
                 startTransform.y + (intensity * Mathf.PerlinNoise(speed * Time.time, 2)),
                 startTransform.z + (intensity * Mathf.PerlinNoise(speed * Time.time, 3)));
+
             yield return null;
         }
         transform.position = startTransform;
+
+        //GetComponent<Rigidbody>().isKinematic = true;
 
 
         audioSource.Stop();
