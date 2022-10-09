@@ -151,7 +151,6 @@ public class MannequinBehavior : MonoBehaviour
 
     public void Spotted()
     {
-        //Debug.Log("Spotted "+ transform.name);
         spotted = true;
         spottedTimeLeft = 2.0f;
     }
