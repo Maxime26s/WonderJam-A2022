@@ -22,14 +22,12 @@ public class Bomb : MonoBehaviour {
 
     private Rigidbody rb;
     private SphereCollider sphereCollider;
-    private GameObject parent;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         sphereCollider = gameObject.GetComponent<SphereCollider>();
-        parent = gameObject.transform.parent.gameObject;
     }
 
     public void StartFuse()
@@ -42,6 +40,7 @@ public class Bomb : MonoBehaviour {
         Destroy(gameObject);
         GameObject newExplosion = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         newExplosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+        Destroy(newExplosion, newExplosion.GetComponent<ParticleSystem>().main.duration);
 
         Collider[] hitColliders = Physics.OverlapSphere(newExplosion.transform.GetComponent<Renderer>().bounds.center, explosionRadius);
         foreach(Collider hitCollider in hitColliders)

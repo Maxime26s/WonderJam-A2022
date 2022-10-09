@@ -28,9 +28,10 @@ public class PlayerController : MonoBehaviour {
 
     private bool isNoClipping = false;
 
-    private int health = 3;
+    public int health = 3;
 
     public UnityEvent playerJumping = new UnityEvent();
+    public UnityEvent playerTakeDamage = new UnityEvent();
 
     // Start is called before the first frame update
     void Start() {
@@ -189,5 +190,6 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage() {
         health--;
+        playerTakeDamage.Invoke();
     }
 }
