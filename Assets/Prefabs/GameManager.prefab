@@ -244,6 +244,7 @@ MonoBehaviour:
   deathImage: {fileID: 7451698386210138869}
   deathScreen: {fileID: 21300000, guid: 6f078d1981ddd844187e8272cddfbe21, type: 3}
   outOfTimeScreen: {fileID: 21300000, guid: 2961bf742aab3a64aa77552a0a7623a5, type: 3}
+  deathMusic: {fileID: 8300000, guid: f4086084be76b834f9c3fda197e8222e, type: 3}
   wrenchEnabled: 0
   shotgunEnabled: 0
   bombEnabled: 0
@@ -288,7 +289,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f5fc3defa48fac4aac7b2257355a473, type: 2}
   - {fileID: 11400000, guid: 2c0d9aadfa68cd0418c6c9c67af54aa8, type: 2}
   - {fileID: 11400000, guid: b7af3015a70f786438cd67799328a694, type: 2}
-  poutineDialogue: {fileID: 11400000, guid: d942ed6bf92e9234dbe0dd79cac09ee7, type: 2}
 --- !u!1 &1863442093133221392
 GameObject:
   m_ObjectHideFlags: 0

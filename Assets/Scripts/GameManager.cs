@@ -44,6 +44,8 @@ public static GameManager Instance { get; set; }
     private Sprite deathScreen;
     [SerializeField]
     private Sprite outOfTimeScreen;
+    [SerializeField]
+    private AudioClip deathMusic = null;
 
 
     [SerializeField]
@@ -119,6 +121,8 @@ public static GameManager Instance { get; set; }
                 break;
             case GameState.OutOfTime:
                 SetTimerText("0:00");
+                if (deathMusic != null)
+                    MusicManager.Instance?.PlayMusic(deathMusic, 0.2f);
                 deathUI.SetActive(true);
                 deathImage.sprite = outOfTimeScreen;
                 GameObject.FindWithTag("Player").GetComponent<PlayerController>().IsDead = true;
@@ -129,6 +133,8 @@ public static GameManager Instance { get; set; }
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
+                if (deathMusic != null)
+                    MusicManager.Instance?.PlayMusic(deathMusic, 0.2f);
                 deathUI.SetActive(true);
                 deathImage.sprite = deathScreen;
                 GameObject.FindWithTag("Player").GetComponent<PlayerController>().IsDead = true;
