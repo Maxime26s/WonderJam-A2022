@@ -170,7 +170,7 @@ public static GameManager Instance { get; set; }
 
     public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
     {
-        float secondsRemainder = Mathf.Floor((seconds % 60) * 100) / 100.0f;
+        float secondsRemainder = Mathf.Floor(seconds % 60);
         int minutes = ((int)(seconds / 60)) % 60;
         int hours = (int)(seconds / 3600);
 
