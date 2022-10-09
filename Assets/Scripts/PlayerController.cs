@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private Transform cameraTransform;
 
-    private bool isNoClipping = false; 
+    private bool isNoClipping = false;
+
+    private int health = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -82,5 +84,10 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void TakeDamage()
+    {
+        health--;
     }
 }

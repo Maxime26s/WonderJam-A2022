@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private enum GlitchType {
+    public enum GlitchType {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
@@ -15,7 +16,7 @@ public class EnemyBehavior : MonoBehaviour
     }
 
     [SerializeField]
-    GlitchType glitchType = GlitchType.Vibrate;
+    public GlitchType glitchType = GlitchType.Vibrate;
     [SerializeField]
     float glitchTimerMin = 10.0f;
     [SerializeField]
@@ -27,11 +28,8 @@ public class EnemyBehavior : MonoBehaviour
     float glitchTimer;
 
     AudioSource audioSource;
-
     EnemyNavMesh enemyNavMesh;
-
     Rigidbody rb;
-
     NavMeshAgent navMeshAgent;
 
     public bool spotted;
@@ -40,6 +38,10 @@ public class EnemyBehavior : MonoBehaviour
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
     private MeshFilter enemyMeshFilter;
+    private Material[] defaultMaterials;
+
+    public int health = 3;
+
 
     private void Start()
     {
@@ -49,6 +51,7 @@ public class EnemyBehavior : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        defaultMaterials = enemyRenderer.materials;
 
         SetTimer();
 
@@ -82,10 +85,10 @@ public class EnemyBehavior : MonoBehaviour
         {
             switch (glitchType)
             {
-                case GlitchType.Move:         //move to random navmesh location
+                case GlitchType.Move:           //move to random navmesh location
                     move();
                     break;
-                case GlitchType.Vibrate:         //vibrate for x seconds
+                case GlitchType.Vibrate:        //vibrate for x seconds
                     vibrate();
                     break;
                 case GlitchType.Stretch:
@@ -94,48 +97,13 @@ public class EnemyBehavior : MonoBehaviour
                 case GlitchType.ChangeMaterial:
                     ChangeMaterial();
                     break;
+                case GlitchType.ChangeMeshError:
+                    ChangeMeshError();
+                    break;
                 case GlitchType.Fling:
                     Fling();
                     break;
                     
-            }
-        }
-        
-        RaycastHit hit;
-        Vector3 rayDirection = player.transform.position - transform.position;
-        rayDirection.Normalize();
-
-        if(Physics.Raycast (transform.position, rayDirection, out hit))
-        {
-            Debug.Log(hit.transform.name);
-
-            if (hit.transform != player.transform)
-            {
-                switch (glitchType)
-                {
-                    case GlitchType.Move:         //move to random navmesh location
-                        move();
-                        break;
-                    case GlitchType.Vibrate:         //vibrate for x seconds
-                        vibrate();
-                        break;
-                    case GlitchType.Stretch:
-                        stretch();
-                        break;
-                    case GlitchType.ChangeMaterial:
-                        ChangeMaterial();
-                        break;
-                    case GlitchType.ChangeMeshError:
-                        ChangeMeshError();
-                        break;
-                    case GlitchType.Fling:
-                        Fling();
-                        break;
-                }
-            }
-            else 
-            {
-                Debug.Log("you can see the guy");
             }
         }
     }
@@ -234,12 +202,19 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (enemyRenderer != null)
         {
+            var oldMaterials = enemyRenderer.materials;
             var randomTime = Random.Range(1.0f, 4.0f);
             var randomMatIndex = Random.Range(0, errorMaterials.Length);
-            Material oldMaterial = enemyRenderer.material;
-            enemyRenderer.material = errorMaterials[randomMatIndex];
+            Material errorMaterial = errorMaterials[randomMatIndex];
+            Material[] newMaterials = new Material[1];
+            newMaterials[0] = errorMaterial;
+
+            enemyRenderer.materials = newMaterials;
+
             yield return new WaitForSeconds(randomTime);
-            enemyRenderer.material = oldMaterial;
+
+            enemyRenderer.materials = defaultMaterials;
+
         }
     }
 
@@ -280,6 +255,42 @@ public class EnemyBehavior : MonoBehaviour
         navMeshAgent.enabled = true;
 
         //transform.position = FindNearestNavMeshPoint(transform.position);
+        yield return null;
+    }
+
+    public void TakeDamage() 
+    {
+        health--;
+
+        Flee();
+    }
+
+    private void Flee()
+    {
+        float walkRadius = 5f;
+
+        Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+        Vector3 finalPosition = hit.position;
+
+        StartCoroutine(Fleeing(finalPosition));
+    }
+
+    IEnumerator Fleeing(Vector3 movePositionVector)
+    {
+        float timeLeft = 2.0f;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            navMeshAgent.destination = movePositionVector;
+
+            yield return null;
+        }
         yield return null;
     }
 }
