@@ -34,6 +34,9 @@ public static GameManager Instance { get; set; }
     [SerializeField]
     private float gameTimer = 300f;
 
+    [SerializeField]
+    private GameObject deathUI;
+
 
     [SerializeField]
     public bool wrenchEnabled = false;
@@ -99,6 +102,11 @@ public static GameManager Instance { get; set; }
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
+                deathUI.SetActive(true);
+
+                Cursor.lockState =  CursorLockMode.None;
+                Cursor.visible = true;
+
                 Debug.Log("You ran out of life, rip.");
                 break;
         }
