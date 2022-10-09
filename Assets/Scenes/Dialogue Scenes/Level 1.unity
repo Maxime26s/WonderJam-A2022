@@ -357,8 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSpeed: 1
   image: {fileID: 257081147}
-  fading: 0
-  nextSceneIndex: 6
+  nextSceneName: House on night
 --- !u!114 &257081147
 MonoBehaviour:
   m_ObjectHideFlags: 0

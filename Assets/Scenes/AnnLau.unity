@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    accuratePlacement: 1
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -259,10 +259,12 @@ MonoBehaviour:
   glitchTimerMax: 6
   player: {fileID: 1002476392}
   spotted: 0
+  invincible: 0
   errorMaterials:
   - {fileID: 0}
   - {fileID: 2100000, guid: 4e9e40c826461c44b8dcb95c4c5346e6, type: 2}
   - {fileID: 2100000, guid: 4c898124d1e0c2747a0e1b16ac8fad68, type: 2}
+  health: 3
 --- !u!114 &101898062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +588,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity
       objectReference: {fileID: 0}
+    - target: {fileID: 1356303758233106229, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1356303758233106230, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_RootOrder
@@ -694,6 +701,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
+--- !u!4 &1255921986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1356303759591148108, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012215442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1640475179
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +828,7 @@ Camera:
     type: 3}
   m_PrefabInstance: {fileID: 1012215442}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1983649044
+--- !u!1001 &2050180373
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -831,17 +844,17 @@ PrefabInstance:
     - target: {fileID: 70796286403512352, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.6562443
+      value: 5.027935
       objectReference: {fileID: 0}
     - target: {fileID: 70796286403512352, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3100055
+      value: -1.3100057
       objectReference: {fileID: 0}
     - target: {fileID: 70796286403512352, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.997344
+      value: -15.551389
       objectReference: {fileID: 0}
     - target: {fileID: 70796286403512352, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
@@ -878,12 +891,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: Health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1255921986}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: wanderTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: wanderRadius
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 842265989470999194, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: m_Name
       value: Mannequin
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4692eaf7b396e1a4784596adbd28c6c6, type: 3}
