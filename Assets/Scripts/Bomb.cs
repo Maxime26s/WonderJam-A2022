@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
-{
+public class Bomb : MonoBehaviour {
+    [SerializeField]
+    public Animation bombAnimation = null;
     [SerializeField]
     private float explosionRadius = 10f;
     [SerializeField]
@@ -13,9 +14,11 @@ public class Bomb : MonoBehaviour
     [SerializeField]
     private float forwardForce = 500f;
     [SerializeField]
-    private bool IsThrown = false;
+    public bool IsThrown = false;
     [SerializeField]
     private GameObject explosion;
+
+    public bool onCooldown = false;
 
     private Rigidbody rb;
     private SphereCollider sphereCollider;
@@ -53,13 +56,13 @@ public class Bomb : MonoBehaviour
 
     private void Throw()
     {
-        Debug.Log("Thrown");
-        IsThrown = true;
-        sphereCollider.enabled = true;
-        gameObject.transform.parent = null;
-        rb.isKinematic = false;
-        rb.AddForce(Camera.main.transform.forward * forwardForce);
-        StartFuse();
+            Debug.Log("Thrown");
+            IsThrown = true;
+            sphereCollider.enabled = true;
+            gameObject.transform.parent = null;
+            rb.isKinematic = false;
+            rb.AddForce(Camera.main.transform.forward * forwardForce);
+            StartFuse();
     }
 
     // Update is called once per frame
@@ -72,7 +75,7 @@ public class Bomb : MonoBehaviour
                 Explode();
         }
 
-        if(InputManager.Instance.PlayerGetFireInput())
+        if(InputManager.Instance.PlayerGetFireInput() && !onCooldown)
         {
             if(!IsThrown)
                 Throw();
