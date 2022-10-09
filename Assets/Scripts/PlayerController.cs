@@ -158,6 +158,10 @@ private void SwapWeapon() {
     public void TakeDamage()
     {
         health--;
+        if(health <= 0)
+        {
+            GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
+        }
         playerTakeDamage.Invoke();
     }
 }
