@@ -14,6 +14,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Max.unity
     guid: 2c9991b8ed1e6e54eb1ad73ac8a4a417
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Introduction.unity
+    guid: d63d1a2d94ae1ae4283c792cb46cc4bf
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Tutorial.unity
+    guid: 741ad44fee56aaa4a8306d5f21933466
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Level 1.unity
+    guid: 5c5126ef4342efa4ca8f89c36a3ccb08
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Level 2.unity
+    guid: 85c084e48ba09934ea3a269c2290e047
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Level 3.unity
+    guid: 45a770a84bdc09b40bb6f2492c6d7be7
+  - enabled: 1
+    path: Assets/Scenes/Dialogue Scenes/Finale.unity
+    guid: 88ba5fb6e14d15d4a8a393034e5685ed
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c31e380d80f076343abea4ff426b4436,
       type: 2}

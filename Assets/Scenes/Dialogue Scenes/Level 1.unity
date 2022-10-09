@@ -363,7 +363,7 @@ MonoBehaviour:
   fadeSpeed: 1
   image: {fileID: 257081147}
   fading: 0
-  nextSceneIndex: 0
+  nextSceneIndex: 6
 --- !u!114 &257081147
 MonoBehaviour:
   m_ObjectHideFlags: 0

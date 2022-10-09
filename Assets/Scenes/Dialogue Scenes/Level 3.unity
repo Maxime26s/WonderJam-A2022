@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 1277839290, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: currentDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: c8f8feb49d1f9c943abf54c493161d44,
+      objectReference: {fileID: 11400000, guid: 42f6b85ce1e057f49b82b3bec9addaf0,
         type: 2}
     - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
@@ -363,7 +363,7 @@ MonoBehaviour:
   fadeSpeed: 1
   image: {fileID: 257081147}
   fading: 0
-  nextSceneIndex: 5
+  nextSceneIndex: 8
 --- !u!114 &257081147
 MonoBehaviour:
   m_ObjectHideFlags: 0
