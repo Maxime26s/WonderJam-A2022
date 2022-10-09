@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseLengthBetweenVoiceLines: 0.5
   voiceLinesList:
-  - {fileID: 11400000, guid: 48c306bde6e09ba42bc62125a8d039d9, type: 2}
-  - {fileID: 11400000, guid: 48c306bde6e09ba42bc62125a8d039d9, type: 2}
-  - {fileID: 11400000, guid: 48c306bde6e09ba42bc62125a8d039d9, type: 2}
+  - {fileID: 11400000, guid: 14e901d10f3fdf2409d4b9b9cde60373, type: 2}
+  - {fileID: 11400000, guid: 4c342d8acd6f7e54ebe47b664b495164, type: 2}
+  - {fileID: 11400000, guid: 0fbede6d1307f4d419bd93f164ec7deb, type: 2}
