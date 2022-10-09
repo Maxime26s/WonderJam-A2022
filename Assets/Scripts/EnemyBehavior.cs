@@ -28,20 +28,22 @@ public class EnemyBehavior : MonoBehaviour
     float glitchTimer;
 
     AudioSource audioSource;
-
     EnemyNavMesh enemyNavMesh;
-
     Rigidbody rb;
-
     NavMeshAgent navMeshAgent;
 
     public bool spotted;
+
+    public bool invincible;
 
     float spottedTimeLeft;
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
     private MeshFilter enemyMeshFilter;
     private Material[] defaultMaterials;
+
+    public int health = 3;
+
 
     private void Start()
     {
@@ -57,6 +59,7 @@ public class EnemyBehavior : MonoBehaviour
 
         spotted = false;
         spottedTimeLeft = 1.0f;
+        invincible = false;
     }
     private void Update()
     {
@@ -256,5 +259,59 @@ public class EnemyBehavior : MonoBehaviour
 
         //transform.position = FindNearestNavMeshPoint(transform.position);
         yield return null;
+    }
+
+    public void TakeDamage() 
+    {
+        if (!invincible)
+        {
+            health--;
+            if (health <= 0)
+            {
+                Death();
+            }
+            else
+            {
+                Flee();
+            }
+        }
+    }
+
+    private void Flee()
+    {
+        float walkRadius = 10f;
+
+        Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+        Vector3 finalPosition = hit.position;
+
+        StartCoroutine(Fleeing(finalPosition));
+    }
+
+    IEnumerator Fleeing(Vector3 movePositionVector)
+    {
+        float timeLeft = 2.0f;
+
+        invincible = true;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            navMeshAgent.destination = movePositionVector;
+
+            yield return null;
+        }
+        invincible = false;
+
+        yield return null;
+    }
+
+    private void Death()
+    {
+
     }
 }

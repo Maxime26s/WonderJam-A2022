@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c0bc57aea7b741419e0dd10eb8faeb2, type: 3}
-  m_Name: Jc
+  m_Name: Noise
   m_EditorClassIdentifier: 
-  mouthClosed: {fileID: 21300000, guid: be581cb9268c2824a8dc8fb0c40dae24, type: 3}
-  mouthOpened: {fileID: 21300000, guid: dc62550fd07d8d24781c56c9ae857275, type: 3}
-  name: jean cirstope
-  nameColor: {r: 0.28229958, g: 1, b: 0.22327036, a: 1}
+  mouthClosed: {fileID: 676397492, guid: 237e47b70ebc27b44bc700b6492efb68, type: 3}
+  mouthOpened: {fileID: -1602767642, guid: 237e47b70ebc27b44bc700b6492efb68, type: 3}
+  name: ?????????
+  nameColor: {r: 0.74877864, g: 0.28930813, b: 1, a: 1}
+  showFace: 1

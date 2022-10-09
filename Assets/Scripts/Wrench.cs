@@ -5,8 +5,8 @@ using UnityEngine;
 public class Wrench : MonoBehaviour {
     [SerializeField]
     private Animation shotgunAnimation = null;
-    [SerializeField]
-    private CharacterController characterController = null;
+    //[SerializeField]
+    //private CharacterController characterController = null;
     [SerializeField]
     private Transform playerTransform = null;
 
@@ -42,6 +42,12 @@ public class Wrench : MonoBehaviour {
 
     [SerializeField]
     private bool onCooldown = false;
+
+    [SerializeField]
+    private bool hitEnemy = false;
+    [SerializeField]
+    private GameObject enemyShot;
+
     // Start is called before the first frame update
     void Update() {
         if (InputManager.Instance.PlayerGetFireInput() && !onCooldown) {
@@ -64,12 +70,15 @@ public class Wrench : MonoBehaviour {
                 HandleHit(hit);
             }
         }
+
+        CheckTakeDamage();
     }
 
 
     void HandleHit(RaycastHit hit) {
 
         CheckRigidbody(hit);
+        CheckForGlitch(hit);
 
         if (hit.collider.sharedMaterial != null) {
             string materialName = hit.collider.sharedMaterial.name;
@@ -117,5 +126,26 @@ public class Wrench : MonoBehaviour {
     void SpawnDecal(RaycastHit hit, GameObject prefab) {
         GameObject spawnedDecal = Instantiate(prefab, hit.point, Quaternion.LookRotation(hit.normal));
         spawnedDecal.transform.SetParent(hit.collider.transform);
+    }
+
+    private void CheckForGlitch(RaycastHit hit)
+    {
+        if (hit.collider.tag == "Enemy")
+        {
+            hitEnemy = true;
+            enemyShot = hit.collider.gameObject;
+        }
+    }
+
+    private void CheckTakeDamage()
+    {
+        if (hitEnemy)
+        {
+            enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+        }
+        else
+        {
+            playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
+        }
     }
 }
