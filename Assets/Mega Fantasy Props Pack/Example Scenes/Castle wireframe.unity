@@ -7432,6 +7432,7 @@ MonoBehaviour:
   flingAudio: {fileID: 8300000, guid: b716ebcee5281304db1a89030f8c2133, type: 3}
   soundEffectsVolume: 0.5
   soundEffectMaxDistance: 10
+  deathAnim: {fileID: 1000012560919920, guid: 85a8865d1bf4a63478038fae23776de8, type: 3}
 --- !u!4 &495125110
 Transform:
   m_ObjectHideFlags: 0
@@ -30157,7 +30158,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 511493166}
   - {fileID: 387528355}
   - {fileID: 1949623040}
   - {fileID: 429902947}
@@ -30169,7 +30169,7 @@ Transform:
   - {fileID: 494027169}
   - {fileID: 37860215}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1768392602 stripped
 Transform:
