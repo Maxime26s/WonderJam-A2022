@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -37,6 +38,10 @@ public static GameManager Instance { get; set; }
 
     [SerializeField]
     private GameObject deathUI;
+    [SerializeField]
+    private Sprite deathScreen;
+    [SerializeField]
+    private Sprite outOfTimeScreen;
 
 
     [SerializeField]
@@ -110,10 +115,17 @@ public static GameManager Instance { get; set; }
                 break;
             case GameState.OutOfTime:
                 SetTimerText("00:00");
+                deathUI.SetActive(true);
+                deathUI.transform.Find("Panel").GetComponent<Image>().sprite = outOfTimeScreen;
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
                 deathUI.SetActive(true);
+                deathUI.transform.Find("Panel").GetComponent<Image>().sprite = deathScreen;
 
                 Cursor.lockState =  CursorLockMode.None;
                 Cursor.visible = true;
