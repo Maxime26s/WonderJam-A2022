@@ -330,9 +330,10 @@ GameObject:
   - component: {fileID: 536277613078802118}
   - component: {fileID: 536277613078802117}
   - component: {fileID: 536277613078802169}
+  - component: {fileID: 863552253736156699}
   m_Layer: 0
   m_Name: Mannequin
-  m_TagString: Enemy
+  m_TagString: Mannequin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -346,14 +347,14 @@ Transform:
   m_GameObject: {fileID: 842265989470999194}
   m_LocalRotation: {x: -0, y: 0.9237903, z: -0, w: 0.38289896}
   m_LocalPosition: {x: 6.185061, y: -1.3100055, z: -15.457}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8956341937520269502}
   - {fileID: 4513761744767510001}
   - {fileID: 7138750792850514153}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 134.973, z: 0}
 --- !u!95 &6204737682921378394
 Animator:
@@ -402,7 +403,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1.95
+  m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0.84, z: 0}
 --- !u!114 &536277613078802169
@@ -417,6 +418,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a40b5438f1ece4f4fa20236d4bd481c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spotted: 0
+  wanderRadius: 10
+  wanderTimer: 5
+  player: {fileID: 0}
+  Health: 0
+--- !u!195 &863552253736156699
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842265989470999194}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &867893537162864951
 GameObject:
   m_ObjectHideFlags: 0

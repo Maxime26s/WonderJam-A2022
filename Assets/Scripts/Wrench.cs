@@ -130,7 +130,7 @@ public class Wrench : MonoBehaviour {
 
     private void CheckForGlitch(RaycastHit hit)
     {
-        if (hit.collider.tag == "Enemy")
+        if (hit.collider.tag == "Enemy" || hit.collider.tag == "Mannequin")
         {
             hitEnemy = true;
             enemyShot = hit.collider.gameObject;
@@ -141,7 +141,13 @@ public class Wrench : MonoBehaviour {
     {
         if (hitEnemy)
         {
-            enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+            if (enemyShot.CompareTag("Enemy"))
+            {
+                enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+            } else if (enemyShot.CompareTag("Mannequin"))
+            {
+                enemyShot.GetComponent<MannequinBehavior>().TakeDamage();
+            }
         }
         else
         {

@@ -39,6 +39,10 @@ public class LineOfSight : MonoBehaviour
                 {
                     Debug.Log("Hit : " + enemy.collider.name);
                     enemy.collider.GetComponent<EnemyBehavior>().Spotted();
+                } else if (enemy.collider.gameObject.CompareTag("Mannequin"))
+                {
+                    Debug.Log("Hit King Feature");
+                    enemy.collider.GetComponent<MannequinBehavior>().Spotted();
                 }
             }
         }
