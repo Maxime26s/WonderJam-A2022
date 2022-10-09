@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     private bool isNoClipping = false;
 
     private int health = 3;
+
+    public UnityEvent playerJumping = new UnityEvent();
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour
         if (InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
+            playerJumping.Invoke();
         }
 
         playerVelocity.y += gravity * Time.deltaTime;
