@@ -272,6 +272,9 @@ public class EnemyBehavior : MonoBehaviour
 
     public void TakeDamage() 
     {
+        
+        EnemyDialogueDatabase.Instance.TryPlayDialogue(gameObject.name);
+
         if (!invincible)
         {
             health--;
