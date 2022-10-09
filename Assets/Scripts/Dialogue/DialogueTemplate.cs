@@ -5,9 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Dialogue/Template")]
 public class DialogueTemplate : ScriptableObject
 {
-    public float pauseLengthBetweenVoiceLines = 1.25f;
+    public float pauseLengthBetweenVoiceLines;
 
-    public List<DialogueVoiceLine> voiceLinesList = new List<DialogueVoiceLine>();
+    public List<DialogueVoiceLine> voiceLinesList;
 
-    public Queue<DialogueVoiceLine> voiceLines = new Queue<DialogueVoiceLine>();
+    public Queue<DialogueVoiceLine> voiceLines;
+
+    private void Awake() {
+    }
 }
