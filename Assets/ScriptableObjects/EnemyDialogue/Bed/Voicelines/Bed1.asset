@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: This is where the magic happens!
   face: {fileID: 11400000, guid: cf2a6ad52163f1044ad8e17ef2b13c4a, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 3f17a355e52987c4e92bd31c710f8d28, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

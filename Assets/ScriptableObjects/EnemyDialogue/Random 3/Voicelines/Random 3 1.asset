@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: STOP SHOOTING
   face: {fileID: 11400000, guid: 15c1e70b4df260147bb114b52b653b40, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 1df36db3565eaed478f1571c45ef6fcc, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0
