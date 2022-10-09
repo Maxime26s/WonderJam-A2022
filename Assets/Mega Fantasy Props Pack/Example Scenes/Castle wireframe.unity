@@ -29772,6 +29772,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
+      propertyPath: speedIncreasePerHit
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
       propertyPath: teleportPoints.Array.size
       value: 11
       objectReference: {fileID: 0}

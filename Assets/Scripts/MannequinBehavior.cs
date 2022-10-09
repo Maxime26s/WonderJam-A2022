@@ -17,10 +17,6 @@ public class MannequinBehavior : MonoBehaviour
     private Animator _animator;
     private Rigidbody _rigidbody;
 
-    private bool _tposing;
-    private bool _walking;
-    private bool _running;
-
     public bool spotted;
     private float spottedTimeLeft;
 
@@ -28,6 +24,7 @@ public class MannequinBehavior : MonoBehaviour
     [SerializeField] public float wanderTimer;
     private float roamTimer;
     private float tposeTimer;
+    private float attackTimer;
 
     private NavMeshAgent _navMeshAgent;
 
@@ -38,12 +35,27 @@ public class MannequinBehavior : MonoBehaviour
     [SerializeField] public Transform[] teleportPoints;
     private int nbTPPoints;
 
+    [SerializeField] public float attackDuration = 1.5f;
+    [SerializeField] public float attackSpinSpeed = 2000f;
+
+    private bool justAttacked = false;
+    private bool attacking = false;
+
+    private float movementSpeed;
+    [SerializeField] public float speedIncreasePerHit = 3f;
+
+    private AudioSource _audioSource;
+    [SerializeField] public AudioClip stepSound;
+    [SerializeField] public AudioClip attackSound;
+    [SerializeField] public float soundEffectsVolume = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         hitCount = 0;
@@ -52,6 +64,9 @@ public class MannequinBehavior : MonoBehaviour
         tposeTimer = Random.Range(5, 10);
         spottedTimeLeft = 1.0f;
         roamTimer = wanderTimer;
+        attackTimer = 5f;
+
+        movementSpeed = _navMeshAgent.speed;
 
         behavior = Behavior.Roaming;
         nbTPPoints = teleportPoints.Length;
@@ -63,6 +78,13 @@ public class MannequinBehavior : MonoBehaviour
         roamTimer += Time.deltaTime;
         tposeTimer -= Time.deltaTime;
         spottedTimeLeft -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
+
+        if (attacking)
+        {
+            SetAnim("TPosing", true);
+            gameObject.transform.Rotate(0, attackSpinSpeed*Time.deltaTime, 0);
+        }
 
         if (!spotted)
         {
@@ -72,12 +94,20 @@ public class MannequinBehavior : MonoBehaviour
                 StartCoroutine(TPosing());
             }
 
+            if (attackTimer < 0)
+            {
+                attackTimer = 5f;
+                justAttacked = false;
+            }
+
             switch (behavior)
             {
                 case Behavior.Roaming:
+                    _audioSource.volume = soundEffectsVolume / 3;
                     Roam();
                     break;
                 case Behavior.ChasingPlayer:
+                    _audioSource.volume = soundEffectsVolume;
                     ChasePlayer();
                     break;
             }
@@ -85,10 +115,8 @@ public class MannequinBehavior : MonoBehaviour
         else
         {
             _navMeshAgent.isStopped = true;
-            _walking = false;
-            _animator.SetBool("Walking", false);
-            _running = false;
-            _animator.SetBool("Running", false);
+            SetAnim("Walking", false);
+            SetAnim("Running", false);
         }
 
         if (spottedTimeLeft <= 0)
@@ -99,20 +127,33 @@ public class MannequinBehavior : MonoBehaviour
 
     private void ChasePlayer()
     {
-        _animator.SetBool("Walking", false);
-        _walking = false;
-        _animator.SetBool("Running", true);
-        _running = true;
+        SetAnim("Walking", false);
+        SetAnim("Running", true);
         _navMeshAgent.isStopped = false;
         _navMeshAgent.SetDestination(player.transform.position);
+
+        float distToPlayer = Vector3.Distance(gameObject.transform.position, player.position);
+
+        if (distToPlayer <= 2)
+        {
+            _navMeshAgent.isStopped = true;
+
+            if (!justAttacked)
+            {
+                StartCoroutine(Attacking());
+            }
+        }
+        else
+        {
+            _navMeshAgent.isStopped = false;
+        }
+
     }
 
     private void Roam()
     {
-        _animator.SetBool("Running", false);
-        _running = false;
-        _animator.SetBool("Walking", true);
-        _walking = true;
+        SetAnim("Running", false);
+        SetAnim("Walking", true);
         _navMeshAgent.isStopped = false;
         if (roamTimer >= wanderTimer)
         {
@@ -125,8 +166,7 @@ public class MannequinBehavior : MonoBehaviour
     IEnumerator TPosing()
     {
         float duration = Random.Range(1, 3);
-        _tposing = true;
-        _animator.SetBool("TPosing", true);
+        SetAnim("TPosing", true);
 
         while (duration>0)
         {
@@ -134,9 +174,29 @@ public class MannequinBehavior : MonoBehaviour
             yield return null;
         }
 
-        _tposing = false;
-        _animator.SetBool("TPosing", false);
+        SetAnim("TPosing", false);
+        yield return null;
+    }
 
+    IEnumerator Attacking()
+    {
+        _audioSource.PlayOneShot(attackSound);
+        float attackDurationTimer = attackDuration;
+        player.gameObject.GetComponent<PlayerController>().TakeDamage();
+        attacking = true;
+        justAttacked = true;
+
+
+        while (attackDurationTimer > 0)
+        {
+            attackDurationTimer -= Time.deltaTime;
+            yield return null;
+        }
+
+        attacking = false;
+        SetAnim("TPosing", false);
+        TeleportToRandomPoint();
+        Debug.Log("Attacked player");
         yield return null;
     }
 
@@ -147,6 +207,17 @@ public class MannequinBehavior : MonoBehaviour
         NavMeshHit navHit;
         NavMesh.SamplePosition(randDirection, out navHit, dist, layerMask);
         return navHit.position;
+    }
+
+    private void TeleportToRandomPoint()
+    {
+        int randomTPPpoint = Random.Range(0, nbTPPoints);
+        gameObject.transform.position = teleportPoints[randomTPPpoint].position;
+    }
+
+    private void SetAnim(string anim, bool state)
+    {
+        _animator.SetBool(anim, state);
     }
 
     public void Spotted()
@@ -166,14 +237,23 @@ public class MannequinBehavior : MonoBehaviour
             Death();
         } else
         {
-            if (hitCount >= 1)
+            if (hitCount == 1)
             {
                 behavior = Behavior.ChasingPlayer;
             }
+            else
+            {
+                movementSpeed += speedIncreasePerHit;
+                _navMeshAgent.speed = movementSpeed;
+            }
 
-            int randomTPPpoint = Random.Range(0, nbTPPoints);
-            gameObject.transform.position = teleportPoints[randomTPPpoint].position;
+            TeleportToRandomPoint();
         }
+    }
+
+    private void Step()
+    {
+        _audioSource.PlayOneShot(stepSound);
     }
 
     private void Death()
