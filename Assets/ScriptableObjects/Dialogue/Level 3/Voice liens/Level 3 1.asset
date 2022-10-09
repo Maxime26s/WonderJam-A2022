@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
+  m_Name: Level 3 1
+  m_EditorClassIdentifier: 
+  text: "Enfin. Nous avons repris contact avec vous chasseur. Capitaine Titebud est
+    parti sur le terrain. Ce sera donc moi, Lieutenant Morace, qui sera responsable
+    du reste de cette op\xE9ration. Cette fois-ci vous devrez investiguer un ch\xE2teau
+    abandonn\xE9. d\xE9truisez ces vermines et"
+  face: {fileID: 11400000, guid: 5b160a996c608b74d8c9951576fb1414, type: 2}
+  voiceLine: {fileID: 8300000, guid: 611f685a904dd7c4e87dabbd3ce5176e, type: 3}
+  closedMouthThreshold: 0.1
+  showFullText: 0
+  faceLocation: 0
+  customDuration: -1
+  volume: 1
+  useRandomFlicking: 0
