@@ -22,6 +22,8 @@ public class EnemyManager : MonoBehaviour
         foreach(Transform child in transform)
         {
             potentialEnemies.Add(child.gameObject);
+
+            child.tag = "Prop";
         }
         
         for(int i = 0; i < numberOfEnemies; i++)
