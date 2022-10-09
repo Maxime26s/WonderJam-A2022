@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionTime: 1
+  actionPending: 0
 --- !u!1 &1863442091493370361
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +272,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d942ed6bf92e9234dbe0dd79cac09ee7, type: 2}
   - {fileID: 11400000, guid: bf471c60c63b4204490b00986c612d50, type: 2}
   - {fileID: 11400000, guid: 471970d1ee492574897e4661c2d03f76, type: 2}
+  - {fileID: 11400000, guid: d942ed6bf92e9234dbe0dd79cac09ee7, type: 2}
   defaultEnemyDialogues:
   - {fileID: 11400000, guid: daf67aacce747554f81e533df8a33228, type: 2}
   - {fileID: 11400000, guid: d4e3e5177dabaa245b0e3a13acd9f8a5, type: 2}
