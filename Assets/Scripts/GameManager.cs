@@ -132,7 +132,10 @@ public static GameManager Instance { get; set; }
     }
 
     public void IsLevelEnd() {
-        if (GetEnemyCount() <= totalEnemies/2)
+        Debug.Log("IsLevelEnd Called");
+        Debug.Log(GetEnemyCount() + "/" + totalEnemies);
+
+        if (GetEnemyCount() <= (int)(totalEnemies/2))
         {
             SwitchToGameState(GameState.Win);
         }
@@ -144,7 +147,6 @@ public static GameManager Instance { get; set; }
 
         hasBeenInitialized = true;
         SpawnPlayer();
-        totalEnemies = GetEnemyCount();
         SwitchToGameState(GameState.Playing);
     }
 
@@ -159,6 +161,11 @@ public static GameManager Instance { get; set; }
             return enemyManager.selectedEnemies.Count;
         else
             return 0;
+    }
+
+    public void SetTotalEnemyCount()
+    {
+        totalEnemies = GetEnemyCount();
     }
 
     public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
