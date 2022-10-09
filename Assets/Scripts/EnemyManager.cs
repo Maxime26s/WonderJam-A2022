@@ -14,8 +14,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     public Material[] errorMaterialsManager;
 
-    [SerializeField]
-    public AudioClip audioClip;
+    [SerializeField] public AudioClip vibrateAudio;
+    [SerializeField] public AudioClip glitchAudio;
+    [SerializeField] public AudioClip wobbleAudio;
+    [SerializeField] public AudioClip dragAudio;
 
     private void Start()
     {
@@ -54,9 +56,17 @@ public class EnemyManager : MonoBehaviour
 
             enemy.GetComponent<NavMeshAgent>().baseOffset = 0.05f;
 
-            enemy.GetComponent<AudioSource>().clip = audioClip;
+            enemy.GetComponent<EnemyBehavior>().vibrateAudio = vibrateAudio;
+            enemy.GetComponent<EnemyBehavior>().wobbleAudio = wobbleAudio;
+            enemy.GetComponent<EnemyBehavior>().glitchAudio = glitchAudio;
+            enemy.GetComponent<EnemyBehavior>().dragAudio = dragAudio;
 
-            enemy.GetComponent<AudioSource>().volume = 0.2f;
+            enemy.GetComponent<AudioSource>().volume = 0.5f;
+            enemy.GetComponent<AudioSource>().spatialBlend = 1;
+            enemy.GetComponent<AudioSource>().playOnAwake = false;
+            enemy.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
+            enemy.GetComponent<AudioSource>().minDistance = 1;
+            enemy.GetComponent<AudioSource>().maxDistance = 10;
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
