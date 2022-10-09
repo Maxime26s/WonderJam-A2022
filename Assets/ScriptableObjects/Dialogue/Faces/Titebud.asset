@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c0bc57aea7b741419e0dd10eb8faeb2, type: 3}
-  m_Name: Max
+  m_Name: Titebud
   m_EditorClassIdentifier: 
   mouthClosed: {fileID: 21300000, guid: 6147bc9c3710d5c4ba27684127d6cf98, type: 3}
   mouthOpened: {fileID: 21300000, guid: dfcc78deb50485d4fbd4c7b8a3273dba, type: 3}

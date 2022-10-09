@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
-  m_Name: v1
+  m_Name: Level 1 1
   m_EditorClassIdentifier: 
-  text: "Bonjour chasseur. Nous avons besoin de vos services imm\xE9diatement. Un
-    groupe de hacker international a pris contr\xF4le du web et a infect\xE9 l\u2019ensemble
-    des jeux h\xE9berg\xE9s sur itch.io avec des \xAB features \xBB ind\xE9sirables.
-    Vous aurez comme mission de parcourir ces jeux afin d\u2019identifier et d\u2019\xE9liminer
-    ces ajouts malveillants."
+  text: "Bienvenue \xE0 votre premi\xE8re mission sur le terrain. Ce jeu a \xE9t\xE9
+    publi\xE9 par maraci50 en 2017. C'\xE9tait originellement un jeu pour enfant
+    mais depuis la premi\xE8re manifestation des anomalies, aucun joueur n\u2019ose
+    ouvrir le jeu. c\u2019est \xE0 vous de corriger cela. bon courage chasseur."
   face: {fileID: 11400000, guid: 683b46f9597a3a0468b975f161d3079a, type: 2}
-  voiceLine: {fileID: 8300000, guid: 4d70c7ae06d1a194f9300e1bceec1b80, type: 3}
+  voiceLine: {fileID: 8300000, guid: cf349557fa3c96c45b49a1cf4d8b4687, type: 3}
   closedMouthThreshold: 0.1
+  showFullText: 0
   faceLocation: 0

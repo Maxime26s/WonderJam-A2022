@@ -83,26 +83,42 @@ public class DialogueBoxManager : MonoBehaviour
                 clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
             }
 
-            if (clipLoudness > currentVoiceLine.closedMouthThreshold)
-                imageHolder.sprite = currentFace.mouthOpened;
+            if (currentVoiceLine.useRandomFlicking)
+            {
+                if (UnityEngine.Random.Range(0, 2) == 0)
+                    imageHolder.sprite = currentFace.mouthClosed;
+                else
+                    imageHolder.sprite = currentFace.mouthOpened;
+            }
             else
-                imageHolder.sprite = currentFace.mouthClosed;
-
-
-            float fastLetterPerSecond = letterPerSecond * wordSpeed;
-            float wordTime = 1 / letterPerSecond * (nextSpaceIndex - lastSpaceIndex);
-            float fastWordTime = 1 / fastLetterPerSecond * (nextSpaceIndex - lastSpaceIndex);
-
-            if (audioSource.time - lastWordTime <= fastWordTime)
             {
-                textDialogue.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length - 1));
+                if (clipLoudness > currentVoiceLine.closedMouthThreshold)
+                    imageHolder.sprite = currentFace.mouthOpened;
+                else
+                    imageHolder.sprite = currentFace.mouthClosed;
             }
-            else if (audioSource.time > lastWordTime + wordTime)
+
+            if (currentVoiceLine.showFullText)
+                textDialogue.text = currentVoiceLine.text;
+            else if(currentVoiceLine.text.Length > 0)
             {
-                lastSpaceIndex = nextSpaceIndex;
-                nextSpaceIndex = currentVoiceLine.text.IndexOf(' ', lastSpaceIndex + 1);
-                lastWordTime = audioSource.time;
+                float fastLetterPerSecond = letterPerSecond * wordSpeed;
+                float wordTime = 1 / letterPerSecond * (nextSpaceIndex - lastSpaceIndex);
+                float fastWordTime = 1 / fastLetterPerSecond * (nextSpaceIndex - lastSpaceIndex);
+
+                if (audioSource.time - lastWordTime <= fastWordTime)
+                {
+                    textDialogue.text = currentVoiceLine.text.Substring(0, Mathf.Clamp(Mathf.CeilToInt(lastWordTime * letterPerSecond + fastLetterPerSecond * (audioSource.time - lastWordTime)), 0, currentVoiceLine.text.Length - 1));
+                }
+                else if (audioSource.time > lastWordTime + wordTime)
+                {
+                    lastSpaceIndex = nextSpaceIndex;
+                    nextSpaceIndex = currentVoiceLine.text.IndexOf(' ', lastSpaceIndex + 1);
+                    lastWordTime = audioSource.time;
+                }
             }
+            if (currentVoiceLine.customDuration >= 0 && currentVoiceLine.customDuration <= audioSource.time)
+                audioSource.Pause();
         }
         else if (isPlaying && currentVoiceLine != null)
         {
@@ -132,9 +148,12 @@ public class DialogueBoxManager : MonoBehaviour
             return;
         }
 
-        imageHolder.enabled = true;
-
         currentFace = currentVoiceLine.face;
+        imageHolder.enabled = currentFace.showFace;
+        textName.enabled = currentFace.showFace;
+
+        audioSource.volume = currentVoiceLine.volume;
+
 
         switch (currentVoiceLine.faceLocation)
         {
@@ -164,6 +183,7 @@ public class DialogueBoxManager : MonoBehaviour
 
         textName.color = currentFace.nameColor;
         textName.text = currentFace.name;
+        textDialogue.text = "";
 
         audioSource.clip = currentVoiceLine.voiceLine;
         letterPerSecond = currentVoiceLine.text.Length / audioSource.clip.length;
