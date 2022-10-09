@@ -11,7 +11,7 @@ public class LevelLoader : MonoBehaviour {
     public float transitionTime = 1f;
     public Canvas animCanvas;
 
-    public AudioSource buttonAudioSource = null;
+    public AudioSource LoaderAudioSource = null;
 
     public void Awake() {
         if (Instance != null && Instance != this) {
@@ -22,43 +22,37 @@ public class LevelLoader : MonoBehaviour {
         }
     }
 
-    public void LoadMenu()
-    {
-        if (GameManager.Instance != null && GameManager.Instance.gameObject != null)
-            Destroy(GameManager.Instance.gameObject);
-        //if (PlayerManager.Instance != null && PlayerManager.Instance.gameObject != null)
-        //    Destroy(PlayerManager.Instance.gameObject);
 
-        GameManager.Instance = null;
-        //PlayerManager.Instance = null;
 
-        StartCoroutine(LoadScene("Menu"));
+    public void LoadMenu() {
+        Debug.Log("Loading MainMenu");
+        StartCoroutine(LoadScene("MainMenu"));
     }
 
     public void QuitGame() {
-        Debug.Log("QUIT");
+        Debug.Log("Quitting");
         StartCoroutine(Quit());
     }
 
     public void LoadInstr() {
-        Debug.Log("INSTR");
+        Debug.Log("Loading Instructions");
         StartCoroutine(LoadScene("Instructions"));
     }
 
     public void LoadSelect() {
-        Debug.Log("LOAD PLAYER SELECT");
+        Debug.Log("Loading player select");
         StartCoroutine(LoadScene("PlayerSelect"));
     }
 
-    public void LoadScoreboard()
-    {
+    public void LoadScoreboard() {
+        Debug.Log("Loading Scoreboard");
         StartCoroutine(LoadScene("Scoreboard"));
     }
 
     public void PlayButtonSound()
     {
-        if (buttonAudioSource != null && buttonAudioSource.clip != null)
-            buttonAudioSource.PlayOneShot(buttonAudioSource.clip);
+        if (LoaderAudioSource != null && LoaderAudioSource.clip != null)
+            LoaderAudioSource.PlayOneShot(LoaderAudioSource.clip);
     }
 
     public void Disable()
@@ -67,8 +61,14 @@ public class LevelLoader : MonoBehaviour {
     }
 
     public void LoadNextLevel(string sceneName = "") {
-        Debug.Log("LOAD NEXT LVL");
+        Debug.Log("Loading next level \"" + sceneName + '\"');
         StartCoroutine(LoadNextLevelCo(sceneName));
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        Debug.Log("Reloading level");
+        StartCoroutine(ReloadCurrentLevelCo());
     }
 
     IEnumerator LoadNextLevelCo(string sceneName = "")
@@ -88,7 +88,8 @@ public class LevelLoader : MonoBehaviour {
 
         asyncOperation.completed += (_) =>      
         {
-            GameManager.Instance.InitMap();
+            if (GameManager.Instance)
+                GameManager.Instance.InitMap();
         };
     }
 
@@ -115,7 +116,18 @@ public class LevelLoader : MonoBehaviour {
     }
 
     public void Mute() {
-        buttonAudioSource.mute = !buttonAudioSource.mute;
+        LoaderAudioSource.mute = !LoaderAudioSource.mute;
+    }
+
+    IEnumerator ReloadCurrentLevelCo()
+    {
+        animCanvas.gameObject.SetActive(true);
+        if (transition != null)
+            transition.SetTrigger("Fade_out_tr");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

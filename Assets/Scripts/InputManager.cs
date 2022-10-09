@@ -10,6 +10,8 @@ public class InputManager : MonoBehaviour
 
     public void Awake()
     {
+        playerControls = new PlayerControls();
+
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -19,7 +21,6 @@ public class InputManager : MonoBehaviour
             Instance = this;
         }
 
-        playerControls = new PlayerControls();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

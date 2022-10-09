@@ -46,6 +46,8 @@ public class Wrench : MonoBehaviour {
     [SerializeField]
     private bool hitEnemy = false;
     [SerializeField]
+    private bool hitProp = false;
+    [SerializeField]
     private GameObject enemyShot;
 
     // Start is called before the first frame update
@@ -130,10 +132,14 @@ public class Wrench : MonoBehaviour {
 
     private void CheckForGlitch(RaycastHit hit)
     {
-        if (hit.collider.tag == "Enemy")
+        if (hit.collider.tag == "Enemy" || hit.collider.tag == "Mannequin")
         {
             hitEnemy = true;
             enemyShot = hit.collider.gameObject;
+        }
+        if (hit.collider.tag == "Prop")
+        {
+            hitProp = true;
         }
     }
 
@@ -141,11 +147,19 @@ public class Wrench : MonoBehaviour {
     {
         if (hitEnemy)
         {
-            enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+            if (enemyShot.CompareTag("Enemy"))
+            {
+                enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+            } else if (enemyShot.CompareTag("Mannequin"))
+            {
+                enemyShot.GetComponent<MannequinBehavior>().TakeDamage();
+            }
         }
-        else
+        else if (!hitEnemy & hitProp)
         {
             playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
         }
+        hitEnemy = false;
+        hitProp = false;
     }
 }
