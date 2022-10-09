@@ -121,6 +121,7 @@ public static GameManager Instance { get; set; }
                 SetTimerText("0:00");
                 deathUI.SetActive(true);
                 deathImage.sprite = outOfTimeScreen;
+                GameObject.FindWithTag("Player").GetComponent<PlayerController>().IsDead = true;
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -130,6 +131,7 @@ public static GameManager Instance { get; set; }
             case GameState.PlayerDeath:
                 deathUI.SetActive(true);
                 deathImage.sprite = deathScreen;
+                GameObject.FindWithTag("Player").GetComponent<PlayerController>().IsDead = true;
 
                 Cursor.lockState =  CursorLockMode.None;
                 Cursor.visible = true;
