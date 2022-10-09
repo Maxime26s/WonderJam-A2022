@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1356303758980753741}
   - {fileID: 1283273776}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1356303758748363288
 GameObject:
@@ -167,8 +167,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356303758980753738}
-  m_LocalRotation: {x: -0.08344118, y: 0.9096179, z: -0.22289725, w: -0.340514}
-  m_LocalPosition: {x: -0.15179923, y: 0.44335437, z: -0.17433843}
+  m_LocalRotation: {x: -0.041665282, y: -0.6570884, z: -0.036417287, w: 0.7517796}
+  m_LocalPosition: {x: 0.054755546, y: 0.49693775, z: -0.0073937327}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -456,6 +456,7 @@ MonoBehaviour:
   wrench: {fileID: 4503417147907548946}
   shotgun: {fileID: 2217382551594501241}
   bomb: {fileID: 2285548422398384436}
+  gameManager: {fileID: 0}
   speed: 4.5
   jumpHeight: 0.8
   gravity: -15
@@ -1050,6 +1051,11 @@ PrefabInstance:
       propertyPath: wrenchAnimation
       value: 
       objectReference: {fileID: 147475421663481436}
+    - target: {fileID: 5899170358072969420, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5969886999616709810, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -1059,6 +1065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509260917199426819, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7009565757091790379, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
