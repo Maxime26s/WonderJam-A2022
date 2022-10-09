@@ -336,9 +336,9 @@ public class EnemyBehavior : MonoBehaviour
         yield return null;
     }
 
-
     private void Death()
     {
         Destroy(gameObject);
+        GameManager.Instance.IsLevelEnd();
     }
 }
