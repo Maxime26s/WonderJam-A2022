@@ -422,7 +422,7 @@ MonoBehaviour:
   wanderRadius: 10
   wanderTimer: 5
   player: {fileID: 0}
-  Health: 0
+  Health: 5
 --- !u!195 &863552253736156699
 NavMeshAgent:
   m_ObjectHideFlags: 0

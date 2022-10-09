@@ -31,7 +31,7 @@ public class MannequinBehavior : MonoBehaviour
 
     private NavMeshAgent _navMeshAgent;
 
-    [SerializeField] public Transform player;
+    private Transform player;
     [SerializeField] public int Health;
     private int hitCount;
 
@@ -41,6 +41,7 @@ public class MannequinBehavior : MonoBehaviour
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         hitCount = 0;
         spotted = false;
