@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb5160175c96b74bb57eb154e58a819, type: 3}
+  m_Name: Level 2
+  m_EditorClassIdentifier: 
+  pauseLengthBetweenVoiceLines: 0
+  voiceLinesList:
+  - {fileID: 11400000, guid: 2be8bcda691e1aa4ba0f4ba85e3ef14c, type: 2}
+  - {fileID: 11400000, guid: 3a56a4633079d1d488988833d047e2fd, type: 2}
+  - {fileID: 11400000, guid: 1f60a44eaa59cb3428ab9dd30434a8f7, type: 2}
+  - {fileID: 11400000, guid: 4b75f8767c4cb53409920262fce16a0c, type: 2}
+  - {fileID: 11400000, guid: 9d2f10c4fb7f6854ca3d7d1afbd12887, type: 2}
+  - {fileID: 11400000, guid: 698a4fc1470e77f4084381cbc6b2d5ee, type: 2}
