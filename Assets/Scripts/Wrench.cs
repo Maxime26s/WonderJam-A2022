@@ -5,10 +5,10 @@ using UnityEngine;
 public class Wrench : MonoBehaviour {
     [SerializeField]
     private Animation shotgunAnimation = null;
-    [SerializeField]
-    private CharacterController characterController = null;
-    [SerializeField]
-    private Transform playerTransform = null;
+    //[SerializeField]
+    //private CharacterController characterController = null;
+    //[SerializeField]
+    //private Transform playerTransform = null;
 
     [SerializeField]
     private float weaponRange = 10f;
