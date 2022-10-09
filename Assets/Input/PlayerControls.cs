@@ -71,6 +71,60 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectWrench"",
+                    ""type"": ""Button"",
+                    ""id"": ""88e24179-019d-4c7e-83d8-7ac64419f20d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectShotgun"",
+                    ""type"": ""Button"",
+                    ""id"": ""338fa0e9-3289-41e1-a679-bc6ebd8c07fc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectBomb"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f6ba625-6942-40f0-ab50-2743b2326148"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ScrollUpWeapon"",
+                    ""type"": ""Value"",
+                    ""id"": ""182e3698-241b-4c56-a18d-03b4b2ff3dff"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ScrollDownWeapon"",
+                    ""type"": ""Value"",
+                    ""id"": ""18470cb5-8746-4bc6-bc48-70fc7cc3929a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""NextWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd0272c1-2672-411f-b793-6d4b46ca86d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -324,6 +378,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NoClip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad69a519-3c92-4980-a04a-4bcc8191123b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectWrench"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdb230e7-24ca-433d-87e2-3dfb3efa1aa1"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectShotgun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f2132bbf-dc4f-43af-ae18-4d4abd705fcb"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SelectBomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c5efd37-fdb2-4023-8c14-1b722a88d599"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ScrollUpWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4ca73ea-9908-4be8-9430-1cb2f1efcea8"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NextWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7bf440e2-f127-4bda-b93e-76c5761aa8fe"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ScrollDownWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -916,6 +1036,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_NoClip = m_Player.FindAction("NoClip", throwIfNotFound: true);
+        m_Player_SelectWrench = m_Player.FindAction("SelectWrench", throwIfNotFound: true);
+        m_Player_SelectShotgun = m_Player.FindAction("SelectShotgun", throwIfNotFound: true);
+        m_Player_SelectBomb = m_Player.FindAction("SelectBomb", throwIfNotFound: true);
+        m_Player_ScrollUpWeapon = m_Player.FindAction("ScrollUpWeapon", throwIfNotFound: true);
+        m_Player_ScrollDownWeapon = m_Player.FindAction("ScrollDownWeapon", throwIfNotFound: true);
+        m_Player_NextWeapon = m_Player.FindAction("NextWeapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -992,6 +1118,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_NoClip;
+    private readonly InputAction m_Player_SelectWrench;
+    private readonly InputAction m_Player_SelectShotgun;
+    private readonly InputAction m_Player_SelectBomb;
+    private readonly InputAction m_Player_ScrollUpWeapon;
+    private readonly InputAction m_Player_ScrollDownWeapon;
+    private readonly InputAction m_Player_NextWeapon;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1001,6 +1133,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @NoClip => m_Wrapper.m_Player_NoClip;
+        public InputAction @SelectWrench => m_Wrapper.m_Player_SelectWrench;
+        public InputAction @SelectShotgun => m_Wrapper.m_Player_SelectShotgun;
+        public InputAction @SelectBomb => m_Wrapper.m_Player_SelectBomb;
+        public InputAction @ScrollUpWeapon => m_Wrapper.m_Player_ScrollUpWeapon;
+        public InputAction @ScrollDownWeapon => m_Wrapper.m_Player_ScrollDownWeapon;
+        public InputAction @NextWeapon => m_Wrapper.m_Player_NextWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1025,6 +1163,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @NoClip.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoClip;
                 @NoClip.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoClip;
                 @NoClip.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNoClip;
+                @SelectWrench.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWrench;
+                @SelectWrench.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWrench;
+                @SelectWrench.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWrench;
+                @SelectShotgun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectShotgun;
+                @SelectShotgun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectShotgun;
+                @SelectShotgun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectShotgun;
+                @SelectBomb.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectBomb;
+                @SelectBomb.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectBomb;
+                @SelectBomb.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectBomb;
+                @ScrollUpWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUpWeapon;
+                @ScrollUpWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUpWeapon;
+                @ScrollUpWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollUpWeapon;
+                @ScrollDownWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDownWeapon;
+                @ScrollDownWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDownWeapon;
+                @ScrollDownWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScrollDownWeapon;
+                @NextWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextWeapon;
+                @NextWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextWeapon;
+                @NextWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNextWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1044,6 +1200,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @NoClip.started += instance.OnNoClip;
                 @NoClip.performed += instance.OnNoClip;
                 @NoClip.canceled += instance.OnNoClip;
+                @SelectWrench.started += instance.OnSelectWrench;
+                @SelectWrench.performed += instance.OnSelectWrench;
+                @SelectWrench.canceled += instance.OnSelectWrench;
+                @SelectShotgun.started += instance.OnSelectShotgun;
+                @SelectShotgun.performed += instance.OnSelectShotgun;
+                @SelectShotgun.canceled += instance.OnSelectShotgun;
+                @SelectBomb.started += instance.OnSelectBomb;
+                @SelectBomb.performed += instance.OnSelectBomb;
+                @SelectBomb.canceled += instance.OnSelectBomb;
+                @ScrollUpWeapon.started += instance.OnScrollUpWeapon;
+                @ScrollUpWeapon.performed += instance.OnScrollUpWeapon;
+                @ScrollUpWeapon.canceled += instance.OnScrollUpWeapon;
+                @ScrollDownWeapon.started += instance.OnScrollDownWeapon;
+                @ScrollDownWeapon.performed += instance.OnScrollDownWeapon;
+                @ScrollDownWeapon.canceled += instance.OnScrollDownWeapon;
+                @NextWeapon.started += instance.OnNextWeapon;
+                @NextWeapon.performed += instance.OnNextWeapon;
+                @NextWeapon.canceled += instance.OnNextWeapon;
             }
         }
     }
@@ -1205,6 +1379,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnNoClip(InputAction.CallbackContext context);
+        void OnSelectWrench(InputAction.CallbackContext context);
+        void OnSelectShotgun(InputAction.CallbackContext context);
+        void OnSelectBomb(InputAction.CallbackContext context);
+        void OnScrollUpWeapon(InputAction.CallbackContext context);
+        void OnScrollDownWeapon(InputAction.CallbackContext context);
+        void OnNextWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
