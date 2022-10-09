@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    public enum GlitchType {
+    public enum GlitchType
+    {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
@@ -28,6 +29,13 @@ public class EnemyBehavior : MonoBehaviour
     float glitchTimer;
 
     AudioSource audioSource;
+
+    [SerializeField] public AudioClip vibrateAudio;
+    [SerializeField] public AudioClip glitchAudio;
+    [SerializeField] public AudioClip wobbleAudio;
+    [SerializeField] public AudioClip dragAudio;
+    [SerializeField] public AudioClip flingAudio;
+
     EnemyNavMesh enemyNavMesh;
     Rigidbody rb;
     NavMeshAgent navMeshAgent;
@@ -44,6 +52,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public int health = 3;
 
+    [SerializeField]
+    private bool dialoguePlayed = false;
 
     private void Start()
     {
@@ -71,7 +81,7 @@ public class EnemyBehavior : MonoBehaviour
             SetTimer();
             Glitch();
         }
-        if(spottedTimeLeft <= 0)
+        if (spottedTimeLeft <= 0)
         {
             spotted = false;
         }
@@ -95,21 +105,27 @@ public class EnemyBehavior : MonoBehaviour
         switch (glitchType)
         {
             case GlitchType.Move:           //move to random navmesh location
+                audioSource.clip = dragAudio;
                 move();
                 break;
             case GlitchType.Vibrate:        //vibrate for x seconds
+                audioSource.clip = vibrateAudio;
                 vibrate();
                 break;
             case GlitchType.Stretch:
+                audioSource.clip = wobbleAudio;
                 stretch();
                 break;
             case GlitchType.ChangeMaterial:
+                audioSource.clip = glitchAudio;
                 ChangeMaterial();
                 break;
             case GlitchType.ChangeMeshError:
+                audioSource.clip = glitchAudio;
                 ChangeMeshError();
                 break;
             case GlitchType.Fling:
+                audioSource.clip = flingAudio;
                 Fling();
                 break;
         }
@@ -117,7 +133,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void move()
     {
-        enemyNavMesh.StartMove(); 
+        enemyNavMesh.StartMove();
     }
     private void vibrate()
     {
@@ -147,24 +163,31 @@ public class EnemyBehavior : MonoBehaviour
         audioSource.Play(0);
 
         float speed = 10.0f;
-        float intensity = 0.1f;
+        float intensity = 0.5f;
 
         float timeLeft = 3.0f;
 
-        Vector3 startTransform = transform.position;
-        transform.position = startTransform;
+        Vector3 startTransform = gameObject.transform.position;
 
-        while (timeLeft>0)
+        Debug.Log(startTransform.x +", " + startTransform.y + ", "+ startTransform.z);
+
+
+        //GetComponent<Rigidbody>().isKinematic = false;
+
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
-            transform.localPosition =  new Vector3(
+            transform.position =  new Vector3(
                 startTransform.x + (intensity * Mathf.PerlinNoise(speed * Time.time, 1)),
                 startTransform.y + (intensity * Mathf.PerlinNoise(speed * Time.time, 2)),
                 startTransform.z + (intensity * Mathf.PerlinNoise(speed * Time.time, 3)));
+
             yield return null;
         }
         transform.position = startTransform;
+
+        //GetComponent<Rigidbody>().isKinematic = true;
 
 
         audioSource.Stop();
@@ -173,6 +196,8 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator Stretching()
     {
+        audioSource.Play(0);
+
         float speed = 1.0f;
         float intensity = 0.5f;
 
@@ -181,7 +206,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 startScale = transform.localScale;
         transform.localScale = startScale;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
@@ -193,6 +218,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         transform.localScale = startScale;
 
+        audioSource.Stop();
         yield return null;
     }
 
@@ -210,6 +236,8 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator ChangingMaterial()
     {
+        audioSource.Play(0);
+
         if (enemyRenderer != null)
         {
             var oldMaterials = enemyRenderer.materials;
@@ -225,11 +253,14 @@ public class EnemyBehavior : MonoBehaviour
 
             enemyRenderer.materials = defaultMaterials;
         }
+        audioSource.Stop();
         yield return null;
     }
 
     IEnumerator ChangingMesh()
     {
+        audioSource.Play(0);
+
         if (enemyRenderer != null)
         {
             var randomTime = Random.Range(1.0f, 4.0f);
@@ -241,14 +272,17 @@ public class EnemyBehavior : MonoBehaviour
             enemyMeshFilter.mesh = oldMesh;
             enemyRenderer.material = oldMaterial;
         }
+        audioSource.Stop();
         yield return null;
     }
     IEnumerator Flinging()
     {
-        float maxForce = 10.0f;
-        float intensity = 500.0f;
+        audioSource.PlayOneShot(flingAudio);
 
-        float timeLeft = 2.0f;
+        float maxForce = 1.0f;
+        float intensity = 400.0f;
+
+        float timeLeft = 1.2f;
 
         Vector3 flingDirection = new Vector3(Random.Range(-maxForce, maxForce), Random.Range(0, maxForce), Random.Range(-maxForce, maxForce));
         flingDirection.Normalize();
@@ -266,13 +300,14 @@ public class EnemyBehavior : MonoBehaviour
         navMeshAgent.enabled = true;
 
         //transform.position = FindNearestNavMeshPoint(transform.position);
+        //audioSource.Stop();
         yield return null;
     }
 
-    public void TakeDamage() 
+    public void TakeDamage()
     {
-        
-        EnemyDialogueDatabase.Instance.TryPlayDialogue(gameObject.name);
+        if (!dialoguePlayed)
+            dialoguePlayed = DialogueDatabase.Instance.TryPlayEnemyDialogue(gameObject.name);
 
         if (!invincible)
         {
@@ -312,6 +347,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
 
+            if (navMeshAgent.isOnNavMesh)
             navMeshAgent.destination = movePositionVector;
 
             yield return null;
@@ -325,7 +361,7 @@ public class EnemyBehavior : MonoBehaviour
 
         invincible = true;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
