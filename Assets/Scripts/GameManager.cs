@@ -39,6 +39,8 @@ public static GameManager Instance { get; set; }
     [SerializeField]
     private GameObject deathUI;
     [SerializeField]
+    private Image deathImage = null;
+    [SerializeField]
     private Sprite deathScreen;
     [SerializeField]
     private Sprite outOfTimeScreen;
@@ -116,9 +118,9 @@ public static GameManager Instance { get; set; }
                 Debug.Log("You won, rip.");
                 break;
             case GameState.OutOfTime:
-                SetTimerText("00:00");
+                SetTimerText("0:00");
                 deathUI.SetActive(true);
-                deathUI.transform.Find("Panel").GetComponent<Image>().sprite = outOfTimeScreen;
+                deathImage.sprite = outOfTimeScreen;
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
@@ -127,7 +129,7 @@ public static GameManager Instance { get; set; }
                 break;
             case GameState.PlayerDeath:
                 deathUI.SetActive(true);
-                deathUI.transform.Find("Panel").GetComponent<Image>().sprite = deathScreen;
+                deathImage.sprite = deathScreen;
 
                 Cursor.lockState =  CursorLockMode.None;
                 Cursor.visible = true;
