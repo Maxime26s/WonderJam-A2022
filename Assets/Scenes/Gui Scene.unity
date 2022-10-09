@@ -410,6 +410,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1283273777, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
+      propertyPath: fallingHeart
+      value: 
+      objectReference: {fileID: 2340037840577789703, guid: 9171967d76a281c4cbfbef222e76c2f1,
+        type: 3}
+    - target: {fileID: 1283273777, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
+      propertyPath: floatingHeart
+      value: 
+      objectReference: {fileID: 2340037840577789703, guid: eef615b23dede094392ebdcb18a3ba13,
+        type: 3}
     - target: {fileID: 1356303758233106229, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_Name

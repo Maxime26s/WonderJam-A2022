@@ -38,6 +38,23 @@ public class PlayerController : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         gameManager = GameManager.Instance;
+
+        if (wrench.activeInHierarchy) {
+            gameManager.wrenchEnabled = true;
+            gameManager.shotgunEnabled = false;
+            gameManager.bombEnabled = false;
+            return;
+        } else if (shotgun.activeInHierarchy) {
+            gameManager.wrenchEnabled = false;
+            gameManager.shotgunEnabled = true;
+            gameManager.bombEnabled = false;
+            return;
+        } else if (bomb.activeInHierarchy) {
+            gameManager.wrenchEnabled = false;
+            gameManager.shotgunEnabled = false;
+            gameManager.bombEnabled = true;
+            return;
+        }
     }
 
     private void ToggleNoClip() {
@@ -159,19 +176,19 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void EquipShotgun() {
-        if (!gameManager.shotgunEnabled) { 
+        if (!gameManager.shotgunEnabled) {
             wrench.SetActive(false);
-        gameManager.wrenchEnabled = false;
+            gameManager.wrenchEnabled = false;
 
-        shotgun.SetActive(true);
-        gameManager.shotgunEnabled = true;
+            shotgun.SetActive(true);
+            gameManager.shotgunEnabled = true;
 
-        if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
-            bomb.SetActive(false);
-            gameManager.bombEnabled = false;
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+                bomb.SetActive(false);
+                gameManager.bombEnabled = false;
+            }
+            shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
         }
-        shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
-    }
         //}
     }
 
@@ -193,8 +210,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage() {
         health--;
-        if(health <= 0)
-        {
+        if (health <= 0) {
             GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         }
         playerTakeDamage.Invoke();
