@@ -73,7 +73,7 @@ public class LevelLoader : MonoBehaviour {
 
     public void ReloadCurrentLevel()
     {
-        Debug.Log("RELOAD LVL");
+        Debug.LogError("RELOAD LVL");
         StartCoroutine(ReloadCurrentLevelCo());
     }
 

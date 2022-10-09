@@ -48,7 +48,7 @@ public static GameManager Instance { get; set; }
 
     private GameState currentGameState = GameState.None;
 
-    private int currentLives = 0;
+    private bool hasBeenInitialized = false;
 
 
     public void Awake() {
@@ -131,15 +131,13 @@ public static GameManager Instance { get; set; }
     }
 
     public void InitMap() {
+        if (hasBeenInitialized)
+            return; 
+
+        hasBeenInitialized = true;
         SpawnPlayer();
-        ResetLifeCount();
         GetEnemyCount();
         SwitchToGameState(GameState.Playing);
-    }
-
-    public void ResetLifeCount()
-    {
-        currentLives = startingLives;
     }
 
     public void SpawnPlayer() {
@@ -153,11 +151,6 @@ public static GameManager Instance { get; set; }
             return enemyManager.selectedEnemies.Count;
         else
             return 0;
-    }
-
-    public void UpdateGameUI()
-    {
-
     }
 
     public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
