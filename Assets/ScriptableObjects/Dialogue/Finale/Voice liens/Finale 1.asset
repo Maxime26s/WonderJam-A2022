@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
+  m_Name: Finale 1
+  m_EditorClassIdentifier: 
+  text: "Chasseur\u2026 Je suis Roi Feature, le chef du clan des anomalies\u2026.
+    nous sommes, tout comme vous, une esp\xE8ce vivante de ce monde. Arr\xEAtez de
+    nous chasser et rejoignez nos forces afin de faire r\xE9gner la paix dans le
+    monde."
+  face: {fileID: 11400000, guid: c90fb9d5cc44da64c85be9a4835c9c49, type: 2}
+  voiceLine: {fileID: 8300000, guid: 964d4d2f20326dd4085ac51ecdfae3aa, type: 3}
+  closedMouthThreshold: 0.1
+  showFullText: 0
+  faceLocation: 0
+  customDuration: -1
+  volume: 1
+  useRandomFlicking: 0
