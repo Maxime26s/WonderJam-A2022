@@ -170,6 +170,6 @@ public class MannequinBehavior : MonoBehaviour
 
     private void Death()
     {
-        //Destroy(this);
+        Destroy(gameObject);
     }
 }
