@@ -19,6 +19,8 @@ public class DialogueDatabase : MonoBehaviour
     private List<DialogueTemplate> defaultEnemyDialogues = new List<DialogueTemplate>();
     [SerializeField]
     private List<DialogueTemplate> loseHpDialogues = new List<DialogueTemplate>();
+    [SerializeField]
+    private DialogueTemplate gameOverDialogue;
 
     private bool isPlaying = false;
 
@@ -56,7 +58,7 @@ public class DialogueDatabase : MonoBehaviour
         return PlayDialogue(loseHpDialogues[UnityEngine.Random.Range(0, loseHpDialogues.Count)]);
     }
 
-    public bool PlayDialogue(DialogueTemplate dialogue)
+    public bool PlayDialogue(DialogueTemplate dialogue, bool shouldForce = false)
     {
         if (dialogue == null)
             return false;
@@ -64,12 +66,28 @@ public class DialogueDatabase : MonoBehaviour
         isPlaying = true;
         GameObject go = Instantiate(dialoguePrefab);
         var dialogueBoxManager = go.GetComponent<DialogueBoxManager>();
-        dialogueBoxManager.StartDialogue(dialogue, 0f);
+        if (shouldForce)
+            dialogueBoxManager.ForcePlay(dialogue);
+        else
+            dialogueBoxManager.StartDialogue(dialogue, 0f);
         dialogueBoxManager.DialogueFinished += () =>
         {
             isPlaying = false;
             Destroy(go);
         };
         return true;
+    }
+
+    public bool TryPlayGameOverDialogue()
+    {
+        //if(isPlaying)
+        //DialogueBoxManager.Instance.GetComponent<DialogueBoxManager>().ForceDestroy();
+
+        return PlayDialogue(gameOverDialogue, true);
+    }
+
+    public void TryStopSound()
+    {
+        DialogueBoxManager.Instance.Reset();
     }
 }

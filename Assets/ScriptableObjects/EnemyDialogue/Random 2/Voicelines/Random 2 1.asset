@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Random 2 1
   m_EditorClassIdentifier: 
   text: LET ME GO
-  face: {fileID: 11400000, guid: fd6c1a1d77b9d6c4a83d782b693c50cf, type: 2}
+  face: {fileID: 11400000, guid: 15c1e70b4df260147bb114b52b653b40, type: 2}
   voiceLine: {fileID: 8300000, guid: c65325f7f5ad74848b2c7876755efff7, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0

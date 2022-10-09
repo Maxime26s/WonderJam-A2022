@@ -216,6 +216,7 @@ public class PlayerController : MonoBehaviour {
         health--;
         if (health <= 0) {
             IsDead = true;
+            DialogueDatabase.Instance.TryStopSound();
             GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         } else {
             DialogueDatabase.Instance.TryPlayLoseHpDialogue();

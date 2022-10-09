@@ -217,4 +217,22 @@ public class DialogueBoxManager : MonoBehaviour
 
     public delegate void DialogueFinishedHandler();
     public event DialogueFinishedHandler DialogueFinished;
+
+    public void Reset()
+    {
+        StopCoroutine("WaitThenPlay");
+        currentUpdateTime = 0;
+        isPlaying = false;
+        currentDialogue = null;
+        currentFace = null;
+        currentVoiceLine = null;
+        audioSource.clip = null;
+        audioSource.Stop();
+    }
+
+    public void ForcePlay(DialogueTemplate dialogueTemplate)
+    {
+        Reset();
+        StartDialogue(dialogueTemplate, 0f);
+    }
 }

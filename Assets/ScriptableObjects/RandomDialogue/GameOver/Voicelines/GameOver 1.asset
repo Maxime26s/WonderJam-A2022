@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
-  m_Name: Random 10 2
+  m_Name: GameOver 1
   m_EditorClassIdentifier: 
-  text: Who's there
-  face: {fileID: 11400000, guid: a4c60dd38dc91ec4ea2f9b22eeadae3c, type: 2}
-  voiceLine: {fileID: 8300000, guid: 4453ec2370a027449bd0b9563b7ebf35, type: 3}
+  text: "Chasseur? R\xE9pondez moi! Chasseur? CHASSEUR!"
+  face: {fileID: 11400000, guid: c90fb9d5cc44da64c85be9a4835c9c49, type: 2}
+  voiceLine: {fileID: 8300000, guid: be9498afeacb43c4ebd0df5ffa8a0ee3, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
-  faceLocation: 1
+  faceLocation: 0
   customDuration: -1
   volume: 1
   useRandomFlicking: 0
