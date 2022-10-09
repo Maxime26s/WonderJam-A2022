@@ -33,15 +33,15 @@ public class LineOfSight : MonoBehaviour
         foreach(RaycastHit hit in hits)
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
-                {
-                    hit.collider.GetComponent<EnemyBehavior>().Spotted();
-                } else if (hit.collider.gameObject.CompareTag("Mannequin"))
-                {
-                    hit.collider.GetComponent<MannequinBehavior>().Spotted();
-                }
+            {
+                hit.collider.GetComponent<EnemyBehavior>().Spotted();
+            } else if (hit.collider.gameObject.CompareTag("Mannequin"))
+            {
+                hit.collider.GetComponent<MannequinBehavior>().Spotted();
             }
         }
     }
+
     //Draw the BoxCast as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     void OnDrawGizmos()
     {
