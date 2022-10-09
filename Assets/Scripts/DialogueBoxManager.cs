@@ -61,7 +61,7 @@ public class DialogueBoxManager : MonoBehaviour
         deltaTextDialogue = textDialogueDefaultAnchorX.y - textDialogueDefaultAnchorX.x;
 
         if (playOnLaunch)
-            StartDialogue(null, 0f);
+            StartDialogue();
     }
 
     // Update is called once per frame
@@ -126,7 +126,7 @@ public class DialogueBoxManager : MonoBehaviour
             StartCoroutine(WaitThenPlay(currentDialogue.pauseLengthBetweenVoiceLines));
         }
     }
-    public void StartDialogue(DialogueTemplate dialogueTemplate = null, float waitTime = 1f)
+    public void StartDialogue(DialogueTemplate dialogueTemplate = null, float waitTime = 0.25f)
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
