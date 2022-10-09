@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
     [SerializeField]
     GameObject wrench;
     [SerializeField]
@@ -11,8 +12,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     GameObject bomb;
 
-    GameManager gameManager;
-
+    public GameManager gameManager;
 
     [SerializeField]
     private float speed = 2f;
@@ -34,22 +34,28 @@ public class PlayerController : MonoBehaviour {
     public UnityEvent playerTakeDamage = new UnityEvent();
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
         gameManager = GameManager.Instance;
 
-        if (wrench.activeInHierarchy) {
+        if (wrench.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = true;
             gameManager.shotgunEnabled = false;
             gameManager.bombEnabled = false;
             return;
-        } else if (shotgun.activeInHierarchy) {
+        }
+        else if (shotgun.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = false;
             gameManager.shotgunEnabled = true;
             gameManager.bombEnabled = false;
             return;
-        } else if (bomb.activeInHierarchy) {
+        }
+        else if (bomb.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = false;
             gameManager.shotgunEnabled = false;
             gameManager.bombEnabled = true;
@@ -57,26 +63,32 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void ToggleNoClip() {
+    private void ToggleNoClip()
+    {
         isNoClipping = !isNoClipping;
         controller.enabled = !isNoClipping;
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (InputManager.Instance.PlayerGetNoClipInput())
             ToggleNoClip();
 
-        if (!isNoClipping) {
+        if (!isNoClipping)
+        {
             MoveUpdate();
-        } else {
+        }
+        else
+        {
             NoclipUpdate();
         }
 
         SwapWeapon();
     }
 
-    private void NoclipUpdate() {
+    private void NoclipUpdate()
+    {
         playerVelocity = Vector3.zero;
 
         Vector2 movement = InputManager.Instance.GetPlayerMovement();
@@ -87,9 +99,11 @@ public class PlayerController : MonoBehaviour {
         controller.transform.position += move * Time.deltaTime * speed * 1.5f;
     }
 
-    private void MoveUpdate() {
+    private void MoveUpdate()
+    {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0) {
+        if (groundedPlayer && playerVelocity.y < 0)
+        {
             playerVelocity.y = 0f;
         }
 
@@ -101,7 +115,8 @@ public class PlayerController : MonoBehaviour {
         move.Normalize();
         controller.Move(move * Time.deltaTime * speed);
 
-        if (InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer) {
+        if (InputManager.Instance.PlayerJumpedThisFrame() && groundedPlayer)
+        {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
             playerJumping.Invoke();
         }
@@ -110,80 +125,80 @@ public class PlayerController : MonoBehaviour {
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private bool CheckWeaponsOnCooldown() {
+    private bool CheckWeaponsOnCooldown()
+    {
         return (wrench.GetComponent<Wrench>().onCooldown || shotgun.GetComponent<Shotgun>().onCooldown);
     }
 
 
-    private void SwapWeapon() {
-        if (InputManager.Instance.PlayerGetSelectWrench() == true) {
+    private void SwapWeapon()
+    {
+        if (InputManager.Instance.PlayerGetSelectWrench() == true)
+        {
             EquipWrench();
             Debug.Log("Wrench Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetSelectShotgun() == true) {
+        if (InputManager.Instance.PlayerGetSelectShotgun() == true)
+        {
             EquipShotgun();
             Debug.Log("Shotgun Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetSelectBomb() == true) {
-            EquipBomb();
+        if (InputManager.Instance.PlayerGetSelectBomb() == true)
+        {
             Debug.Log("Bomb Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0 || InputManager.Instance.PlayerGetNextWeapon()) {
-            if (gameManager.wrenchEnabled)
-                EquipShotgun();
-            else if (gameManager.shotgunEnabled) {
-                if (!EquipBomb())
-                    EquipWrench();
-            } else if (gameManager.bombEnabled)
-                EquipWrench();
-            Debug.Log("Next Weapon");
+        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0)
+        {
+            Debug.Log("Scrolled up");
             return;
         }
-        if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0) {
-            if (gameManager.wrenchEnabled) {
-                if (!EquipBomb())
-                    EquipShotgun();
-            } else if (gameManager.shotgunEnabled)
-                EquipWrench();
-            else if (gameManager.bombEnabled)
-                EquipShotgun();
-            Debug.Log("Previous Weapon");
+        if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0)
+        {
+            Debug.Log("Scrolled down");
+            return;
+        }
+        if (InputManager.Instance.PlayerGetNextWeapon())
+        {
+            Debug.Log("Next weapon button pressed");
             return;
         }
     }
 
 
-    private void EquipWrench() {
-        if (!gameManager.wrenchEnabled) {
-            //if (!CheckWeaponsOnCooldown()) {
-            wrench.SetActive(true);
-            gameManager.wrenchEnabled = true;
+    private void EquipWrench()
+    {
+        //if (!CheckWeaponsOnCooldown()) {
+        wrench.SetActive(true);
+        gameManager.wrenchEnabled = true;
 
-            shotgun.SetActive(false);
-            gameManager.shotgunEnabled = false;
+        shotgun.SetActive(false);
+        gameManager.shotgunEnabled = false;
 
-            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
-                bomb.SetActive(false);
-                gameManager.bombEnabled = false;
-            }
-            Debug.Log("Test");
-            wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
-            //}
+        if (bomb && !bomb.GetComponent<Bomb>().IsThrown)
+        {
+            bomb.SetActive(false);
+            gameManager.bombEnabled = false;
         }
+        
+        wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
+        //}
     }
 
-    private void EquipShotgun() {
-        if (!gameManager.shotgunEnabled) {
+    private void EquipShotgun()
+    {
+        if (!gameManager.shotgunEnabled)
+        {
             wrench.SetActive(false);
             gameManager.wrenchEnabled = false;
 
             shotgun.SetActive(true);
             gameManager.shotgunEnabled = true;
 
-            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown)
+            {
                 bomb.SetActive(false);
                 gameManager.bombEnabled = false;
             }
@@ -192,25 +207,11 @@ public class PlayerController : MonoBehaviour {
         //}
     }
 
-    private bool EquipBomb() {
-        if (bomb && !bomb.GetComponent<Bomb>().IsThrown && !gameManager.bombEnabled) {
-            wrench.SetActive(false);
-            gameManager.wrenchEnabled = false;
-
-            shotgun.SetActive(false);
-            gameManager.shotgunEnabled = false;
-
-            bomb.SetActive(true);
-            gameManager.bombEnabled = true;
-            bomb.GetComponent<Bomb>().bombAnimation.Play("TakeOutBomb");
-            return true;
-        }
-        return false;
-    }
-
-    public void TakeDamage() {
+    public void TakeDamage()
+    {
         health--;
-        if (health <= 0) {
+        if (health <= 0)
+        {
             GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         }
         playerTakeDamage.Invoke();
