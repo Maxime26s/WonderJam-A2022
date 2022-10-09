@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb5160175c96b74bb57eb154e58a819, type: 3}
   m_Name: HpLose 2
   m_EditorClassIdentifier: 
-  pauseLengthBetweenVoiceLines: 0
+  pauseLengthBetweenVoiceLines: 0.5
   voiceLinesList:
   - {fileID: 11400000, guid: 23cc66640412fb24e981e2ccb4f0ab3b, type: 2}
