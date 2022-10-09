@@ -95,6 +95,9 @@ public static GameManager Instance { get; set; }
         {
             case GameState.Starting:
                 Debug.Log("The game is starting...");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+
                 break;
             case GameState.Playing:
                 Debug.Log("The game has begun :)");
