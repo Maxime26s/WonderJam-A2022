@@ -6341,7 +6341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444822, guid: 83dbbb8dec8a8de42b788eab746b43fd, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -6688,7 +6688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444822, guid: 83dbbb8dec8a8de42b788eab746b43fd, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -14584,7 +14584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444822, guid: 83dbbb8dec8a8de42b788eab746b43fd, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -18454,7 +18454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444822, guid: 83dbbb8dec8a8de42b788eab746b43fd, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -33299,7 +33299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6444822, guid: 83dbbb8dec8a8de42b788eab746b43fd, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
