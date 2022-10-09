@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
+  m_Name: Poutine 1
+  m_EditorClassIdentifier: 
+  text: "Arr\xEAter de d\xE9truire notre tr\xE9sor national, la poutine!!"
+  face: {fileID: 11400000, guid: c90fb9d5cc44da64c85be9a4835c9c49, type: 2}
+  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  closedMouthThreshold: 0.125
+  showFullText: 0
+  faceLocation: 0
+  customDuration: -1
+  volume: 1
+  useRandomFlicking: 0
