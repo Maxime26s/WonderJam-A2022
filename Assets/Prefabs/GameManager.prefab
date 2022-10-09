@@ -145,6 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863442092212341504}
   - component: {fileID: 1863442092212341511}
+  - component: {fileID: 7391969227748901795}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -187,8 +188,25 @@ MonoBehaviour:
   livesUI: {fileID: 0}
   timerTMP: {fileID: 1863442091493370363}
   gameTimer: 300
+  wrenchEnabled: 0
   shotgunEnabled: 0
   bombEnabled: 0
+--- !u!114 &7391969227748901795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863442092212341510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b99434e8cf3e94ead626d98a65c37b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePrefab: {fileID: 3882025704319295061, guid: e2e07d6d571577c49b8047894b31abdd,
+    type: 3}
+  dialogueTemplates:
+  - {fileID: 11400000, guid: 733630c6692daf14ebd5616e3550d93e, type: 2}
 --- !u!1 &1863442093133221392
 GameObject:
   m_ObjectHideFlags: 0
