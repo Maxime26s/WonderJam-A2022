@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: It's all fun and games until I'm thrown at your face
   face: {fileID: 11400000, guid: 95d9b07695d862b44a63f2dd72facbbb, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: e1ae876b239ece5479d6f8437b0b50f5, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

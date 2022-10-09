@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: LEAVE ME ALONE
   face: {fileID: 11400000, guid: 15c1e70b4df260147bb114b52b653b40, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 9ee293502912da04dbcedc21f72430fa, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb5160175c96b74bb57eb154e58a819, type: 3}
   m_Name: Random 7
   m_EditorClassIdentifier: 
-  pauseLengthBetweenVoiceLines: 0
+  pauseLengthBetweenVoiceLines: 0.5
   voiceLinesList:
   - {fileID: 11400000, guid: 6ad580882c8e92e4caf5c65600c75c5a, type: 2}
   - {fileID: 11400000, guid: a214a95b5525eb541a26c6efae2b8cd6, type: 2}

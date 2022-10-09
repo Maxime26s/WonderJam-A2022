@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0bc57aea7b741419e0dd10eb8faeb2, type: 3}
   m_Name: Chasseur
   m_EditorClassIdentifier: 
-  mouthClosed: {fileID: 0}
-  mouthOpened: {fileID: 0}
+  mouthClosed: {fileID: 21300000, guid: 3bc2ded5cd0692340a4a01c3477aec89, type: 3}
+  mouthOpened: {fileID: 21300000, guid: e4519e35e7cc6fc4494c1cd92e2f3e83, type: 3}
   name: Chasseur
   nameColor: {r: 0.21383637, g: 1, b: 0.52431196, a: 1}
   showFace: 1

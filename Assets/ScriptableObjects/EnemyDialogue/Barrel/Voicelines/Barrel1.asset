@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: Rolling out!
   face: {fileID: 11400000, guid: 710152dd041bade40862c3e34865ab7a, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 2b7132a67d8c62d4db28ca3476c4943d, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

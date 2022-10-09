@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: The hunter!!! He's here!!!
   face: {fileID: 11400000, guid: 15c1e70b4df260147bb114b52b653b40, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: be5ae0f2c62c8be49a6fa86f6655fa5d, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

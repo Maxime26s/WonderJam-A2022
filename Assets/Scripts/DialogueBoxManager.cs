@@ -47,6 +47,9 @@ public class DialogueBoxManager : MonoBehaviour
 
     private Vector2 faceDefaultAnchorX;
     float deltaFace;
+    private Vector2 borderDefaultAnchorX;
+    float deltaBorderFace;
+    float deltaBorder;
     private Vector2 textDialogueDefaultAnchorX;
     float deltaTextDialogue;
 
@@ -57,6 +60,10 @@ public class DialogueBoxManager : MonoBehaviour
 
         faceDefaultAnchorX = new Vector2(imageHolder.rectTransform.anchorMin.x, imageHolder.rectTransform.anchorMax.x);
         deltaFace = faceDefaultAnchorX.y - faceDefaultAnchorX.x;
+
+        borderDefaultAnchorX = new Vector2(border.rectTransform.anchorMin.x, border.rectTransform.anchorMax.x);
+        deltaBorder = borderDefaultAnchorX.y - borderDefaultAnchorX.x;
+        deltaBorderFace = faceDefaultAnchorX.x - borderDefaultAnchorX.x;
 
         textDialogueDefaultAnchorX = new Vector2(textDialogue.rectTransform.anchorMin.x, textDialogue.rectTransform.anchorMax.x);
         deltaTextDialogue = textDialogueDefaultAnchorX.y - textDialogueDefaultAnchorX.x;
@@ -128,7 +135,7 @@ public class DialogueBoxManager : MonoBehaviour
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
-        if (currentDialogue == null)
+        if (currentDialogue == null || border == null)
             return;
         currentDialogue.voiceLines = new Queue<DialogueVoiceLine>(currentDialogue.voiceLinesList);
         imageHolder.enabled = false;
@@ -161,6 +168,9 @@ public class DialogueBoxManager : MonoBehaviour
                 imageHolder.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, imageHolder.rectTransform.anchorMin.y);
                 imageHolder.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.y, imageHolder.rectTransform.anchorMax.y);
 
+                border.rectTransform.anchorMin = new Vector2(borderDefaultAnchorX.x, border.rectTransform.anchorMin.y);
+                border.rectTransform.anchorMax = new Vector2(borderDefaultAnchorX.y, border.rectTransform.anchorMax.y);
+
                 textDialogue.rectTransform.anchorMin = new Vector2(textDialogueDefaultAnchorX.x, textDialogue.rectTransform.anchorMin.y);
                 textDialogue.rectTransform.anchorMax = new Vector2(textDialogueDefaultAnchorX.y, textDialogue.rectTransform.anchorMax.y);
 
@@ -171,6 +181,9 @@ public class DialogueBoxManager : MonoBehaviour
             case Location.Right:
                 imageHolder.rectTransform.anchorMin = new Vector2(textDialogueDefaultAnchorX.y - deltaFace, imageHolder.rectTransform.anchorMin.y);
                 imageHolder.rectTransform.anchorMax = new Vector2(textDialogueDefaultAnchorX.y, imageHolder.rectTransform.anchorMax.y);
+
+                border.rectTransform.anchorMin = new Vector2(imageHolder.rectTransform.anchorMin.x - deltaBorderFace, border.rectTransform.anchorMin.y);
+                border.rectTransform.anchorMax = new Vector2(border.rectTransform.anchorMin.x + deltaBorder, border.rectTransform.anchorMax.y);
 
                 textDialogue.rectTransform.anchorMin = new Vector2(faceDefaultAnchorX.x, textDialogue.rectTransform.anchorMin.y);
                 textDialogue.rectTransform.anchorMax = new Vector2(faceDefaultAnchorX.x + deltaTextDialogue, textDialogue.rectTransform.anchorMax.y);

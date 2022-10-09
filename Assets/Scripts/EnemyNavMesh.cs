@@ -44,8 +44,8 @@ public class EnemyNavMesh : MonoBehaviour
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
-
-            navMeshAgent.destination = movePositionVector;
+            if (navMeshAgent.isOnNavMesh)
+                navMeshAgent.destination = movePositionVector;
 
             yield return null;
         }

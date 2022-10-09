@@ -7,22 +7,39 @@ using UnityEngine.SceneManagement;
 public class MainMenuUIScript : MonoBehaviour {
 
     public float transitionTime = 1f;
+    public bool actionPending = false;
 
-    public void ButtonStart()
-    {
-        LevelLoader.Instance.LoadNextLevel("Introduction");
+    public void ButtonStart() {
+        if (TryMakeAction()) {
+            LevelLoader.Instance.LoadNextLevel("Introduction");
+        }
     }
 
     public void ButtonTutorial() {
-        //LevelLoader.Instance.ReloadCurrentLevel();
-        Debug.Log("No tutorial yet");
+        if (TryMakeAction()) {
+            Debug.Log("No tutorial yet, sending player to main game");
+            LevelLoader.Instance.LoadNextLevel("Introduction");
+        }
     }
 
     public void ButtonExit() {
-        LevelLoader.Instance.QuitGame();
+        if (TryMakeAction()) {
+            LevelLoader.Instance.QuitGame();
+            Debug.Log("You're probably softlocked since this button doesn't work in editor but stops you from clicking other buttons.");
+        }
     }
 
     public void ToggleMute() {
-        LevelLoader.Instance.Mute();
+        if (!actionPending) {
+            LevelLoader.Instance.Mute();
+        }
+    }
+
+    private bool TryMakeAction() {
+        if (!actionPending)
+            actionPending = true;
+        else
+            return false;
+        return true;
     }
 }

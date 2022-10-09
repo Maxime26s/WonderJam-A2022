@@ -53,6 +53,8 @@ public class EnemyBehavior : MonoBehaviour
     public int health = 3;
 
     [SerializeField]
+    public GameObject deathAnim;
+
     private bool dialoguePlayed = false;
 
     private void Start()
@@ -169,11 +171,6 @@ public class EnemyBehavior : MonoBehaviour
 
         Vector3 startTransform = gameObject.transform.position;
 
-        Debug.Log(startTransform.x +", " + startTransform.y + ", "+ startTransform.z);
-
-
-        //GetComponent<Rigidbody>().isKinematic = false;
-
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
@@ -186,9 +183,6 @@ public class EnemyBehavior : MonoBehaviour
             yield return null;
         }
         transform.position = startTransform;
-
-        //GetComponent<Rigidbody>().isKinematic = true;
-
 
         audioSource.Stop();
         yield return null;
@@ -277,6 +271,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     IEnumerator Flinging()
     {
+        if (flingAudio)
         audioSource.PlayOneShot(flingAudio);
 
         float maxForce = 1.0f;
@@ -374,7 +369,12 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Death()
     {
+        GameObject anim = Instantiate(deathAnim);
+
+        anim.transform.position = transform.position;
+
         this.transform.parent.GetComponent<EnemyManager>().selectedEnemies.Remove(gameObject);
+
         Destroy(gameObject);
         GameManager.Instance.IsLevelEnd();
     }
