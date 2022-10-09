@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34b3727e69d0b040a8041f24578afd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 1
+  fadeSpeed: 10
   image: {fileID: 257081147}
   nextSceneName: House on night
 --- !u!114 &257081147
