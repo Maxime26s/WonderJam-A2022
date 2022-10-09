@@ -71,6 +71,12 @@ public class LevelLoader : MonoBehaviour {
         StartCoroutine(LoadNextLevelCo(sceneName));
     }
 
+    public void ReloadCurrentLevel()
+    {
+        Debug.LogError("RELOAD LVL");
+        StartCoroutine(ReloadCurrentLevelCo());
+    }
+
     IEnumerator LoadNextLevelCo(string sceneName = "")
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -116,6 +122,17 @@ public class LevelLoader : MonoBehaviour {
 
     public void Mute() {
         buttonAudioSource.mute = !buttonAudioSource.mute;
+    }
+
+    IEnumerator ReloadCurrentLevelCo()
+    {
+        animCanvas.gameObject.SetActive(true);
+        if (transition != null)
+            transition.SetTrigger("Fade_out_tr");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

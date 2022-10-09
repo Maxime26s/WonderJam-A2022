@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
@@ -24,11 +24,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogue Scenes/Level 1.unity
     guid: 5c5126ef4342efa4ca8f89c36a3ccb08
   - enabled: 1
+    path: Assets/Mega Fantasy Props Pack/Example Scenes/House on night.unity
+    guid: a12f74e6765242b468a36d221a292611
+  - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Level 2.unity
     guid: 85c084e48ba09934ea3a269c2290e047
   - enabled: 1
+    path: Assets/Mega Fantasy Props Pack/Example Scenes/Courtyard.unity
+    guid: 25b375b2046bd8b4c816b087bca806f2
+  - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Level 3.unity
     guid: 45a770a84bdc09b40bb6f2492c6d7be7
+  - enabled: 1
+    path: Assets/Mega Fantasy Props Pack/Example Scenes/Castle wireframe.unity
+    guid: 626b0d38b73dfa04b86b9f2a5290db3b
   - enabled: 1
     path: Assets/Scenes/Dialogue Scenes/Finale.unity
     guid: 88ba5fb6e14d15d4a8a393034e5685ed

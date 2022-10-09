@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -34,15 +35,20 @@ public static GameManager Instance { get; set; }
     [SerializeField]
     private float gameTimer = 300f;
 
+    [SerializeField]
+    private GameObject deathUI;
+
 
     [SerializeField]
-    private bool shotgunEnabled = false;
+    public bool wrenchEnabled = false;
     [SerializeField]
-    private bool bombEnabled = false;
+    public bool shotgunEnabled = false;
+    [SerializeField]
+    public bool bombEnabled = false;
 
     private GameState currentGameState = GameState.None;
 
-    private int currentLives = 0;
+    private bool hasBeenInitialized = false;
 
 
     public void Awake() {
@@ -68,9 +74,19 @@ public static GameManager Instance { get; set; }
         }
     }
 
+    private void Start()
+    {
+        deathUI.SetActive(false);
+    }
+
     private void UpdateTimerUI()
     {
-        timerTMP.text = gameTimer.ToString();
+        timerTMP.text = TimeFormatter(gameTimer);
+    }
+
+    private void SetTimerText(string text)
+    {
+        timerTMP.text = text;
     }
 
     public void SwitchToGameState(GameState newGameState)
@@ -80,49 +96,77 @@ public static GameManager Instance { get; set; }
         {
             case GameState.Starting:
                 Debug.Log("The game is starting...");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+
                 break;
             case GameState.Playing:
                 Debug.Log("The game has begun :)");
                 break;
             case GameState.Win:
+                LevelLoader.Instance.LoadNextLevel();
+
                 Debug.Log("You won, rip.");
                 break;
             case GameState.OutOfTime:
+                SetTimerText("00:00");
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
+                deathUI.SetActive(true);
+
+                Cursor.lockState =  CursorLockMode.None;
+                Cursor.visible = true;
+
                 Debug.Log("You ran out of life, rip.");
                 break;
         }
     }
 
     public void IsLevelEnd() {
-
+        if (GetEnemyCount() <= 0)
+        {
+            SwitchToGameState(GameState.Win);
+        }
     }
 
     public void InitMap() {
+        if (hasBeenInitialized)
+            return; 
+
+        hasBeenInitialized = true;
         SpawnPlayer();
-        ResetLifeCount();
         GetEnemyCount();
         SwitchToGameState(GameState.Playing);
     }
 
-    public void ResetLifeCount()
-    {
-        currentLives = startingLives;
-    }
-
     public void SpawnPlayer() {
-        Instantiate(player, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        if (spawnPoint)
+            Instantiate(player, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
     public int GetEnemyCount()
     {
-        return enemyManager.selectedEnemies.Count;
+        if (enemyManager)
+            return enemyManager.selectedEnemies.Count;
+        else
+            return 0;
     }
 
-    public void UpdateGameUI()
+    public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
     {
+        float secondsRemainder = Mathf.Floor((seconds % 60) * 100) / 100.0f;
+        int minutes = ((int)(seconds / 60)) % 60;
+        int hours = (int)(seconds / 3600);
 
+        if (!forceHHMMSS)
+        {
+            if (hours == 0)
+            {
+                return String.Format("{0:00}:{1:00}", minutes, secondsRemainder);
+            }
+        }
+        return String.Format("{0}:{1:00}:{2:00}", hours, minutes, secondsRemainder);
     }
+
 }

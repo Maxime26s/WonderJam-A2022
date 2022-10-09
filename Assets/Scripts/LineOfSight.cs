@@ -15,7 +15,7 @@ public class LineOfSight : MonoBehaviour
     void Start()
     {
         //Choose the distance the Box can reach to
-        m_MaxDistance = 300.0f;
+        m_MaxDistance = 10.0f;
         m_Collider = GetComponent<Collider>();
     }
 
@@ -29,20 +29,15 @@ public class LineOfSight : MonoBehaviour
     //m_HitDetect = Physics.BoxCastAll(m_Collider.bounds.center, transform.localScale, transform.forward, transform.rotation, out m_Hit, transform.rotation, m_MaxDistance);
         hits = Physics.BoxCastAll(m_Collider.bounds.center, transform.localScale, transform.forward, transform.rotation, m_MaxDistance);
 
-
-        if (hits.Length > 0)
+        //Output the name of the Collider your Box hit
+        foreach(RaycastHit hit in hits)
         {
-            //Output the name of the Collider your Box hit
-            foreach(RaycastHit enemy in hits)
-            {
-                if (enemy.collider.gameObject.CompareTag("Enemy"))
+            if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
-                    Debug.Log("Hit : " + enemy.collider.name);
-                    enemy.collider.GetComponent<EnemyBehavior>().Spotted();
-                } else if (enemy.collider.gameObject.CompareTag("Mannequin"))
+                    hit.collider.GetComponent<EnemyBehavior>().Spotted();
+                } else if (hit.collider.gameObject.CompareTag("Mannequin"))
                 {
-                    Debug.Log("Hit King Feature");
-                    enemy.collider.GetComponent<MannequinBehavior>().Spotted();
+                    hit.collider.GetComponent<MannequinBehavior>().Spotted();
                 }
             }
         }

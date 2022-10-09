@@ -86,28 +86,32 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (!spotted)
         {
-            switch (glitchType)
-            {
-                case GlitchType.Move:           //move to random navmesh location
-                    move();
-                    break;
-                case GlitchType.Vibrate:        //vibrate for x seconds
-                    vibrate();
-                    break;
-                case GlitchType.Stretch:
-                    stretch();
-                    break;
-                case GlitchType.ChangeMaterial:
-                    ChangeMaterial();
-                    break;
-                case GlitchType.ChangeMeshError:
-                    ChangeMeshError();
-                    break;
-                case GlitchType.Fling:
-                    Fling();
-                    break;
-                    
-            }
+            ExecuteGlitch();
+        }
+    }
+
+    private void ExecuteGlitch()
+    {
+        switch (glitchType)
+        {
+            case GlitchType.Move:           //move to random navmesh location
+                move();
+                break;
+            case GlitchType.Vibrate:        //vibrate for x seconds
+                vibrate();
+                break;
+            case GlitchType.Stretch:
+                stretch();
+                break;
+            case GlitchType.ChangeMaterial:
+                ChangeMaterial();
+                break;
+            case GlitchType.ChangeMeshError:
+                ChangeMeshError();
+                break;
+            case GlitchType.Fling:
+                Fling();
+                break;
         }
     }
 
@@ -194,11 +198,14 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Spotted()
     {
-        Debug.Log("Spotted "+ transform.name);
-
         spotted = true;
 
         spottedTimeLeft = 2.0f;
+    }
+
+    public void ForceGlitch()
+    {
+        ExecuteGlitch();
     }
 
     IEnumerator ChangingMaterial()
@@ -217,8 +224,8 @@ public class EnemyBehavior : MonoBehaviour
             yield return new WaitForSeconds(randomTime);
 
             enemyRenderer.materials = defaultMaterials;
-
         }
+        yield return null;
     }
 
     IEnumerator ChangingMesh()
@@ -234,6 +241,7 @@ public class EnemyBehavior : MonoBehaviour
             enemyMeshFilter.mesh = oldMesh;
             enemyRenderer.material = oldMaterial;
         }
+        yield return null;
     }
     IEnumerator Flinging()
     {
@@ -263,6 +271,9 @@ public class EnemyBehavior : MonoBehaviour
 
     public void TakeDamage() 
     {
+        
+        EnemyDialogueDatabase.Instance.TryPlayDialogue(gameObject.name);
+
         if (!invincible)
         {
             health--;
@@ -289,13 +300,13 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 finalPosition = hit.position;
 
         StartCoroutine(Fleeing(finalPosition));
+        StartCoroutine(Immunity());
     }
 
     IEnumerator Fleeing(Vector3 movePositionVector)
     {
         float timeLeft = 2.0f;
 
-        invincible = true;
 
         while (timeLeft > 0)
         {
@@ -305,13 +316,29 @@ public class EnemyBehavior : MonoBehaviour
 
             yield return null;
         }
+
+        yield return null;
+    }
+    IEnumerator Immunity()
+    {
+        float timeLeft = 0.5f;
+
+        invincible = true;
+
+        while(timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            yield return null;
+        }
         invincible = false;
 
         yield return null;
     }
 
+
     private void Death()
     {
-
+        Destroy(gameObject);
     }
 }

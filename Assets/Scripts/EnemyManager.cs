@@ -22,6 +22,8 @@ public class EnemyManager : MonoBehaviour
         foreach(Transform child in transform)
         {
             potentialEnemies.Add(child.gameObject);
+
+            child.tag = "Prop";
         }
         
         for(int i = 0; i < numberOfEnemies; i++)
@@ -53,6 +55,8 @@ public class EnemyManager : MonoBehaviour
             enemy.GetComponent<NavMeshAgent>().baseOffset = 0.05f;
 
             enemy.GetComponent<AudioSource>().clip = audioClip;
+
+            enemy.GetComponent<AudioSource>().volume = 0.2f;
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
