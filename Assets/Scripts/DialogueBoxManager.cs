@@ -22,6 +22,7 @@ public class DialogueBoxManager : MonoBehaviour
     }
 
     public Image imageHolder;
+    public Image border;
     public AudioSource audioSource;
     public TextMeshProUGUI textDialogue;
     public TextMeshProUGUI textName;
@@ -97,7 +98,7 @@ public class DialogueBoxManager : MonoBehaviour
 
             if (currentVoiceLine.showFullText)
                 textDialogue.text = currentVoiceLine.text;
-            else if(currentVoiceLine.text.Length > 0)
+            else if (currentVoiceLine.text.Length > 0)
             {
                 float fastLetterPerSecond = letterPerSecond * wordSpeed;
                 float wordTime = 1 / letterPerSecond * (nextSpaceIndex - lastSpaceIndex);
@@ -123,14 +124,15 @@ public class DialogueBoxManager : MonoBehaviour
             StartCoroutine(WaitThenPlay(currentDialogue.pauseLengthBetweenVoiceLines));
         }
     }
-    public void StartDialogue(DialogueTemplate dialogueTemplate = null, float waitTime = 0.25f)
+    public void StartDialogue(DialogueTemplate dialogueTemplate = null, float waitTime = 0.05f)
     {
         if (dialogueTemplate != null)
             currentDialogue = dialogueTemplate;
-        if (currentDialogue == null)
+        if (currentDialogue == null || border == null)
             return;
         currentDialogue.voiceLines = new Queue<DialogueVoiceLine>(currentDialogue.voiceLinesList);
         imageHolder.enabled = false;
+        border.enabled = false;
         textDialogue.text = "";
         textName.text = "";
         StartCoroutine(WaitThenPlay(waitTime));
@@ -147,6 +149,7 @@ public class DialogueBoxManager : MonoBehaviour
 
         currentFace = currentVoiceLine.face;
         imageHolder.enabled = currentFace.showFace;
+        border.enabled = currentFace.showFace;
         textName.enabled = currentFace.showFace;
 
         audioSource.volume = currentVoiceLine.volume;

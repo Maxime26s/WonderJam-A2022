@@ -16,7 +16,10 @@ public class Bomb : MonoBehaviour {
     [SerializeField]
     public bool IsThrown = false;
     [SerializeField]
+    public bool IsExploded = false;
+    [SerializeField]
     private GameObject explosion;
+
 
     public bool onCooldown = false;
 
@@ -37,9 +40,19 @@ public class Bomb : MonoBehaviour {
 
     private void Explode()
     {
-        Destroy(gameObject);
+        IsExploded = true;
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        Debug.Log(audioSource.clip);
+        audioSource.PlayOneShot(audioSource.clip);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        Renderer[] rs = gameObject.GetComponentsInChildren<Renderer>();
+        foreach (Renderer r in rs)
+            r.enabled = false;
+
+        Destroy(gameObject, audioSource.clip.length);
         GameObject newExplosion = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
         newExplosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+        
         Destroy(newExplosion, newExplosion.GetComponent<ParticleSystem>().main.duration);
 
         Collider[] hitColliders = Physics.OverlapSphere(newExplosion.transform.GetComponent<Renderer>().bounds.center, explosionRadius);
@@ -55,13 +68,17 @@ public class Bomb : MonoBehaviour {
 
     private void Throw()
     {
-            Debug.Log("Thrown");
-            IsThrown = true;
-            sphereCollider.enabled = true;
-            gameObject.transform.parent = null;
-            rb.isKinematic = false;
-            rb.AddForce(Camera.main.transform.forward * forwardForce);
-            StartFuse();
+        IsThrown = true;
+        sphereCollider.enabled = true;
+        gameObject.transform.parent = null;
+        int layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = layer;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+            gameObject.transform.GetChild(i).gameObject.layer = layer;
+        
+        rb.isKinematic = false;
+        rb.AddForce(Camera.main.transform.forward * forwardForce);
+        StartFuse();
     }
 
     // Update is called once per frame
@@ -70,7 +87,7 @@ public class Bomb : MonoBehaviour {
         if(IsThrown)
         {
             timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
+            if (timeLeft <= 0 && !IsExploded)
                 Explode();
         }
 

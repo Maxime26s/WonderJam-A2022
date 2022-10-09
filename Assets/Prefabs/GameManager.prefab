@@ -260,8 +260,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialoguePrefab: {fileID: 3882025704319295061, guid: e2e07d6d571577c49b8047894b31abdd,
     type: 3}
-  dialogueTemplates:
+  dialogueEnemyTemplates:
+  - {fileID: 11400000, guid: cf6f11c4c32088542b240fcd5a7a48da, type: 2}
+  - {fileID: 11400000, guid: d5031c8ddd4539f409fd6b9e01d54291, type: 2}
+  - {fileID: 11400000, guid: 3272f504bd8de2148a58902e451b85d3, type: 2}
+  - {fileID: 11400000, guid: 2b128e73357b4994e9372c009f175215, type: 2}
+  - {fileID: 11400000, guid: 474b5c7672aea8d4793034dab4de8d18, type: 2}
+  - {fileID: 11400000, guid: c5d7548c8168e0a48962139b7039e976, type: 2}
   - {fileID: 11400000, guid: 733630c6692daf14ebd5616e3550d93e, type: 2}
+  - {fileID: 11400000, guid: d942ed6bf92e9234dbe0dd79cac09ee7, type: 2}
+  - {fileID: 11400000, guid: bf471c60c63b4204490b00986c612d50, type: 2}
+  - {fileID: 11400000, guid: 471970d1ee492574897e4661c2d03f76, type: 2}
+  defaultEnemyDialogues:
+  - {fileID: 11400000, guid: daf67aacce747554f81e533df8a33228, type: 2}
+  - {fileID: 11400000, guid: d4e3e5177dabaa245b0e3a13acd9f8a5, type: 2}
+  - {fileID: 11400000, guid: e6f4aaf86cec4f546ae02ce94e35764a, type: 2}
+  - {fileID: 11400000, guid: 368a194b534317a46b522cb9c95403d4, type: 2}
+  - {fileID: 11400000, guid: aadd6e3e89c16f5499baef062b9b2be3, type: 2}
+  - {fileID: 11400000, guid: 958939d2fe864304291335a5213cd151, type: 2}
+  - {fileID: 11400000, guid: 2d2816293c9c5b048b4e7a516ddc297b, type: 2}
+  - {fileID: 11400000, guid: ded3b25bc4b288c4798fa2ac45fbd8f9, type: 2}
+  - {fileID: 11400000, guid: c4ef8be3c6674264cbdc4ebe18e15983, type: 2}
+  - {fileID: 11400000, guid: 0e12212fc8c756c4fb18ca529ded18bc, type: 2}
+  loseHpDialogues:
+  - {fileID: 11400000, guid: 6f5fc3defa48fac4aac7b2257355a473, type: 2}
+  - {fileID: 11400000, guid: 2c0d9aadfa68cd0418c6c9c67af54aa8, type: 2}
+  - {fileID: 11400000, guid: b7af3015a70f786438cd67799328a694, type: 2}
+  poutineDialogue: {fileID: 11400000, guid: d942ed6bf92e9234dbe0dd79cac09ee7, type: 2}
 --- !u!1 &1863442093133221392
 GameObject:
   m_ObjectHideFlags: 0

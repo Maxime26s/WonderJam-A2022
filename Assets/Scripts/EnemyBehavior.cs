@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    public enum GlitchType {
+    public enum GlitchType
+    {
         Move = 0,
         Vibrate = 1,
         Stretch = 2,
@@ -54,6 +55,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private GameObject deathAnim;
 
+    private bool dialoguePlayed = false;
 
     private void Start()
     {
@@ -81,7 +83,7 @@ public class EnemyBehavior : MonoBehaviour
             SetTimer();
             Glitch();
         }
-        if(spottedTimeLeft <= 0)
+        if (spottedTimeLeft <= 0)
         {
             spotted = false;
         }
@@ -174,7 +176,7 @@ public class EnemyBehavior : MonoBehaviour
 
         //GetComponent<Rigidbody>().isKinematic = false;
 
-        while (timeLeft>0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
@@ -206,7 +208,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 startScale = transform.localScale;
         transform.localScale = startScale;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
@@ -277,6 +279,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     IEnumerator Flinging()
     {
+        if (flingAudio)
         audioSource.PlayOneShot(flingAudio);
 
         float maxForce = 1.0f;
@@ -304,10 +307,10 @@ public class EnemyBehavior : MonoBehaviour
         yield return null;
     }
 
-    public void TakeDamage() 
+    public void TakeDamage()
     {
-        
-        EnemyDialogueDatabase.Instance.TryPlayDialogue(gameObject.name);
+        if (!dialoguePlayed)
+            dialoguePlayed = DialogueDatabase.Instance.TryPlayEnemyDialogue(gameObject.name);
 
         if (!invincible)
         {
@@ -361,7 +364,7 @@ public class EnemyBehavior : MonoBehaviour
 
         invincible = true;
 
-        while(timeLeft > 0)
+        while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
 
