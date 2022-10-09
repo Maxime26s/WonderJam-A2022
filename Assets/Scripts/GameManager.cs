@@ -36,9 +36,11 @@ public static GameManager Instance { get; set; }
 
 
     [SerializeField]
-    private bool shotgunEnabled = false;
+    public bool wrenchEnabled = false;
     [SerializeField]
-    private bool bombEnabled = false;
+    public bool shotgunEnabled = false;
+    [SerializeField]
+    public bool bombEnabled = false;
 
     private GameState currentGameState = GameState.None;
 
