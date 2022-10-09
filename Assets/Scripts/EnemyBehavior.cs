@@ -33,6 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] public AudioClip glitchAudio;
     [SerializeField] public AudioClip wobbleAudio;
     [SerializeField] public AudioClip dragAudio;
+    [SerializeField] public AudioClip flingAudio;
 
     EnemyNavMesh enemyNavMesh;
     Rigidbody rb;
@@ -121,6 +122,7 @@ public class EnemyBehavior : MonoBehaviour
                 ChangeMeshError();
                 break;
             case GlitchType.Fling:
+                audioSource.clip = flingAudio;
                 Fling();
                 break;
         }
@@ -265,6 +267,8 @@ public class EnemyBehavior : MonoBehaviour
     }
     IEnumerator Flinging()
     {
+        audioSource.PlayOneShot(flingAudio);
+
         float maxForce = 10.0f;
         float intensity = 500.0f;
 
@@ -286,6 +290,7 @@ public class EnemyBehavior : MonoBehaviour
         navMeshAgent.enabled = true;
 
         //transform.position = FindNearestNavMeshPoint(transform.position);
+        //audioSource.Stop();
         yield return null;
     }
 
