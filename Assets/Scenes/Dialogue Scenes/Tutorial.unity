@@ -320,15 +320,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2214423328177049933, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 257081145}
-    - targetCorrespondingSourceObject: {fileID: 2214423328177049933, guid: 9dd7ada55c4937c43affa156bdf98c30,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 508377025}
     - targetCorrespondingSourceObject: {fileID: 2214423328177049933, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 853525194}
+    - targetCorrespondingSourceObject: {fileID: 2214423328177049933, guid: 9dd7ada55c4937c43affa156bdf98c30,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 257081145}
   m_SourcePrefab: {fileID: 100100000, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
 --- !u!1 &257081144
 GameObject:
@@ -582,8 +582,8 @@ RectTransform:
   m_Father: {fileID: 751266958}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.3, y: 0.425}
-  m_AnchorMax: {x: 0.7, y: 0.675}
+  m_AnchorMin: {x: 0.3, y: 0.4}
+  m_AnchorMax: {x: 0.7, y: 0.7}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -616,8 +616,9 @@ MonoBehaviour:
     Clic
     gauche :Tirer'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5ca82a9455772de419837eba346f2716, type: 2}
+  m_sharedMaterial: {fileID: 1316181314460593557, guid: 5ca82a9455772de419837eba346f2716,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
