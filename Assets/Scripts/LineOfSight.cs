@@ -30,16 +30,14 @@ public class LineOfSight : MonoBehaviour
         hits = Physics.BoxCastAll(m_Collider.bounds.center, transform.localScale, transform.forward, transform.rotation, m_MaxDistance);
 
 
-        if (hits.Length > 0)
+        //Output the name of the Collider your Box hit
+        foreach(RaycastHit hit in hits)
         {
-            //Output the name of the Collider your Box hit
-            foreach(RaycastHit enemy in hits)
+            EnemyBehavior enemyBehavior = hit.collider.GetComponent<EnemyBehavior>();
+            if (enemyBehavior != null)
             {
-                if (enemy.collider.gameObject.CompareTag("Enemy"))
-                {
-                    Debug.Log("Hit : " + enemy.collider.name);
-                    enemy.collider.GetComponent<EnemyBehavior>().Spotted();
-                }
+                Debug.Log("Hit : " + hit.collider.name);
+                enemyBehavior.Spotted();
             }
         }
     }
