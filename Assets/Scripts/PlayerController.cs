@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour {
                 bomb.SetActive(false);
                 gameManager.bombEnabled = false;
             }
-
+            Debug.Log("Test");
             wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
             //}
         }
