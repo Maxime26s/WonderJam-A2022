@@ -7,14 +7,26 @@ using UnityEngine.SceneManagement;
 public class DeathUIScript : MonoBehaviour {
 
     public float transitionTime = 1f;
+    public bool actionPending = false;
 
-    public void LoadMenu()
-    {
-        LevelLoader.Instance.LoadMenu();
+    public void LoadMenu() {
+        if (TryMakeAction()) {
+            LevelLoader.Instance.LoadMenu();
+        }
     }
 
-    public void ReloadCurrentLevel()
-    {
-        LevelLoader.Instance.ReloadCurrentLevel();
+    public void ReloadCurrentLevel() {
+
+        if (TryMakeAction()) {
+            LevelLoader.Instance.ReloadCurrentLevel();
+        }
+    }
+
+    private bool TryMakeAction() {
+        if (!actionPending)
+            actionPending = true;
+        else
+            return false;
+        return true;
     }
 }

@@ -2888,7 +2888,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4e9e40c826461c44b8dcb95c4c5346e6, type: 2}
   - {fileID: 2100000, guid: 4c898124d1e0c2747a0e1b16ac8fad68, type: 2}
   - {fileID: 2100000, guid: 9f1f41b831b80f042938a0eae3f14711, type: 2}
-  audioClip: {fileID: 8300000, guid: 38fd274bc605ffa45bf911cb45450810, type: 3}
+  vibrateAudio: {fileID: 0}
+  glitchAudio: {fileID: 0}
+  wobbleAudio: {fileID: 0}
+  dragAudio: {fileID: 0}
+  flingAudio: {fileID: 0}
+  soundEffectsVolume: 0.5
+  soundEffectMaxDistance: 10
 --- !u!4 &814791790
 Transform:
   m_ObjectHideFlags: 0
@@ -3897,16 +3903,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6940823986108409983, guid: 410c4271566d3db40b954a52e7fc5fa1,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940823986210151351, guid: 410c4271566d3db40b954a52e7fc5fa1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6940823986672201046, guid: 410c4271566d3db40b954a52e7fc5fa1,
         type: 3}
       propertyPath: m_RootOrder
@@ -3966,11 +3962,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelLoader
-      objectReference: {fileID: 0}
-    - target: {fileID: 6940823986995657982, guid: 410c4271566d3db40b954a52e7fc5fa1,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
