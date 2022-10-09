@@ -159,9 +159,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -688736681, guid: 536b4050ca8109e4b95fa4474862e114,
+        type: 3}
     - target: {fileID: 923091228, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: m_text
-      value: Cottage
+      value: ??????
       objectReference: {fileID: 0}
     - target: {fileID: 1277839290, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: playOnLaunch
