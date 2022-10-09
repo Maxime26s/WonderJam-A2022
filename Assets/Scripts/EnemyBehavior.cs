@@ -336,9 +336,10 @@ public class EnemyBehavior : MonoBehaviour
         yield return null;
     }
 
-
-    private void Death()
+    public void Death()
     {
+        this.transform.parent.GetComponent<EnemyManager>().selectedEnemies.Remove(gameObject);
         Destroy(gameObject);
+        GameManager.Instance.IsLevelEnd();
     }
 }
