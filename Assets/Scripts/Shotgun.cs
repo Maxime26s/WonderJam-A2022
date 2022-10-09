@@ -68,6 +68,8 @@ public class Shotgun : MonoBehaviour
     [SerializeField]
     private bool hitEnemy = false;
     [SerializeField]
+    private bool hitProp = false;
+    [SerializeField]
     private GameObject enemyShot;
 
     void Update()
@@ -194,6 +196,9 @@ public class Shotgun : MonoBehaviour
         {
             hitEnemy = true;
             enemyShot = hit.collider.gameObject;
+        }if(hit.collider.tag == "Prop")
+        {
+            hitProp = true;
         }
     }
 
@@ -203,7 +208,7 @@ public class Shotgun : MonoBehaviour
         {
             enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
         }
-        else 
+        else if(!hitEnemy & hitProp)
         {
             playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
         }

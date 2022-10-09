@@ -217,8 +217,8 @@ public class EnemyBehavior : MonoBehaviour
             yield return new WaitForSeconds(randomTime);
 
             enemyRenderer.materials = defaultMaterials;
-
         }
+        yield return null;
     }
 
     IEnumerator ChangingMesh()
@@ -234,6 +234,7 @@ public class EnemyBehavior : MonoBehaviour
             enemyMeshFilter.mesh = oldMesh;
             enemyRenderer.material = oldMaterial;
         }
+        yield return null;
     }
     IEnumerator Flinging()
     {
@@ -289,13 +290,13 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 finalPosition = hit.position;
 
         StartCoroutine(Fleeing(finalPosition));
+        StartCoroutine(Immunity());
     }
 
     IEnumerator Fleeing(Vector3 movePositionVector)
     {
         float timeLeft = 2.0f;
 
-        invincible = true;
 
         while (timeLeft > 0)
         {
@@ -305,13 +306,29 @@ public class EnemyBehavior : MonoBehaviour
 
             yield return null;
         }
+
+        yield return null;
+    }
+    IEnumerator Immunity()
+    {
+        float timeLeft = 0.5f;
+
+        invincible = true;
+
+        while(timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            yield return null;
+        }
         invincible = false;
 
         yield return null;
     }
 
+
     private void Death()
     {
-
+        Destroy(gameObject);
     }
 }
