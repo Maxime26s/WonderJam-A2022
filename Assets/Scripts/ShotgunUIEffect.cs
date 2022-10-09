@@ -94,11 +94,21 @@ public class ShotgunUIEffect : MonoBehaviour
     private void DropHeart()
     {
         int number = hearts.Count;
-        GameObject heart = hearts[number - 1];
+        int firstIndex = 0;
+        for(int i = 0; i < number; i++)
+        {
+            Debug.Log(hearts[i]);
+            if(hearts[i] != null)
+            {
+                firstIndex = i;
+                break;
+            }
+        }
+        GameObject heart = hearts[firstIndex];
         GameObject droppingHeart = Instantiate(fallingHeart, heart.transform.position, heart.transform.rotation);
         droppedHearts.Add(droppingHeart);
         Destroy(heart);
-        hearts.RemoveAt(number - 1);
+        hearts.RemoveAt(firstIndex);
     }
 
     private void ObjectsJump()
