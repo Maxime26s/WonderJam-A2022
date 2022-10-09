@@ -193,7 +193,7 @@ public class Shotgun : MonoBehaviour {
 
     private void CheckForGlitch(RaycastHit hit)
     {
-        if(hit.collider.tag == "Enemy" || hit.collider.tag == "Mannequin")
+        if(hit.collider.tag == "Enemy" || hit.collider.tag == "Mannequin" || hit.collider.tag == "EndKill")
         {
             hitEnemy = true;
             enemyShot = hit.collider.gameObject;
@@ -214,7 +214,10 @@ public class Shotgun : MonoBehaviour {
             {
                 enemyShot.GetComponent<MannequinBehavior>().TakeDamage();
             }
-
+            else if (enemyShot.CompareTag("EndKill"))
+            {
+                enemyShot.GetComponent<EndKill>().FinishGame();
+            }
         }
         else if(!hitEnemy & hitProp)
         {
