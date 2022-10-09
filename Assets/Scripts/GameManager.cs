@@ -124,7 +124,10 @@ public static GameManager Instance { get; set; }
     }
 
     public void IsLevelEnd() {
-
+        if (GetEnemyCount() <= 0)
+        {
+            SwitchToGameState(GameState.Win);
+        }
     }
 
     public void InitMap() {
