@@ -29,18 +29,19 @@ public class LineOfSight : MonoBehaviour
     //m_HitDetect = Physics.BoxCastAll(m_Collider.bounds.center, transform.localScale, transform.forward, transform.rotation, out m_Hit, transform.rotation, m_MaxDistance);
         hits = Physics.BoxCastAll(m_Collider.bounds.center, transform.localScale, transform.forward, transform.rotation, m_MaxDistance);
 
-
         //Output the name of the Collider your Box hit
         foreach(RaycastHit hit in hits)
         {
-            EnemyBehavior enemyBehavior = hit.collider.GetComponent<EnemyBehavior>();
-            if (enemyBehavior != null)
+            if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                // Debug.Log("Hit : " + hit.collider.name);
-                enemyBehavior.Spotted();
+                hit.collider.GetComponent<EnemyBehavior>().Spotted();
+            } else if (hit.collider.gameObject.CompareTag("Mannequin"))
+            {
+                hit.collider.GetComponent<MannequinBehavior>().Spotted();
             }
         }
     }
+
     //Draw the BoxCast as a gizmo to show where it currently is testing. Click the Gizmos button to see this
     void OnDrawGizmos()
     {
