@@ -244,6 +244,30 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1 &1164587907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2217382551594501241, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1905965114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1164587911 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 1072678773188213576, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1905965114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1716881937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4503417147907548946, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1905965114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1716881941 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 147475421663481436, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1905965114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1763591981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,6 +355,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.562
       objectReference: {fileID: 0}
+    - target: {fileID: 147475421663481436, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 147475421663481436, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: b3221f1e0a7fbda4e8c52225c796c41e, type: 2}
+    - target: {fileID: 1072678773188213576, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_Animations.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1072678773188213576, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_Animations.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 18c60d65ee4f193499ddff8b929d98f0, type: 2}
     - target: {fileID: 1356303758233106229, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_Name
@@ -411,11 +455,86 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.22289725
       objectReference: {fileID: 0}
+    - target: {fileID: 1356303759591148110, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: wrench
+      value: 
+      objectReference: {fileID: 1716881937}
+    - target: {fileID: 1356303759591148110, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: shotgun
+      value: 
+      objectReference: {fileID: 1164587907}
+    - target: {fileID: 1553294379542699715, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553294379542699715, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553294379542699715, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553294379542699715, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 28.046785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217382551594501241, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701967109034192709, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: hitAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
     - target: {fileID: 2701967109034192709, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 543962577}
+    - target: {fileID: 2701967109034192709, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: wrenchAnimation
+      value: 
+      objectReference: {fileID: 1716881941}
+    - target: {fileID: 4006907787985141597, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -21.81908
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006907787985141597, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 50.060417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006907787985141597, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187632170401791768, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967149816855077603, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: shotgunEquipAnimation
+      value: 
+      objectReference: {fileID: 1164587911}
+    - target: {fileID: 9053615301391186705, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -145.703
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
