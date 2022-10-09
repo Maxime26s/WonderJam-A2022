@@ -28601,6 +28601,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 195197391}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1712713897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712713898}
+  m_Layer: 0
+  m_Name: 'GameObject '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712713898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712713897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.05, y: -1.953, z: 10.98}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1767955506}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1715326050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29739,6 +29770,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1712713898}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 387528355}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1949623040}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 429902947}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1426820321}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 11304032}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[6]
+      value: 
+      objectReference: {fileID: 257708886}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[7]
+      value: 
+      objectReference: {fileID: 9017906}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[8]
+      value: 
+      objectReference: {fileID: 1877426857}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[9]
+      value: 
+      objectReference: {fileID: 494027169}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
+      propertyPath: teleportPoints.Array.data[10]
+      value: 
+      objectReference: {fileID: 37860215}
     - target: {fileID: 842265989470999194, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: m_Name
@@ -30157,7 +30248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 511493166}
+  - {fileID: 1712713898}
   - {fileID: 387528355}
   - {fileID: 1949623040}
   - {fileID: 429902947}
@@ -30169,7 +30260,7 @@ Transform:
   - {fileID: 494027169}
   - {fileID: 37860215}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1768392602 stripped
 Transform:
