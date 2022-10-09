@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -103,6 +104,8 @@ public static GameManager Instance { get; set; }
                 Debug.Log("The game has begun :)");
                 break;
             case GameState.Win:
+                LevelLoader.Instance.LoadNextLevel();
+
                 Debug.Log("You won, rip.");
                 break;
             case GameState.OutOfTime:
