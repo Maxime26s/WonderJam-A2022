@@ -141,11 +141,12 @@ public class Wrench : MonoBehaviour {
     {
         if (hitEnemy)
         {
-            enemyShot.GetComponent<EnemyBehavior>().TakeDamage();
+
+            enemyShot.GetComponent<EnemyBehavior>()?.TakeDamage();
         }
         else
         {
-            playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
+            playerTransform.gameObject.GetComponent<PlayerController>()?.TakeDamage();
         }
     }
 }

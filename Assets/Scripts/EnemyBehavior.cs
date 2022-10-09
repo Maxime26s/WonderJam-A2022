@@ -198,8 +198,6 @@ public class EnemyBehavior : MonoBehaviour
 
     public void Spotted()
     {
-        Debug.Log("Spotted "+ transform.name);
-
         spotted = true;
 
         spottedTimeLeft = 2.0f;
