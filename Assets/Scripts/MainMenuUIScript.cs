@@ -9,6 +9,12 @@ public class MainMenuUIScript : MonoBehaviour {
     public float transitionTime = 1f;
     public bool actionPending = false;
 
+    private void Awake() {
+        Cursor.visible = true;
+
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void ButtonStart() {
         if (TryMakeAction()) {
             LevelLoader.Instance.LoadNextLevel("Introduction");
