@@ -140,25 +140,27 @@ public class PlayerController : MonoBehaviour {
 
 
     private void EquipWrench() {
-        //if (!CheckWeaponsOnCooldown()) {
-        wrench.SetActive(true);
-        gameManager.wrenchEnabled = true;
+        if (!gameManager.wrenchEnabled) {
+            //if (!CheckWeaponsOnCooldown()) {
+            wrench.SetActive(true);
+            gameManager.wrenchEnabled = true;
 
-        shotgun.SetActive(false);
-        gameManager.shotgunEnabled = false;
+            shotgun.SetActive(false);
+            gameManager.shotgunEnabled = false;
 
-        if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
-            bomb.SetActive(false);
-            gameManager.bombEnabled = false;
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+                bomb.SetActive(false);
+                gameManager.bombEnabled = false;
+            }
+
+            wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
+            //}
         }
-
-        wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
-        //}
     }
 
     private void EquipShotgun() {
-        //if (!CheckWeaponsOnCooldown()) {
-        wrench.SetActive(false);
+        if (!gameManager.shotgunEnabled) { 
+            wrench.SetActive(false);
         gameManager.wrenchEnabled = false;
 
         shotgun.SetActive(true);
@@ -169,11 +171,12 @@ public class PlayerController : MonoBehaviour {
             gameManager.bombEnabled = false;
         }
         shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
+    }
         //}
     }
 
     private bool EquipBomb() {
-        if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+        if (bomb && !bomb.GetComponent<Bomb>().IsThrown && !gameManager.bombEnabled) {
             wrench.SetActive(false);
             gameManager.wrenchEnabled = false;
 
