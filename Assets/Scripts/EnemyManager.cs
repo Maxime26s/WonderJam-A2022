@@ -50,6 +50,8 @@ public class EnemyManager : MonoBehaviour
 
             enemy.GetComponent<EnemyBehavior>().errorMaterials = errorMaterialsManager;
 
+            enemy.GetComponent<NavMeshAgent>().baseOffset = 0.05f;
+
             enemy.GetComponent<AudioSource>().clip = audioClip;
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;

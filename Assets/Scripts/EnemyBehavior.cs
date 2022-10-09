@@ -34,6 +34,8 @@ public class EnemyBehavior : MonoBehaviour
 
     public bool spotted;
 
+    public bool invincible;
+
     float spottedTimeLeft;
     private Renderer enemyRenderer;
     [SerializeField] public Material[] errorMaterials;
@@ -57,6 +59,7 @@ public class EnemyBehavior : MonoBehaviour
 
         spotted = false;
         spottedTimeLeft = 1.0f;
+        invincible = false;
     }
     private void Update()
     {
@@ -260,14 +263,23 @@ public class EnemyBehavior : MonoBehaviour
 
     public void TakeDamage() 
     {
-        health--;
-
-        Flee();
+        if (!invincible)
+        {
+            health--;
+            if (health <= 0)
+            {
+                Death();
+            }
+            else
+            {
+                Flee();
+            }
+        }
     }
 
     private void Flee()
     {
-        float walkRadius = 5f;
+        float walkRadius = 10f;
 
         Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
 
@@ -283,6 +295,8 @@ public class EnemyBehavior : MonoBehaviour
     {
         float timeLeft = 2.0f;
 
+        invincible = true;
+
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
@@ -291,6 +305,13 @@ public class EnemyBehavior : MonoBehaviour
 
             yield return null;
         }
+        invincible = false;
+
         yield return null;
+    }
+
+    private void Death()
+    {
+
     }
 }
