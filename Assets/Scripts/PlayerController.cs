@@ -40,17 +40,22 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
         gameManager = GameManager.Instance;
 
-        if (wrench.activeInHierarchy) {
+        if (wrench.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = true;
             gameManager.shotgunEnabled = false;
             gameManager.bombEnabled = false;
             return;
-        } else if (shotgun.activeInHierarchy) {
+        }
+        else if (shotgun.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = false;
             gameManager.shotgunEnabled = true;
             gameManager.bombEnabled = false;
             return;
-        } else if (bomb.activeInHierarchy) {
+        }
+        else if (bomb.activeInHierarchy)
+        {
             gameManager.wrenchEnabled = false;
             gameManager.shotgunEnabled = false;
             gameManager.bombEnabled = true;
@@ -120,68 +125,80 @@ public class PlayerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private bool CheckWeaponsOnCooldown() {
+    private bool CheckWeaponsOnCooldown()
+    {
         return (wrench.GetComponent<Wrench>().onCooldown || shotgun.GetComponent<Shotgun>().onCooldown);
     }
 
 
-private void SwapWeapon() {
-        if (InputManager.Instance.PlayerGetSelectWrench() == true) {
+    private void SwapWeapon()
+    {
+        if (InputManager.Instance.PlayerGetSelectWrench() == true)
+        {
             EquipWrench();
             Debug.Log("Wrench Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetSelectShotgun() == true) {
+        if (InputManager.Instance.PlayerGetSelectShotgun() == true)
+        {
             EquipShotgun();
             Debug.Log("Shotgun Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetSelectBomb() == true) {
+        if (InputManager.Instance.PlayerGetSelectBomb() == true)
+        {
             Debug.Log("Bomb Selected");
             return;
         }
-        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0) {
+        if (InputManager.Instance.PlayerGetScrollUpWeapon() > 0)
+        {
             Debug.Log("Scrolled up");
             return;
         }
-        if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0) {
+        if (InputManager.Instance.PlayerGetScrollDownWeapon() > 0)
+        {
             Debug.Log("Scrolled down");
             return;
         }
-        if (InputManager.Instance.PlayerGetNextWeapon()) {
+        if (InputManager.Instance.PlayerGetNextWeapon())
+        {
             Debug.Log("Next weapon button pressed");
             return;
         }
     }
 
 
-    private void EquipWrench() {
+    private void EquipWrench()
+    {
         //if (!CheckWeaponsOnCooldown()) {
-            wrench.SetActive(true);
-            gameManager.wrenchEnabled = true;
+        wrench.SetActive(true);
+        gameManager.wrenchEnabled = true;
 
-            shotgun.SetActive(false);
-            gameManager.shotgunEnabled = false;
+        shotgun.SetActive(false);
+        gameManager.shotgunEnabled = false;
 
-            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
-                bomb.SetActive(false);
-                gameManager.bombEnabled = false;
-            }
-            Debug.Log("Test");
-            wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
-            //}
+        if (bomb && !bomb.GetComponent<Bomb>().IsThrown)
+        {
+            bomb.SetActive(false);
+            gameManager.bombEnabled = false;
         }
+        
+        wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
+        //}
     }
 
-    private void EquipShotgun() {
-        if (!gameManager.shotgunEnabled) {
+    private void EquipShotgun()
+    {
+        if (!gameManager.shotgunEnabled)
+        {
             wrench.SetActive(false);
             gameManager.wrenchEnabled = false;
 
             shotgun.SetActive(true);
             gameManager.shotgunEnabled = true;
 
-            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown)
+            {
                 bomb.SetActive(false);
                 gameManager.bombEnabled = false;
             }
