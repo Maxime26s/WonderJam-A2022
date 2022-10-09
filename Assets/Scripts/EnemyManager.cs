@@ -14,8 +14,14 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     public Material[] errorMaterialsManager;
 
-    [SerializeField]
-    public AudioClip audioClip;
+    [SerializeField] public AudioClip vibrateAudio;
+    [SerializeField] public AudioClip glitchAudio;
+    [SerializeField] public AudioClip wobbleAudio;
+    [SerializeField] public AudioClip dragAudio;
+    [SerializeField] public AudioClip flingAudio;
+
+    [SerializeField] public float soundEffectsVolume = 0.5f;
+    [SerializeField] public float soundEffectMaxDistance = 10f;
 
     private void Start()
     {
@@ -54,9 +60,18 @@ public class EnemyManager : MonoBehaviour
 
             enemy.GetComponent<NavMeshAgent>().baseOffset = 0.05f;
 
-            enemy.GetComponent<AudioSource>().clip = audioClip;
+            enemy.GetComponent<EnemyBehavior>().vibrateAudio = vibrateAudio;
+            enemy.GetComponent<EnemyBehavior>().wobbleAudio = wobbleAudio;
+            enemy.GetComponent<EnemyBehavior>().glitchAudio = glitchAudio;
+            enemy.GetComponent<EnemyBehavior>().dragAudio = dragAudio;
+            enemy.GetComponent<EnemyBehavior>().flingAudio = flingAudio;
 
-            enemy.GetComponent<AudioSource>().volume = 0.2f;
+            enemy.GetComponent<AudioSource>().volume = soundEffectsVolume;
+            enemy.GetComponent<AudioSource>().spatialBlend = 1;
+            enemy.GetComponent<AudioSource>().playOnAwake = false;
+            enemy.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
+            enemy.GetComponent<AudioSource>().minDistance = 1;
+            enemy.GetComponent<AudioSource>().maxDistance = soundEffectMaxDistance;
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
