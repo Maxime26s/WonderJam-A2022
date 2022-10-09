@@ -19,6 +19,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public AudioClip wobbleAudio;
     [SerializeField] public AudioClip dragAudio;
 
+    [SerializeField] public float soundEffectsVolume = 0.5f;
+    [SerializeField] public float soundEffectMaxDistance = 10f;
+
     private void Start()
     {
         foreach(Transform child in transform)
@@ -61,12 +64,12 @@ public class EnemyManager : MonoBehaviour
             enemy.GetComponent<EnemyBehavior>().glitchAudio = glitchAudio;
             enemy.GetComponent<EnemyBehavior>().dragAudio = dragAudio;
 
-            enemy.GetComponent<AudioSource>().volume = 0.5f;
+            enemy.GetComponent<AudioSource>().volume = soundEffectsVolume;
             enemy.GetComponent<AudioSource>().spatialBlend = 1;
             enemy.GetComponent<AudioSource>().playOnAwake = false;
             enemy.GetComponent<AudioSource>().rolloffMode = AudioRolloffMode.Linear;
             enemy.GetComponent<AudioSource>().minDistance = 1;
-            enemy.GetComponent<AudioSource>().maxDistance = 10;
+            enemy.GetComponent<AudioSource>().maxDistance = soundEffectMaxDistance;
 
             enemy.GetComponent<Rigidbody>().isKinematic = true;
 
