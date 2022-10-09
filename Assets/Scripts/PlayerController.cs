@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isNoClipping = false;
 
+    private int health = 3;
+
     public UnityEvent playerJumping = new UnityEvent();
 
     // Start is called before the first frame update
@@ -86,5 +88,10 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void TakeDamage()
+    {
+        health--;
     }
 }

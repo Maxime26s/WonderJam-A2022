@@ -28,11 +28,8 @@ public class EnemyBehavior : MonoBehaviour
     float glitchTimer;
 
     AudioSource audioSource;
-
     EnemyNavMesh enemyNavMesh;
-
     Rigidbody rb;
-
     NavMeshAgent navMeshAgent;
 
     public bool spotted;
@@ -42,6 +39,9 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] public Material[] errorMaterials;
     private MeshFilter enemyMeshFilter;
     private Material[] defaultMaterials;
+
+    public int health = 3;
+
 
     private void Start()
     {
@@ -255,6 +255,42 @@ public class EnemyBehavior : MonoBehaviour
         navMeshAgent.enabled = true;
 
         //transform.position = FindNearestNavMeshPoint(transform.position);
+        yield return null;
+    }
+
+    public void TakeDamage() 
+    {
+        health--;
+
+        Flee();
+    }
+
+    private void Flee()
+    {
+        float walkRadius = 5f;
+
+        Vector3 randomDirection = Random.insideUnitSphere * walkRadius;
+
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+        Vector3 finalPosition = hit.position;
+
+        StartCoroutine(Fleeing(finalPosition));
+    }
+
+    IEnumerator Fleeing(Vector3 movePositionVector)
+    {
+        float timeLeft = 2.0f;
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+
+            navMeshAgent.destination = movePositionVector;
+
+            yield return null;
+        }
         yield return null;
     }
 }
