@@ -209,5 +209,8 @@ public class Shotgun : MonoBehaviour {
         {
             playerTransform.gameObject.GetComponent<PlayerController>().TakeDamage();
         }
+
+        hitEnemy = false;
+        hitProp = false;
     }
 }
