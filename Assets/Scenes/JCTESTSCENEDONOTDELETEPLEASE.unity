@@ -151,6 +151,11 @@ MonoBehaviour:
   glitchTimerMin: 10
   glitchTimerMax: 20
   player: {fileID: 0}
+  vibrateAudio: {fileID: 0}
+  glitchAudio: {fileID: 0}
+  wobbleAudio: {fileID: 0}
+  dragAudio: {fileID: 0}
+  flingAudio: {fileID: 0}
   spotted: 0
   invincible: 0
   errorMaterials: []
@@ -373,7 +378,7 @@ PrefabInstance:
     - target: {fileID: 1863442092212341511, guid: 8379e30d82ce02a40b0f961b0770de18,
         type: 3}
       propertyPath: gameTimer
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1863442092212341511, guid: 8379e30d82ce02a40b0f961b0770de18,
         type: 3}
@@ -878,6 +883,11 @@ MonoBehaviour:
   glitchTimerMin: 10
   glitchTimerMax: 20
   player: {fileID: 0}
+  vibrateAudio: {fileID: 0}
+  glitchAudio: {fileID: 0}
+  wobbleAudio: {fileID: 0}
+  dragAudio: {fileID: 0}
+  flingAudio: {fileID: 0}
   spotted: 0
   invincible: 0
   errorMaterials: []
@@ -915,7 +925,13 @@ MonoBehaviour:
   selectedEnemies: []
   numberOfEnemies: 0
   errorMaterialsManager: []
-  audioClip: {fileID: 0}
+  vibrateAudio: {fileID: 0}
+  glitchAudio: {fileID: 0}
+  wobbleAudio: {fileID: 0}
+  dragAudio: {fileID: 0}
+  flingAudio: {fileID: 0}
+  soundEffectsVolume: 0.5
+  soundEffectMaxDistance: 10
 --- !u!4 &1572120657
 Transform:
   m_ObjectHideFlags: 0

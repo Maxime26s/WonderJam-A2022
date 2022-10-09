@@ -11863,6 +11863,7 @@ MonoBehaviour:
   flingAudio: {fileID: 0}
   soundEffectsVolume: 0.5
   soundEffectMaxDistance: 10
+  deathAnim: {fileID: 1000012560919920, guid: 85a8865d1bf4a63478038fae23776de8, type: 3}
 --- !u!4 &1561526465
 Transform:
   m_ObjectHideFlags: 0
