@@ -38,6 +38,24 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         cameraTransform = Camera.main.transform;
+        gameManager = GameManager.Instance;
+
+        if (wrench.activeInHierarchy) {
+            gameManager.wrenchEnabled = true;
+            gameManager.shotgunEnabled = false;
+            gameManager.bombEnabled = false;
+            return;
+        } else if (shotgun.activeInHierarchy) {
+            gameManager.wrenchEnabled = false;
+            gameManager.shotgunEnabled = true;
+            gameManager.bombEnabled = false;
+            return;
+        } else if (bomb.activeInHierarchy) {
+            gameManager.wrenchEnabled = false;
+            gameManager.shotgunEnabled = false;
+            gameManager.bombEnabled = true;
+            return;
+        }
     }
 
     private void ToggleNoClip()
@@ -147,11 +165,19 @@ private void SwapWeapon() {
     }
 
     private void EquipShotgun() {
-        //if (!CheckWeaponsOnCooldown()) {
+        if (!gameManager.shotgunEnabled) {
             wrench.SetActive(false);
+            gameManager.wrenchEnabled = false;
+
             shotgun.SetActive(true);
-        shotgun.GetComponent<Shotgun>().onCooldown = false;
-        shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
+            gameManager.shotgunEnabled = true;
+
+            if (bomb && !bomb.GetComponent<Bomb>().IsThrown) {
+                bomb.SetActive(false);
+                gameManager.bombEnabled = false;
+            }
+            shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
+        }
         //}
     }
 

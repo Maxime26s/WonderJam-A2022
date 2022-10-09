@@ -15,7 +15,7 @@ public class LineOfSight : MonoBehaviour
     void Start()
     {
         //Choose the distance the Box can reach to
-        m_MaxDistance = 300.0f;
+        m_MaxDistance = 10.0f;
         m_Collider = GetComponent<Collider>();
     }
 

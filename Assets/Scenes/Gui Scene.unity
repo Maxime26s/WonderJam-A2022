@@ -306,31 +306,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1863442092212341511, guid: 8379e30d82ce02a40b0f961b0770de18,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 8379e30d82ce02a40b0f961b0770de18, type: 3}
---- !u!1 &1465129105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2285548422398384436, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1905965114}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &1465129113
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465129105}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: a50eb4b2e7992c54fb551b3f61608c6a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: a50eb4b2e7992c54fb551b3f61608c6a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &1763591981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,46 +452,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.340514
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.08344118
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9096179
-      objectReference: {fileID: 0}
-    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.22289725
-      objectReference: {fileID: 0}
-    - target: {fileID: 4857382097091964785, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: bombAnimation
-      value: 
-      objectReference: {fileID: 1465129113}
-    - target: {fileID: 5501980275303166969, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501980275303166969, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501980275303166969, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.23
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
