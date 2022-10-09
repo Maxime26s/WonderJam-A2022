@@ -36,7 +36,7 @@ public class LineOfSight : MonoBehaviour
             EnemyBehavior enemyBehavior = hit.collider.GetComponent<EnemyBehavior>();
             if (enemyBehavior != null)
             {
-                Debug.Log("Hit : " + hit.collider.name);
+                // Debug.Log("Hit : " + hit.collider.name);
                 enemyBehavior.Spotted();
             }
         }
