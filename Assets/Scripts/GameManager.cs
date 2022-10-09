@@ -51,6 +51,8 @@ public static GameManager Instance { get; set; }
     private bool hasBeenInitialized = false;
 
 
+    private int totalEnemies;
+
     public void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(this);
@@ -110,6 +112,12 @@ public static GameManager Instance { get; set; }
                 break;
             case GameState.OutOfTime:
                 SetTimerText("00:00");
+
+                deathUI.SetActive(true);
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
@@ -124,7 +132,7 @@ public static GameManager Instance { get; set; }
     }
 
     public void IsLevelEnd() {
-        if (GetEnemyCount() <= 0)
+        if (GetEnemyCount() <= totalEnemies/2)
         {
             SwitchToGameState(GameState.Win);
         }
@@ -136,7 +144,7 @@ public static GameManager Instance { get; set; }
 
         hasBeenInitialized = true;
         SpawnPlayer();
-        GetEnemyCount();
+        totalEnemies = GetEnemyCount();
         SwitchToGameState(GameState.Playing);
     }
 
