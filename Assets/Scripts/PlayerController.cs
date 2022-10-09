@@ -6,6 +6,15 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    GameObject wrench;
+    [SerializeField]
+    GameObject shotgun;
+    [SerializeField]
+    GameObject bomb;
+
+
+
+    [SerializeField]
     private float speed = 2f;
     [SerializeField]
     private float jumpHeight = 1f;
@@ -92,12 +101,19 @@ public class PlayerController : MonoBehaviour
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private void SwapWeapon() {
+    private bool CheckWeaponsOnCooldown() {
+        return (wrench.GetComponent<Wrench>().onCooldown || shotgun.GetComponent<Shotgun>().onCooldown);
+    }
+
+
+private void SwapWeapon() {
         if (InputManager.Instance.PlayerGetSelectWrench() == true) {
+            EquipWrench();
             Debug.Log("Wrench Selected");
             return;
         }
         if (InputManager.Instance.PlayerGetSelectShotgun() == true) {
+            EquipShotgun();
             Debug.Log("Shotgun Selected");
             return;
         }
@@ -117,7 +133,25 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Next weapon button pressed");
             return;
         }
+    }
 
+
+    private void EquipWrench() {
+        //if (!CheckWeaponsOnCooldown()) {
+            wrench.SetActive(true);
+        shotgun.SetActive(false);
+        wrench.GetComponent<Wrench>().onCooldown = false;
+        wrench.GetComponent<Wrench>().wrenchAnimation.Play("TakeOutWrench");
+        //}
+    }
+
+    private void EquipShotgun() {
+        //if (!CheckWeaponsOnCooldown()) {
+            wrench.SetActive(false);
+            shotgun.SetActive(true);
+        shotgun.GetComponent<Shotgun>().onCooldown = false;
+        shotgun.GetComponent<Shotgun>().shotgunAnimation.Play("TakeOutShotgun");
+        //}
     }
 
     public void TakeDamage()
