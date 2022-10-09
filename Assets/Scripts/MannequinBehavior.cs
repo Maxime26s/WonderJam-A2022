@@ -35,6 +35,9 @@ public class MannequinBehavior : MonoBehaviour
     [SerializeField] public int Health;
     private int hitCount;
 
+    [SerializeField] public Transform[] teleportPoints;
+    private int nbTPPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,7 @@ public class MannequinBehavior : MonoBehaviour
         roamTimer = wanderTimer;
 
         behavior = Behavior.Roaming;
+        nbTPPoints = teleportPoints.Length;
     }
 
     // Update is called once per frame
@@ -160,11 +164,15 @@ public class MannequinBehavior : MonoBehaviour
         if (Health == 0)
         {
             Death();
-        }
-
-        if (hitCount == 1)
+        } else
         {
-            behavior = Behavior.ChasingPlayer;
+            if (hitCount >= 1)
+            {
+                behavior = Behavior.ChasingPlayer;
+            }
+
+            int randomTPPpoint = Random.Range(0, nbTPPoints);
+            gameObject.transform.position = teleportPoints[randomTPPpoint].position;
         }
     }
 
