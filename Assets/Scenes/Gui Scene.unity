@@ -453,6 +453,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.340514
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08344118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9096179
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.22289725
+      objectReference: {fileID: 0}
+    - target: {fileID: 2701967109034192709, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+        type: 3}
+      propertyPath: weaponRange
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
