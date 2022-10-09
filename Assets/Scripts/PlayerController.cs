@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject bomb;
 
-
+    public GameManager gameManager;
 
     [SerializeField]
     private float speed = 2f;
@@ -186,7 +186,7 @@ private void SwapWeapon() {
         health--;
         if (health <= 0)
         {
-            GameManager.Instance.SwitchToGameState(GameManager.Instance.GameState.PlayerDeath);
+            GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         }
         playerTakeDamage.Invoke();
     }
