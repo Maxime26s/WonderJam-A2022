@@ -276,10 +276,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         audioSource.PlayOneShot(flingAudio);
 
-        float maxForce = 10.0f;
-        float intensity = 500.0f;
+        float maxForce = 1.0f;
+        float intensity = 400.0f;
 
-        float timeLeft = 2.0f;
+        float timeLeft = 1.2f;
 
         Vector3 flingDirection = new Vector3(Random.Range(-maxForce, maxForce), Random.Range(0, maxForce), Random.Range(-maxForce, maxForce));
         flingDirection.Normalize();
