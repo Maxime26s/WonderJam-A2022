@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 420016418, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 420016419, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.6875
@@ -159,9 +163,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 923091226, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 923091228, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: m_text
-      value: Cottage
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 1277839290, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: playOnLaunch
@@ -172,6 +180,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c8f8feb49d1f9c943abf54c493161d44,
         type: 2}
+    - target: {fileID: 175346483615382024, guid: 9dd7ada55c4937c43affa156bdf98c30,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 175346483615382024, guid: 9dd7ada55c4937c43affa156bdf98c30,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 2214423327305926798, guid: 9dd7ada55c4937c43affa156bdf98c30,
         type: 3}
       propertyPath: m_text
@@ -361,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSpeed: 1
   image: {fileID: 257081147}
-  nextSceneName: Level 1
+  nextSceneName: MainMenu
 --- !u!114 &257081147
 MonoBehaviour:
   m_ObjectHideFlags: 0

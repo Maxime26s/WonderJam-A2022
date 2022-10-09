@@ -23,6 +23,7 @@ public class DialogueDatabase : MonoBehaviour
     private DialogueTemplate gameOverDialogue;
 
     private bool isPlaying = false;
+    public GameObject go;
 
     public void Awake()
     {
@@ -64,17 +65,13 @@ public class DialogueDatabase : MonoBehaviour
             return false;
 
         isPlaying = true;
-        GameObject go = Instantiate(dialoguePrefab);
+        go = Instantiate(dialoguePrefab);
         var dialogueBoxManager = go.GetComponent<DialogueBoxManager>();
         if (shouldForce)
             dialogueBoxManager.ForcePlay(dialogue);
         else
             dialogueBoxManager.StartDialogue(dialogue, 0f);
-        dialogueBoxManager.DialogueFinished += () =>
-        {
-            isPlaying = false;
-            Destroy(go);
-        };
+        dialogueBoxManager.DialogueFinished += DestroyAfterFinish;
         return true;
     }
 
@@ -86,8 +83,19 @@ public class DialogueDatabase : MonoBehaviour
         return PlayDialogue(gameOverDialogue, true);
     }
 
+    private void DestroyAfterFinish()
+    {
+        isPlaying = false;
+        Destroy(go);
+    }
+
     public void TryStopSound()
     {
-        DialogueBoxManager.Instance.Reset();
+        if(go != null)
+        {
+            go.GetComponent<DialogueBoxManager>().DialogueFinished -= DestroyAfterFinish;
+            isPlaying = false;
+        }
+        DialogueBoxManager.Instance?.Reset();
     }
 }

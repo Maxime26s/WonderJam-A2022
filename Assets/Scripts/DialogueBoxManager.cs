@@ -19,6 +19,8 @@ public class DialogueBoxManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        destroyed = false;
     }
 
     public Image imageHolder;
@@ -52,6 +54,8 @@ public class DialogueBoxManager : MonoBehaviour
     float deltaBorder;
     private Vector2 textDialogueDefaultAnchorX;
     float deltaTextDialogue;
+
+    private bool destroyed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -90,18 +94,21 @@ public class DialogueBoxManager : MonoBehaviour
                 }
                 clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
             }
-            if (currentVoiceLine.useRandomFlicking) {
+            if (currentVoiceLine.useRandomFlicking)
+            {
                 if (UnityEngine.Random.Range(0, 2) == 0)
                     imageHolder.sprite = currentFace.mouthClosed;
                 else
                     imageHolder.sprite = currentFace.mouthOpened;
-            } else {
+            }
+            else
+            {
                 if (currentVoiceLine && clipLoudness > currentVoiceLine.closedMouthThreshold)
                     imageHolder.sprite = currentFace.mouthOpened;
                 else
                     imageHolder.sprite = currentFace.mouthClosed;
             }
-            
+
 
             if (currentVoiceLine.showFullText)
                 textDialogue.text = currentVoiceLine.text;
@@ -220,19 +227,30 @@ public class DialogueBoxManager : MonoBehaviour
 
     public void Reset()
     {
-        StopCoroutine("WaitThenPlay");
+        if (!destroyed)
+            StopCoroutine("WaitThenPlay");
+        if (audioSource != null)
+        {
+            audioSource.clip = null;
+            audioSource.Stop();
+        }
+
         currentUpdateTime = 0;
         isPlaying = false;
         currentDialogue = null;
         currentFace = null;
         currentVoiceLine = null;
-        audioSource.clip = null;
-        audioSource.Stop();
     }
 
     public void ForcePlay(DialogueTemplate dialogueTemplate)
     {
         Reset();
         StartDialogue(dialogueTemplate, 0f);
+    }
+
+    private void OnDestroy()
+    {
+        Reset();
+        destroyed = true;
     }
 }

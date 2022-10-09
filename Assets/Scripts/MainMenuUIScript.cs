@@ -24,7 +24,7 @@ public class MainMenuUIScript : MonoBehaviour {
     public void ButtonTutorial() {
         if (TryMakeAction()) {
             Debug.Log("No tutorial yet, sending player to main game");
-            LevelLoader.Instance.LoadNextLevel("Introduction");
+            LevelLoader.Instance.LoadNextLevel("Tutorial");
         }
     }
 

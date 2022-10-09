@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
   m_Name: HpLose 2 1
   m_EditorClassIdentifier: 
-  text: "Chasseur, attention o\xF9 vous tirez!"
+  text: Chasseur, attention ou vous tirez!
   face: {fileID: 11400000, guid: 5b160a996c608b74d8c9951576fb1414, type: 2}
   voiceLine: {fileID: 8300000, guid: bcbd04e3d436f834a8ab8ee0598a38fb, type: 3}
   closedMouthThreshold: 0.125
