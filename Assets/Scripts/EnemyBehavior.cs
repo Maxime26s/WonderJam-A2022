@@ -86,28 +86,32 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (!spotted)
         {
-            switch (glitchType)
-            {
-                case GlitchType.Move:           //move to random navmesh location
-                    move();
-                    break;
-                case GlitchType.Vibrate:        //vibrate for x seconds
-                    vibrate();
-                    break;
-                case GlitchType.Stretch:
-                    stretch();
-                    break;
-                case GlitchType.ChangeMaterial:
-                    ChangeMaterial();
-                    break;
-                case GlitchType.ChangeMeshError:
-                    ChangeMeshError();
-                    break;
-                case GlitchType.Fling:
-                    Fling();
-                    break;
-                    
-            }
+            ExecuteGlitch();
+        }
+    }
+
+    private void ExecuteGlitch()
+    {
+        switch (glitchType)
+        {
+            case GlitchType.Move:           //move to random navmesh location
+                move();
+                break;
+            case GlitchType.Vibrate:        //vibrate for x seconds
+                vibrate();
+                break;
+            case GlitchType.Stretch:
+                stretch();
+                break;
+            case GlitchType.ChangeMaterial:
+                ChangeMaterial();
+                break;
+            case GlitchType.ChangeMeshError:
+                ChangeMeshError();
+                break;
+            case GlitchType.Fling:
+                Fling();
+                break;
         }
     }
 
@@ -199,6 +203,11 @@ public class EnemyBehavior : MonoBehaviour
         spotted = true;
 
         spottedTimeLeft = 2.0f;
+    }
+
+    public void ForceGlitch()
+    {
+        ExecuteGlitch();
     }
 
     IEnumerator ChangingMaterial()

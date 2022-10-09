@@ -78,4 +78,8 @@ public class InputManager : MonoBehaviour
     public float PlayerGetScrollDownWeapon() {
         return playerControls.Player.ScrollDownWeapon.ReadValue<float>();
     }
+
+    public bool PlayerGetNextWeapon() {
+        return playerControls.Player.NextWeapon.triggered;
+    }
 }
