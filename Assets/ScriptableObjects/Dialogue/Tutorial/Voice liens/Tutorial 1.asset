@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22d3bf3fcc2aa046a2fe30d4f8de564, type: 3}
+  m_Name: Tutorial 1
+  m_EditorClassIdentifier: 
+  text: "Voici comment identifier une anomalie. Certains l'appellent un bug mais
+    nous pr\xE9f\xE9rons le mot \xAB feature \xBB. Comme vous pourrez le voir, une
+    feature est remarquable par les mouvements et les bruits qu\u2019elle produit."
+  face: {fileID: 11400000, guid: 683b46f9597a3a0468b975f161d3079a, type: 2}
+  voiceLine: {fileID: 8300000, guid: a4e5458194074d84099161327076d70b, type: 3}
+  closedMouthThreshold: 0.1
+  showFullText: 0
+  faceLocation: 0
