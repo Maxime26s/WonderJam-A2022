@@ -34,7 +34,7 @@ Transform:
   - {fileID: 1356303758980753741}
   - {fileID: 1283273776}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1356303758748363288
 GameObject:
@@ -456,6 +456,7 @@ MonoBehaviour:
   wrench: {fileID: 4503417147907548946}
   shotgun: {fileID: 2217382551594501241}
   bomb: {fileID: 2285548422398384436}
+  gameManager: {fileID: 0}
   speed: 4.5
   jumpHeight: 0.8
   gravity: -15
@@ -890,6 +891,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1841142141386410140, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2597063569902130252, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -905,6 +911,11 @@ PrefabInstance:
       propertyPath: characterController
       value: 
       objectReference: {fileID: 1356303759591148109}
+    - target: {fileID: 2925184585991194710, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3049686645308111619, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -950,6 +961,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.23
       objectReference: {fileID: 0}
+    - target: {fileID: 4179953517241480970, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4213477339354139583, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -978,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 5339184332050524980, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835906590567813191, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
@@ -1042,6 +1058,11 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
     - target: {fileID: 5843593210950640483, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
+      propertyPath: weaponRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843593210950640483, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1356303759591148108}
@@ -1050,6 +1071,11 @@ PrefabInstance:
       propertyPath: wrenchAnimation
       value: 
       objectReference: {fileID: 147475421663481436}
+    - target: {fileID: 5899170358072969420, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5969886999616709810, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_Layer
@@ -1059,6 +1085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509260917199426819, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7009565757091790379, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
@@ -1106,6 +1137,11 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7683831986291329119, guid: 6710669f1c87d3c45831a983b59e62b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768757718082376978, guid: 6710669f1c87d3c45831a983b59e62b9,
         type: 3}
       propertyPath: m_IsActive
       value: 0
