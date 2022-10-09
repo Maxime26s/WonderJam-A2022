@@ -7,23 +7,92 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public static GameManager Instance { get; set; }
+public static GameManager Instance { get; set; }
 
-    public GameObject player;
+    public enum GameState
+    {
+        None,
+        Starting,
+        Playing,
+        Win,
+        OutOfTime,
+        PlayerDeath,
+    }
 
-    public int score;
+    [SerializeField]
+    private GameObject spawnPoint;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private int startingLives = 3;
+    [SerializeField]
+    private EnemyManager enemyManager = null;
+    [SerializeField]
+    private GameObject livesUI = null;
+    [SerializeField]
+    private TMPro.TextMeshProUGUI timerTMP = null;
+    [SerializeField]
+    private float gameTimer = 300f;
 
-    public List<GameObject> spawnPoints;
+
+    [SerializeField]
+    private bool shotgunEnabled = false;
+    [SerializeField]
+    private bool bombEnabled = false;
+
+    private GameState currentGameState = GameState.None;
+
+    private int currentLives = 0;
+
 
     public void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(this);
         } else {
             Instance = this;
-            DontDestroyOnLoad(this);
-            //playerList = PlayerManager.Instance.playerList;
             InitMap();
-            score = 0;
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        gameTimer -= Time.deltaTime;
+        if (currentGameState == GameState.Playing)
+        {
+            UpdateTimerUI();
+        }
+
+        if (gameTimer <= 0)
+        {
+            SwitchToGameState(GameState.OutOfTime);
+        }
+    }
+
+    private void UpdateTimerUI()
+    {
+        timerTMP.text = gameTimer.ToString();
+    }
+
+    public void SwitchToGameState(GameState newGameState)
+    {
+        currentGameState = newGameState;
+        switch (newGameState)
+        {
+            case GameState.Starting:
+                Debug.Log("The game is starting...");
+                break;
+            case GameState.Playing:
+                Debug.Log("The game has begun :)");
+                break;
+            case GameState.Win:
+                Debug.Log("You won, rip.");
+                break;
+            case GameState.OutOfTime:
+                Debug.Log("You ran out of time, rip.");
+                break;
+            case GameState.PlayerDeath:
+                Debug.Log("You ran out of life, rip.");
+                break;
         }
     }
 
@@ -32,22 +101,28 @@ public class GameManager : MonoBehaviour {
     }
 
     public void InitMap() {
-        spawnPoints = GameObject.FindGameObjectsWithTag("spawnpoint").ToList();
+        SpawnPlayer();
+        ResetLifeCount();
+        GetEnemyCount();
+        SwitchToGameState(GameState.Playing);
     }
 
-    public void SpawnThePachinko() {
+    public void ResetLifeCount()
+    {
+        currentLives = startingLives;
     }
 
-    private void CleanUp() {
-
-
-
+    public void SpawnPlayer() {
+        Instantiate(player, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
-    public void AddScore(GameObject gameObject, bool win) {
-        if (win)
-            score += 1;
-        else
-            score += 0;
+    public int GetEnemyCount()
+    {
+        return enemyManager.selectedEnemies.Count;
+    }
+
+    public void UpdateGameUI()
+    {
+
     }
 }
