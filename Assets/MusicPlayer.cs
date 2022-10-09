@@ -11,6 +11,9 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        MusicManager.Instance.PlayMusic(musicClip, musicVolume);
+        if (musicClip == null)
+            return;
+
+        MusicManager.Instance?.PlayMusic(musicClip, musicVolume);
     }
 }
