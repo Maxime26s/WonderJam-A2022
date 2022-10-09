@@ -218,6 +218,7 @@ public class PlayerController : MonoBehaviour {
             IsDead = true;
             GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         } else {
+            DialogueDatabase.Instance.TryPlayLoseHpDialogue();
             playerTakeDamage.Invoke();
         }
     }
