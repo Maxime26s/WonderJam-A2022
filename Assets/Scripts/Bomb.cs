@@ -68,12 +68,17 @@ public class Bomb : MonoBehaviour {
 
     private void Throw()
     {
-            IsThrown = true;
-            sphereCollider.enabled = true;
-            gameObject.transform.parent = null;
-            rb.isKinematic = false;
-            rb.AddForce(Camera.main.transform.forward * forwardForce);
-            StartFuse();
+        IsThrown = true;
+        sphereCollider.enabled = true;
+        gameObject.transform.parent = null;
+        int layer = LayerMask.NameToLayer("Default");
+        gameObject.layer = layer;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+            gameObject.transform.GetChild(i).gameObject.layer = layer;
+        
+        rb.isKinematic = false;
+        rb.AddForce(Camera.main.transform.forward * forwardForce);
+        StartFuse();
     }
 
     // Update is called once per frame
