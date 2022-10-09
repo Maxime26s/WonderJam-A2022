@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour {
     private float jumpHeight = 1f;
     [SerializeField]
     private float gravity = -9.81f;
+    [SerializeField]
+    public bool IsDead = false;
 
     private CharacterController controller;
     private Vector3 playerVelocity;
@@ -63,16 +65,22 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (InputManager.Instance.PlayerGetNoClipInput())
-            ToggleNoClip();
+        if(!IsDead)
+        {
+            if (InputManager.Instance.PlayerGetNoClipInput())
+                ToggleNoClip();
 
-        if (!isNoClipping) {
-            MoveUpdate();
-        } else {
-            NoclipUpdate();
+            if (!isNoClipping)
+            {
+                MoveUpdate();
+            }
+            else
+            {
+                NoclipUpdate();
+            }
+
+            SwapWeapon();
         }
-
-        SwapWeapon();
     }
 
     private void NoclipUpdate() {
@@ -207,6 +215,7 @@ public class PlayerController : MonoBehaviour {
     public void TakeDamage() {
         health--;
         if (health <= 0) {
+            IsDead = true;
             GameManager.Instance.SwitchToGameState(GameManager.GameState.PlayerDeath);
         } else {
             playerTakeDamage.Invoke();
