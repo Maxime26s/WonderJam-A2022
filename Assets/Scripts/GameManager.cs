@@ -56,6 +56,8 @@ public static GameManager Instance { get; set; }
     private bool hasBeenInitialized = false;
 
 
+    private int totalEnemies;
+
     public void Awake() {
         if (Instance != null && Instance != this) {
             Destroy(this);
@@ -136,7 +138,10 @@ public static GameManager Instance { get; set; }
     }
 
     public void IsLevelEnd() {
-        if (GetEnemyCount() <= 0)
+        Debug.Log("IsLevelEnd Called");
+        Debug.Log(GetEnemyCount() + "/" + totalEnemies);
+
+        if (GetEnemyCount() <= (int)(totalEnemies/2))
         {
             SwitchToGameState(GameState.Win);
         }
@@ -148,7 +153,6 @@ public static GameManager Instance { get; set; }
 
         hasBeenInitialized = true;
         SpawnPlayer();
-        GetEnemyCount();
         SwitchToGameState(GameState.Playing);
     }
 
@@ -163,6 +167,11 @@ public static GameManager Instance { get; set; }
             return enemyManager.selectedEnemies.Count;
         else
             return 0;
+    }
+
+    public void SetTotalEnemyCount()
+    {
+        totalEnemies = GetEnemyCount();
     }
 
     public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
