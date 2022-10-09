@@ -159,9 +159,29 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 420016420, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 923091228, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: m_text
-      value: Cottage
+      value: Briefing
       objectReference: {fileID: 0}
     - target: {fileID: 1277839290, guid: 9dd7ada55c4937c43affa156bdf98c30, type: 3}
       propertyPath: playOnLaunch
