@@ -478,12 +478,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &645095878 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1356303758233106229, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1012215442}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002476392
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 1356303758233106229, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758233106230, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
@@ -677,22 +671,22 @@ PrefabInstance:
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.340514
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.08344118
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.9096179
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753741, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.22289725
       objectReference: {fileID: 0}
     - target: {fileID: 1356303758980753742, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
         type: 3}
@@ -707,6 +701,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b10ae2a0b39f7b4da4d14c6973587f5, type: 3}
+--- !u!4 &1255921986 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1356303759591148108, guid: 0b10ae2a0b39f7b4da4d14c6973587f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012215442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1640475179
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,9 +893,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
+      propertyPath: Health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
+        type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 645095878}
+      objectReference: {fileID: 1255921986}
     - target: {fileID: 536277613078802169, guid: 4692eaf7b396e1a4784596adbd28c6c6,
         type: 3}
       propertyPath: wanderTimer

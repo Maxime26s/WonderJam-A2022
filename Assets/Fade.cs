@@ -24,9 +24,19 @@ public class Fade : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
+    private void Skip()
+    {
+        StartFading();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (InputManager.Instance.PlayerJumpedThisFrame())
+        {
+            StartFading();
+        }
+
         if (fading)
         {
             image.color = new Color(0, 0, 0, Mathf.Clamp(image.color.a + Time.deltaTime * fadeSpeed, 0, 1));
