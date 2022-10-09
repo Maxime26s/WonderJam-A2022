@@ -143,12 +143,16 @@ public static GameManager Instance { get; set; }
     }
 
     public void SpawnPlayer() {
-        Instantiate(player, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        if (spawnPoint)
+            Instantiate(player, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 
     public int GetEnemyCount()
     {
-        return enemyManager.selectedEnemies.Count;
+        if (enemyManager)
+            return enemyManager.selectedEnemies.Count;
+        else
+            return 0;
     }
 
     public void UpdateGameUI()
