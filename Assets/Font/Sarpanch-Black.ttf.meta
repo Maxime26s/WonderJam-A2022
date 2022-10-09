@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 6ced1006d43d3404f998b2519dcc9f94
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Sarpanch
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 36ea4c97ce565ea4e97f13a409ec1693, type: 3}
+  - {fileID: 12800000, guid: b90d86ac6f2edd44d8fa0b21b1fc162d, type: 3}
+  - {fileID: 12800000, guid: f83b4058261fd9140a2223f500e3127c, type: 3}
+  - {fileID: 12800000, guid: 91087312bd6dba247b46189c4692f06f, type: 3}
+  - {fileID: 12800000, guid: 320c14a63d4edae4fbd2ffb2e5fdd740, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
