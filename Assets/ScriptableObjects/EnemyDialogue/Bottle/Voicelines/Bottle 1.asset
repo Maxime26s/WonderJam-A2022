@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: I'm just a little bottle!!!
   face: {fileID: 11400000, guid: 5c6b3361575fdf341ade38b123ece640, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 8d93535ed19f0614586faff7bd8fff43, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

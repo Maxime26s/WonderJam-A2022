@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: "Continuez \xE0 tirer comme \xE7a et vous allez r\xE9ellement vous blesser!"
   face: {fileID: 11400000, guid: 5b160a996c608b74d8c9951576fb1414, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: d596a636c97130d47a60f2c937dde988, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0

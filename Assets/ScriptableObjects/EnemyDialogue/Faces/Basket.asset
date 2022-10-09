@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0bc57aea7b741419e0dd10eb8faeb2, type: 3}
   m_Name: Basket
   m_EditorClassIdentifier: 
-  mouthClosed: {fileID: 0}
-  mouthOpened: {fileID: 0}
-  name: 
-  nameColor: {r: 0, g: 0, b: 0, a: 0}
+  mouthClosed: {fileID: 21300000, guid: b51b4303ed0a387439a6a7f9cd54427c, type: 3}
+  mouthOpened: {fileID: 21300000, guid: d9aec77c21525514cabd9ebe140eb1f8, type: 3}
+  name: Brasket
+  nameColor: {r: 1, g: 0.6901961, b: 0.16470589, a: 1}
   showFace: 1

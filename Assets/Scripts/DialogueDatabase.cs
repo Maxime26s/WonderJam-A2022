@@ -19,8 +19,6 @@ public class DialogueDatabase : MonoBehaviour
     private List<DialogueTemplate> defaultEnemyDialogues = new List<DialogueTemplate>();
     [SerializeField]
     private List<DialogueTemplate> loseHpDialogues = new List<DialogueTemplate>();
-    [SerializeField]
-    private DialogueTemplate poutineDialogue;
 
     private bool isPlaying = false;
 
@@ -39,7 +37,7 @@ public class DialogueDatabase : MonoBehaviour
     public DialogueTemplate FindEnemyDialogueByName(string name)
     {
         name = name.ToLower();
-        return dialogueEnemyTemplates.Find(dialogue => dialogue.name.ToLower() == name) ?? defaultEnemyDialogues[UnityEngine.Random.Range(0, defaultEnemyDialogues.Count)];
+        return dialogueEnemyTemplates.Find(dialogue => name.Contains(dialogue.name.ToLower())) ?? defaultEnemyDialogues[UnityEngine.Random.Range(0, defaultEnemyDialogues.Count)];
     }
 
     public bool TryPlayEnemyDialogue(string name)
@@ -56,14 +54,6 @@ public class DialogueDatabase : MonoBehaviour
             return false;
 
         return PlayDialogue(loseHpDialogues[UnityEngine.Random.Range(0, loseHpDialogues.Count)]);
-    }
-
-    public bool TryPlayPoutineDialogue()
-    {
-        if (isPlaying)
-            return false;
-
-        return PlayDialogue(poutineDialogue);
     }
 
     public bool PlayDialogue(DialogueTemplate dialogue)

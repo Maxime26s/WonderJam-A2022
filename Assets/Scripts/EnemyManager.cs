@@ -23,6 +23,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] public float soundEffectsVolume = 0.5f;
     [SerializeField] public float soundEffectMaxDistance = 10f;
 
+    [SerializeField]
+    private GameObject deathAnim;
+
     private void Start()
     {
         foreach(Transform child in transform)
@@ -65,6 +68,8 @@ public class EnemyManager : MonoBehaviour
             enemy.GetComponent<EnemyBehavior>().glitchAudio = glitchAudio;
             enemy.GetComponent<EnemyBehavior>().dragAudio = dragAudio;
             enemy.GetComponent<EnemyBehavior>().flingAudio = flingAudio;
+
+            enemy.GetComponent<EnemyBehavior>().deathAnim = deathAnim;
 
             enemy.GetComponent<AudioSource>().volume = soundEffectsVolume;
             enemy.GetComponent<AudioSource>().spatialBlend = 1;
