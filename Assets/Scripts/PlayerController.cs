@@ -113,6 +113,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Scrolled down");
             return;
         }
+        if (InputManager.Instance.PlayerGetNextWeapon()) {
+            Debug.Log("Next weapon button pressed");
+            return;
+        }
 
     }
 
