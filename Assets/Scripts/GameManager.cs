@@ -36,9 +36,11 @@ public static GameManager Instance { get; set; }
 
 
     [SerializeField]
-    private bool shotgunEnabled = false;
+    public bool wrenchEnabled = false;
     [SerializeField]
-    private bool bombEnabled = false;
+    public bool shotgunEnabled = false;
+    [SerializeField]
+    public bool bombEnabled = false;
 
     private GameState currentGameState = GameState.None;
 
@@ -70,7 +72,12 @@ public static GameManager Instance { get; set; }
 
     private void UpdateTimerUI()
     {
-        timerTMP.text = gameTimer.ToString();
+        timerTMP.text = TimeFormatter(gameTimer);
+    }
+
+    private void SetTimerText(string text)
+    {
+        timerTMP.text = text;
     }
 
     public void SwitchToGameState(GameState newGameState)
@@ -88,6 +95,7 @@ public static GameManager Instance { get; set; }
                 Debug.Log("You won, rip.");
                 break;
             case GameState.OutOfTime:
+                SetTimerText("00:00");
                 Debug.Log("You ran out of time, rip.");
                 break;
             case GameState.PlayerDeath:
@@ -125,4 +133,21 @@ public static GameManager Instance { get; set; }
     {
 
     }
+
+    public static string TimeFormatter(float seconds, bool forceHHMMSS = false)
+    {
+        float secondsRemainder = Mathf.Floor((seconds % 60) * 100) / 100.0f;
+        int minutes = ((int)(seconds / 60)) % 60;
+        int hours = (int)(seconds / 3600);
+
+        if (!forceHHMMSS)
+        {
+            if (hours == 0)
+            {
+                return String.Format("{0:00}:{1:00}", minutes, secondsRemainder);
+            }
+        }
+        return String.Format("{0}:{1:00}:{2:00}", hours, minutes, secondsRemainder);
+    }
+
 }

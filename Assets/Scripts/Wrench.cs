@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Wrench : MonoBehaviour {
     [SerializeField]
-    private Animation shotgunAnimation = null;
+    public Animation wrenchAnimation = null;
     //[SerializeField]
     //private CharacterController characterController = null;
     [SerializeField]
     private Transform playerTransform = null;
 
     [SerializeField]
-    private float weaponRange = 10f;
+    private float weaponRange = 3f;
     [SerializeField]
     private LayerMask layerMask = new LayerMask();
     [SerializeField]
-    private int bulletsPerShot = 10;
+    private int bulletsPerShot = 1;
     [SerializeField]
-    private float spreadFactor = 10f;
+    private float spreadFactor = 0f;
 
 
     [SerializeField]
@@ -38,10 +38,10 @@ public class Wrench : MonoBehaviour {
     [SerializeField]
     private AudioSource audioSource;
     [SerializeField]
-    private AudioClip shotgunBlastAudio;
+    private AudioClip hitAudio;
 
     [SerializeField]
-    private bool onCooldown = false;
+    public bool onCooldown = false;
 
     [SerializeField]
     private bool hitEnemy = false;
@@ -56,8 +56,8 @@ public class Wrench : MonoBehaviour {
     }
 
     private void Shoot() {
-        shotgunAnimation.Play();
-        audioSource.PlayOneShot(shotgunBlastAudio);
+        wrenchAnimation.Play();
+        audioSource.PlayOneShot(hitAudio);
 
 
         onCooldown = true;

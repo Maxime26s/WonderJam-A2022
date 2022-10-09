@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Shotgun : MonoBehaviour
-{
+public class Shotgun : MonoBehaviour {
     [SerializeField]
-    private Animation shotgunAnimation = null;
+    public Animation shotgunAnimation = null;
     [SerializeField]
     private Animation shotgunRecoilAnimation = null;
     [SerializeField]
@@ -54,7 +53,7 @@ public class Shotgun : MonoBehaviour
     private AudioClip shotgunBlastAudio;
 
     [SerializeField]
-    private bool onCooldown = false;
+    public bool onCooldown = false;
 
     [SerializeField]
     private float heatValue = 0f;
@@ -72,8 +71,7 @@ public class Shotgun : MonoBehaviour
     [SerializeField]
     private GameObject enemyShot;
 
-    void Update()
-    {
+    void Update() {
         if (InputManager.Instance.PlayerGetFireInput() && !onCooldown) {
             Shoot();
         }
@@ -109,8 +107,7 @@ public class Shotgun : MonoBehaviour
         CheckTakeDamage();
     }
 
-    private void TeleportPlayer()
-    {
+    private void TeleportPlayer() {
         Vector3 direction = Camera.main.transform.forward;
         direction.y = 0;
         direction = -direction.normalized;
