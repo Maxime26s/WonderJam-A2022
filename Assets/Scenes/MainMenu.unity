@@ -1663,6 +1663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClip: {fileID: 8300000, guid: e3bf200104080da4bb201ea99526a7eb, type: 3}
+  musicVolume: 0.2
 --- !u!4 &1184227116
 Transform:
   m_ObjectHideFlags: 0

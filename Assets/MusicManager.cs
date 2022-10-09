@@ -22,16 +22,17 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void PlayMusic(AudioClip audioClip)
+    public void PlayMusic(AudioClip audioClip, float volume)
     {
-        StartCoroutine(PlayMusicCoroutine(audioClip));
+        StartCoroutine(PlayMusicCoroutine(audioClip, volume));
     }
 
-    public IEnumerator PlayMusicCoroutine(AudioClip audioClip)
+    public IEnumerator PlayMusicCoroutine(AudioClip audioClip, float volume)
     {
         yield return AudioFadeOut.FadeOut(musicAudioSource, 1f);
         musicAudioSource.clip = audioClip;
         musicAudioSource.Play();
+        musicAudioSource.volume = volume;
         yield return null;
     }
 
