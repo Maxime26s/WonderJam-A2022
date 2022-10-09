@@ -28,6 +28,12 @@ public class EnemyBehavior : MonoBehaviour
     float glitchTimer;
 
     AudioSource audioSource;
+
+    [SerializeField] public AudioClip vibrateAudio;
+    [SerializeField] public AudioClip glitchAudio;
+    [SerializeField] public AudioClip wobbleAudio;
+    [SerializeField] public AudioClip dragAudio;
+
     EnemyNavMesh enemyNavMesh;
     Rigidbody rb;
     NavMeshAgent navMeshAgent;
@@ -95,18 +101,23 @@ public class EnemyBehavior : MonoBehaviour
         switch (glitchType)
         {
             case GlitchType.Move:           //move to random navmesh location
+                audioSource.clip = dragAudio;
                 move();
                 break;
             case GlitchType.Vibrate:        //vibrate for x seconds
+                audioSource.clip = vibrateAudio;
                 vibrate();
                 break;
             case GlitchType.Stretch:
+                audioSource.clip = wobbleAudio;
                 stretch();
                 break;
             case GlitchType.ChangeMaterial:
+                audioSource.clip = glitchAudio;
                 ChangeMaterial();
                 break;
             case GlitchType.ChangeMeshError:
+                audioSource.clip = glitchAudio;
                 ChangeMeshError();
                 break;
             case GlitchType.Fling:
@@ -117,7 +128,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private void move()
     {
-        enemyNavMesh.StartMove(); 
+        enemyNavMesh.StartMove();
     }
     private void vibrate()
     {
@@ -173,6 +184,8 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator Stretching()
     {
+        audioSource.Play(0);
+
         float speed = 1.0f;
         float intensity = 0.5f;
 
@@ -193,6 +206,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         transform.localScale = startScale;
 
+        audioSource.Stop();
         yield return null;
     }
 
@@ -210,6 +224,8 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator ChangingMaterial()
     {
+        audioSource.Play(0);
+
         if (enemyRenderer != null)
         {
             var oldMaterials = enemyRenderer.materials;
@@ -225,11 +241,14 @@ public class EnemyBehavior : MonoBehaviour
 
             enemyRenderer.materials = defaultMaterials;
         }
+        audioSource.Stop();
         yield return null;
     }
 
     IEnumerator ChangingMesh()
     {
+        audioSource.Play(0);
+
         if (enemyRenderer != null)
         {
             var randomTime = Random.Range(1.0f, 4.0f);
@@ -241,6 +260,7 @@ public class EnemyBehavior : MonoBehaviour
             enemyMeshFilter.mesh = oldMesh;
             enemyRenderer.material = oldMaterial;
         }
+        audioSource.Stop();
         yield return null;
     }
     IEnumerator Flinging()
