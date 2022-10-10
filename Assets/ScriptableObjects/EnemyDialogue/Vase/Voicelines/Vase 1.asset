@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: I am fragile, leave me alone!!
   face: {fileID: 11400000, guid: 74d1b8a1d364b3a43b42d48ded5d4a00, type: 2}
-  voiceLine: {fileID: 8300000, guid: 09594f79a8141c74486e6c2c3d974337, type: 3}
+  voiceLine: {fileID: 8300000, guid: 54252ec4eea7d29469106746d6c3ce02, type: 3}
   closedMouthThreshold: 0.125
   showFullText: 0
   faceLocation: 0
