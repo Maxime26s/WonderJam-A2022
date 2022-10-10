@@ -83,4 +83,9 @@ public class InputManager : MonoBehaviour
     public bool PlayerGetNextWeapon() {
         return playerControls.Player.NextWeapon.triggered;
     }
+
+    public bool PlayerPause()
+    {
+        return playerControls.Player.Pause.triggered;
+    }
 }
