@@ -565,7 +565,7 @@ MonoBehaviour:
   fade: {fileID: 2037126768}
   titleObject: {fileID: 911860203}
   loreObject: {fileID: 2089830241}
-  title: "Paix int\xE9rieur"
+  title: "Paix int\xE9rieure"
   lore: "Vous avez choisis la troisi\xE8me option: le suicide. Peut-\xEAtre que vous
     serez en paix avec vous-m\xEAme, mais vous serez \xE9crit dans l'histoire comme
     un l\xE2che."
@@ -740,7 +740,7 @@ MonoBehaviour:
   fadeSpeed: 2
   image: {fileID: 2037126769}
   nextSceneName: Credits
-  loadNextSceneDelay: 10
+  loadNextSceneDelay: 8
   textToAppear:
   - {fileID: 2089830241}
   - {fileID: 911860203}
@@ -3497,7 +3497,7 @@ MonoBehaviour:
   fade: {fileID: 2037126768}
   titleObject: {fileID: 911860203}
   loreObject: {fileID: 2089830241}
-  title: Exterminer la race des anomalies
+  title: Exterminer les anomalies
   lore: "Vous retournez \xE0 votre vie normale, ayant touch\xE9 une paye de 55 milliards.
     Cependant, vous aurez pour toujours sur la conscience l\u2019extermination d\u2019une
     esp\xE8ce enti\xE8re."

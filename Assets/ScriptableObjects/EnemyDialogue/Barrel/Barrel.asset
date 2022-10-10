@@ -15,3 +15,4 @@ MonoBehaviour:
   pauseLengthBetweenVoiceLines: 0.5
   voiceLinesList:
   - {fileID: 11400000, guid: 9458d911908de2b48a10d2f6b1b539ba, type: 2}
+  - {fileID: 11400000, guid: 62f9e4c62ba5ae04489d1c272231c549, type: 2}
